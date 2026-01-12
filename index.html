@@ -7271,6 +7271,7 @@
             <button class="btn btn-delete" onclick="profileDelete()">Delete Practice</button>
             <button class="btn btn-export" onclick="exportPractice()">Export JSON</button>
             <button class="btn btn-packet" onclick="openPacketPreview()">Generate DD Packet</button>
+            <button class="btn btn-request-docs" onclick="requestMissingDocsEmail()">Request Documents</button>
           </div>
         </div>
 
@@ -7314,9 +7315,6 @@
             <div class="dd-readiness-trend" id="dd-readiness-trend"></div>
             <button class="btn-bulk-upload" onclick="openBulkUpload()">
               Bulk Upload
-            </button>
-            <button class="btn-request-docs" onclick="openRequestDocsModal()">
-              Request Documents
             </button>
             <button class="btn-apply-template" id="btn-apply-template" onclick="applyDDTemplate()">
               Apply DD Checklist
@@ -12511,6 +12509,129 @@ This digest was generated from Zenyte ERP.
         { value: 'other', label: 'Other Documents' }
       ]
     };
+
+    async function requestMissingDocsEmail() {
+      const practiceId = currentPractice?.id || selectedPracticeId;
+      if (!practiceId) {
+        alert('No practice selected');
+        return;
+      }
+
+      const practice = getPracticeById(practiceId);
+      const practiceName = practice?.name || practice?.dba_name || 'Practice';
+
+      // Get incomplete checklist items
+      let missingItems = [];
+      try {
+        const { data: items } = await window.sb
+          .from('dd_checklist_items')
+          .select('item_name, category_slug')
+          .eq('practice_id', practiceId)
+          .eq('is_complete', false)
+          .order('category_slug');
+
+        if (items && items.length > 0) {
+          missingItems = items;
+        }
+      } catch (e) {
+        console.error('Error fetching checklist items:', e);
+      }
+
+      // If no checklist items, check for common missing document types
+      if (missingItems.length === 0) {
+        // Default list of commonly needed documents
+        missingItems = [
+          { item_name: 'Bank Statements (12+ months)', category_slug: 'financial' },
+          { item_name: 'Income Statement / P&L', category_slug: 'financial' },
+          { item_name: 'Tax Returns (3 years)', category_slug: 'financial' },
+          { item_name: 'Medical License', category_slug: 'dd-compliance' },
+          { item_name: 'Malpractice Insurance', category_slug: 'dd-compliance' },
+          { item_name: 'Lease Agreement', category_slug: 'dd-contracts' },
+          { item_name: 'Articles of Incorporation', category_slug: 'dd-corporate' }
+        ];
+      }
+
+      // Group by category
+      const byCategory = {};
+      missingItems.forEach(item => {
+        const cat = item.category_slug || 'other';
+        if (!byCategory[cat]) byCategory[cat] = [];
+        byCategory[cat].push(item.item_name);
+      });
+
+      // Build email body
+      const categoryLabels = {
+        'financial': 'Financial Documents',
+        'dd-corporate': 'Corporate Documents',
+        'dd-compliance': 'Compliance Documents',
+        'dd-contracts': 'Contracts',
+        'dd-other': 'Other Documents'
+      };
+
+      let emailBody = `Hello,
+
+We are conducting due diligence on ${practiceName} and need the following documents to complete our review.
+
+DOCUMENTS NEEDED:
+==================
+
+`;
+
+      Object.keys(byCategory).forEach(cat => {
+        const label = categoryLabels[cat] || cat.replace('dd-', '').replace('-', ' ').toUpperCase();
+        emailBody += `${label}:\n`;
+        byCategory[cat].forEach(item => {
+          emailBody += `  • ${item}\n`;
+        });
+        emailBody += '\n';
+      });
+
+      emailBody += `==================
+
+Please upload these documents to our secure portal or reply to this email with the requested files attached.
+
+If you have any questions about what's needed, please don't hesitate to reach out.
+
+Thank you for your prompt attention to this request.
+
+Best regards,
+Zenyte Holdings
+`;
+
+      const subject = `Document Request: ${practiceName} - DD Materials Needed`;
+      const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+      // Show preview modal with copy and email options
+      showModal('Request Missing Documents', `
+        <div class="email-digest-content">
+          <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.85rem;">
+            ${missingItems.length} document(s) needed for ${practiceName}
+          </p>
+          <div class="email-digest-preview">${emailBody}</div>
+          <div class="email-digest-actions">
+            <button class="btn-copy-email" onclick="copyRequestEmail()">Copy to Clipboard</button>
+            <button class="btn-open-mailto" onclick="window.open('${mailtoUrl}'); closeModal();">Open in Email App</button>
+          </div>
+        </div>
+      `);
+
+      // Store for copy function
+      window._requestEmailContent = emailBody;
+    }
+
+    function copyRequestEmail() {
+      if (window._requestEmailContent && navigator.clipboard) {
+        navigator.clipboard.writeText(window._requestEmailContent).then(() => {
+          const btn = event.target;
+          btn.textContent = 'Copied!';
+          btn.style.background = '#059669';
+          setTimeout(() => {
+            btn.textContent = 'Copy to Clipboard';
+            btn.style.background = '';
+          }, 1500);
+        });
+      }
+    }
 
     function openRequestDocsModal() {
       const practiceId = currentPractice?.id;
