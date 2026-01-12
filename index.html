@@ -5637,6 +5637,334 @@
       background: #2563eb;
     }
 
+    /* Import Data Styles */
+    .import-step {
+      padding: 0;
+    }
+
+    .import-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .import-header h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.25rem;
+    }
+
+    .import-header p {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .import-upload-zone {
+      border: 2px dashed #d1d5db;
+      border-radius: 12px;
+      padding: 3rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: #fafafa;
+    }
+
+    .import-upload-zone:hover {
+      border-color: #3b82f6;
+      background: #f8fafc;
+    }
+
+    .import-upload-zone.dragover {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .import-upload-icon {
+      margin-bottom: 1rem;
+    }
+
+    .import-upload-text {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .import-formats {
+      color: #9ca3af;
+      font-size: 0.85rem;
+    }
+
+    .import-paste-section {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .import-paste-label {
+      font-size: 0.9rem;
+      color: #64748b;
+      margin-bottom: 0.75rem;
+    }
+
+    .import-paste-section textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      font-family: ui-monospace, SFMono-Regular, monospace;
+      font-size: 0.85rem;
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .import-paste-section textarea:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .btn-parse-paste {
+      margin-top: 0.75rem;
+      padding: 0.6rem 1.25rem;
+      background: #f1f5f9;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      color: #374151;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-parse-paste:hover {
+      background: #e2e8f0;
+    }
+
+    .import-row-badge {
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .import-mapping-container {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      max-height: 280px;
+      overflow-y: auto;
+    }
+
+    .import-mapping-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mapping-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: white;
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .mapping-source {
+      min-width: 180px;
+      font-weight: 500;
+      color: #374151;
+      font-size: 0.9rem;
+    }
+
+    .mapping-arrow {
+      color: #9ca3af;
+      font-size: 1.25rem;
+    }
+
+    .mapping-row select {
+      flex: 1;
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      background: white;
+      cursor: pointer;
+    }
+
+    .mapping-row select:focus {
+      outline: none;
+      border-color: #3b82f6;
+    }
+
+    .import-preview {
+      margin-top: 1.5rem;
+    }
+
+    .import-preview h4 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.75rem;
+    }
+
+    .import-preview-scroll {
+      overflow-x: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .import-preview table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .import-preview th {
+      background: #f8fafc;
+      padding: 0.6rem 0.75rem;
+      text-align: left;
+      font-weight: 600;
+      color: #64748b;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .import-preview td {
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #374151;
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .import-preview tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .import-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+    }
+
+    .btn-import-back {
+      padding: 0.6rem 1.25rem;
+      background: white;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      color: #374151;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-import-back:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-import-primary {
+      padding: 0.6rem 1.5rem;
+      background: #3b82f6;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-import-primary:hover {
+      background: #2563eb;
+    }
+
+    .import-progress-container {
+      text-align: center;
+      padding: 2rem 0;
+    }
+
+    .import-progress-bar {
+      height: 12px;
+      background: #e5e7eb;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+
+    .import-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #3b82f6, #60a5fa);
+      border-radius: 999px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+
+    .import-progress-text {
+      font-size: 1rem;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    .import-errors {
+      margin-top: 1rem;
+    }
+
+    .import-complete-icon {
+      margin-bottom: 1rem;
+    }
+
+    .import-summary {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .import-summary p {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .import-summary strong {
+      color: #1e293b;
+    }
+
+    .import-summary .success-count {
+      color: #16a34a;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .import-summary .failed-count {
+      color: #dc2626;
+    }
+
+    .import-summary details {
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    .import-summary summary {
+      cursor: pointer;
+      color: #3b82f6;
+      font-size: 0.9rem;
+    }
+
+    .import-summary ul {
+      margin-top: 0.5rem;
+      padding-left: 1.5rem;
+      font-size: 0.85rem;
+      color: #dc2626;
+    }
+
     /* Dashboard View */
     .dashboard-container {
       display: none;
@@ -6970,6 +7298,7 @@
           <button class="settings-tab" data-tab="preferences" onclick="switchSettingsTab('preferences')">Preferences</button>
           <button class="settings-tab" data-tab="team" onclick="switchSettingsTab('team')">Team</button>
           <button class="settings-tab" data-tab="templates" onclick="switchSettingsTab('templates')">Document Templates</button>
+          <button class="settings-tab" data-tab="import" onclick="switchSettingsTab('import')">Import Data</button>
         </div>
 
         <!-- Audit Log Tab Content -->
@@ -7070,6 +7399,96 @@
 
           <div class="templates-list" id="templates-list">
             <div class="templates-loading">Loading templates...</div>
+          </div>
+        </div>
+
+        <!-- Import Tab Content -->
+        <div class="settings-content" id="settings-import">
+          <!-- Step 1: Upload -->
+          <div class="import-step" id="import-step-upload">
+            <div class="import-header">
+              <h3>Import Leads</h3>
+              <p>Upload a CSV or Excel file, or paste data directly from Google Sheets.</p>
+            </div>
+
+            <div class="import-upload-zone" id="import-dropzone" onclick="document.getElementById('import-file').click()">
+              <input type="file" id="import-file" accept=".csv,.xlsx,.xls" onchange="handleImportFile(event)" style="display:none">
+              <div class="import-upload-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#94a3b8" stroke-width="1.5">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                  <line x1="12" y1="3" x2="12" y2="15"/>
+                </svg>
+              </div>
+              <p class="import-upload-text">Drop file here or click to browse</p>
+              <p class="import-formats">Supports: CSV, Excel (.xlsx, .xls)</p>
+            </div>
+
+            <div class="import-paste-section">
+              <p class="import-paste-label">Or paste from Google Sheets / Excel:</p>
+              <textarea id="import-paste" rows="5" placeholder="Copy rows from your spreadsheet and paste here..."></textarea>
+              <button class="btn-parse-paste" onclick="handleImportPaste()">Parse Pasted Data</button>
+            </div>
+          </div>
+
+          <!-- Step 2: Map Columns -->
+          <div class="import-step" id="import-step-map" style="display:none">
+            <div class="import-header">
+              <h3>Map Columns</h3>
+              <p>Match your columns to practice fields. <span id="import-row-count" class="import-row-badge"></span></p>
+            </div>
+
+            <div class="import-mapping-container">
+              <div class="import-mapping-grid" id="import-mapping-grid"></div>
+            </div>
+
+            <div class="import-preview">
+              <h4>Preview (first 5 rows)</h4>
+              <div class="import-preview-scroll">
+                <table id="import-preview-table"></table>
+              </div>
+            </div>
+
+            <div class="import-actions">
+              <button class="btn-import-back" onclick="goToImportStep('upload')">Back</button>
+              <button class="btn-import-primary" onclick="validateAndImport()">Validate & Import</button>
+            </div>
+          </div>
+
+          <!-- Step 3: Progress -->
+          <div class="import-step" id="import-step-progress" style="display:none">
+            <div class="import-header">
+              <h3>Importing...</h3>
+              <p>Please wait while we import your data.</p>
+            </div>
+
+            <div class="import-progress-container">
+              <div class="import-progress-bar">
+                <div class="import-progress-fill" id="import-progress-fill"></div>
+              </div>
+              <p class="import-progress-text" id="import-progress-text">0 / 0 practices imported</p>
+            </div>
+
+            <div class="import-errors" id="import-errors"></div>
+          </div>
+
+          <!-- Step 4: Complete -->
+          <div class="import-step" id="import-step-complete" style="display:none">
+            <div class="import-header">
+              <div class="import-complete-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
+                  <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                  <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+              </div>
+              <h3>Import Complete</h3>
+            </div>
+
+            <div class="import-summary" id="import-summary"></div>
+
+            <div class="import-actions">
+              <button class="btn-import-primary" onclick="goToImportStep('upload'); loadPractices();">Done</button>
+            </div>
           </div>
         </div>
       </div>
@@ -8318,6 +8737,8 @@
 
 <!-- Supabase client library -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<!-- SheetJS for Excel parsing -->
+<script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
 
 <script>
   const SUPABASE_URL = "https://zwdfjndmkyrrovkrennj.supabase.co";
@@ -18103,6 +18524,11 @@ Zenyte Holdings
       if (tabName === 'templates') {
         loadTemplates();
       }
+
+      // Reset import state when switching to import tab
+      if (tabName === 'import') {
+        resetImportState();
+      }
     }
 
     // ========== Document Templates Functions ==========
@@ -18382,6 +18808,445 @@ Zenyte Holdings
         alert('Failed to delete template: ' + err.message);
       }
     }
+
+    // ========== Data Import Functions ==========
+
+    // Global import state
+    let importState = {
+      rawData: [],
+      headers: [],
+      mappings: {},
+      errors: [],
+      imported: 0,
+      failed: 0
+    };
+
+    // Practice fields for mapping dropdown (most commonly used fields)
+    const IMPORT_FIELD_OPTIONS = [
+      { value: '', label: '-- Skip --' },
+      { value: 'legal_name', label: 'Legal Name *' },
+      { value: 'dba_name', label: 'DBA Name' },
+      { value: 'specialty', label: 'Specialty' },
+      { value: 'status', label: 'Status' },
+      { value: 'ownership_structure', label: 'Ownership Structure' },
+      { value: 'years_in_operation', label: 'Years in Operation' },
+      { value: 'num_providers', label: 'Number of Providers' },
+      { value: 'num_locations', label: 'Number of Locations' },
+      { value: 'num_staff_clinical', label: 'Clinical Staff' },
+      { value: 'num_staff_admin', label: 'Admin Staff' },
+      { value: 'asking_price', label: 'Asking Price' },
+      { value: 'est_ebitda_margin', label: 'Est. EBITDA Margin' },
+      { value: 'revenue_model', label: 'Revenue Model' },
+      { value: 'owner_age', label: 'Owner Age' },
+      { value: 'owner_exit_intent', label: 'Owner Exit Intent' },
+      { value: 'emr_system', label: 'EMR System' },
+      { value: 'practice_mgmt_system', label: 'Practice Mgmt System' },
+      { value: 'payer_mix_commercial', label: 'Payer Mix - Commercial %' },
+      { value: 'payer_mix_medicare', label: 'Payer Mix - Medicare %' },
+      { value: 'payer_mix_medicaid', label: 'Payer Mix - Medicaid %' },
+      { value: 'payer_mix_cash', label: 'Payer Mix - Cash %' },
+      { value: 'real_estate_status', label: 'Real Estate Status' },
+      { value: 'lease_expiration', label: 'Lease Expiration' },
+      { value: 'entity_type', label: 'Entity Type' },
+      { value: 'state_of_incorporation', label: 'State of Incorporation' },
+      { value: 'deal_structure_pref', label: 'Deal Structure Pref' },
+      { value: 'seller_financing_available', label: 'Seller Financing' },
+      { value: 'transition_support_months', label: 'Transition Support (mo)' },
+      { value: 'google_rating_claimed', label: 'Google Rating' },
+      { value: 'google_review_count_claimed', label: 'Google Review Count' },
+      { value: 'monthly_patient_volume_claimed', label: 'Monthly Patient Volume' },
+      { value: 'source', label: 'Lead Source' },
+      { value: 'assigned_to', label: 'Assigned To' }
+    ];
+
+    // Reset import state
+    function resetImportState() {
+      importState = {
+        rawData: [],
+        headers: [],
+        mappings: {},
+        errors: [],
+        imported: 0,
+        failed: 0
+      };
+      goToImportStep('upload');
+      document.getElementById('import-file').value = '';
+      document.getElementById('import-paste').value = '';
+    }
+
+    // Handle file upload
+    async function handleImportFile(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      const ext = file.name.split('.').pop().toLowerCase();
+
+      try {
+        if (ext === 'csv') {
+          const text = await file.text();
+          parseCSV(text);
+        } else if (ext === 'xlsx' || ext === 'xls') {
+          const data = await file.arrayBuffer();
+          parseExcel(data);
+        } else {
+          alert('Unsupported file type. Please upload a CSV or Excel file.');
+        }
+      } catch (err) {
+        console.error('[Import] File parse error:', err);
+        alert('Failed to parse file: ' + err.message);
+      }
+    }
+
+    // Parse CSV text
+    function parseCSV(text) {
+      const lines = text.split('\n').filter(l => l.trim());
+      if (lines.length < 2) {
+        alert('CSV file must have at least a header row and one data row.');
+        return;
+      }
+
+      const headers = parseCSVLine(lines[0]);
+      const rows = lines.slice(1).map(line => {
+        const values = parseCSVLine(line);
+        const row = {};
+        headers.forEach((h, i) => row[h] = values[i] || '');
+        return row;
+      }).filter(row => Object.values(row).some(v => v.trim()));
+
+      importState.headers = headers;
+      importState.rawData = rows;
+      autoMapColumns();
+      goToImportStep('map');
+    }
+
+    // Parse a single CSV line (handles quoted fields)
+    function parseCSVLine(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+        if (char === '"') {
+          if (inQuotes && line[i + 1] === '"') {
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      result.push(current.trim());
+      return result;
+    }
+
+    // Parse Excel using SheetJS
+    function parseExcel(data) {
+      if (typeof XLSX === 'undefined') {
+        alert('Excel parsing library not loaded. Please try CSV format.');
+        return;
+      }
+
+      const workbook = XLSX.read(data, { type: 'array' });
+      const firstSheet = workbook.Sheets[workbook.SheetNames[0]];
+      const json = XLSX.utils.sheet_to_json(firstSheet, { header: 1 });
+
+      if (json.length < 2) {
+        alert('Excel file must have at least a header row and one data row.');
+        return;
+      }
+
+      const headers = json[0].map(h => String(h || '').trim());
+      const rows = json.slice(1).map(row => {
+        const obj = {};
+        headers.forEach((h, i) => obj[h] = row[i] !== undefined ? String(row[i]) : '');
+        return obj;
+      }).filter(row => Object.values(row).some(v => v.trim()));
+
+      importState.headers = headers;
+      importState.rawData = rows;
+      autoMapColumns();
+      goToImportStep('map');
+    }
+
+    // Handle paste from Google Sheets
+    function handleImportPaste() {
+      const text = document.getElementById('import-paste').value;
+      if (!text.trim()) {
+        alert('Please paste some data first.');
+        return;
+      }
+
+      const lines = text.split('\n').filter(l => l.trim());
+      if (lines.length < 2) {
+        alert('Please paste at least a header row and one data row.');
+        return;
+      }
+
+      const headers = lines[0].split('\t').map(h => h.trim());
+      const rows = lines.slice(1).map(line => {
+        const values = line.split('\t');
+        const row = {};
+        headers.forEach((h, i) => row[h] = (values[i] || '').trim());
+        return row;
+      }).filter(row => Object.values(row).some(v => v.trim()));
+
+      importState.headers = headers;
+      importState.rawData = rows;
+      autoMapColumns();
+      goToImportStep('map');
+    }
+
+    // Auto-map columns based on header name matching
+    function autoMapColumns() {
+      importState.mappings = {};
+
+      const fieldMap = {
+        'name': 'legal_name',
+        'legal name': 'legal_name',
+        'legal_name': 'legal_name',
+        'practice name': 'legal_name',
+        'practice': 'legal_name',
+        'dba': 'dba_name',
+        'dba name': 'dba_name',
+        'dba_name': 'dba_name',
+        'doing business as': 'dba_name',
+        'specialty': 'specialty',
+        'speciality': 'specialty',
+        'status': 'status',
+        'ownership': 'ownership_structure',
+        'ownership structure': 'ownership_structure',
+        'ownership_structure': 'ownership_structure',
+        'owner type': 'ownership_structure',
+        'providers': 'num_providers',
+        'num providers': 'num_providers',
+        'number of providers': 'num_providers',
+        'physicians': 'num_providers',
+        'doctors': 'num_providers',
+        'price': 'asking_price',
+        'asking price': 'asking_price',
+        'asking_price': 'asking_price',
+        'revenue': 'revenue_model',
+        'revenue model': 'revenue_model',
+        'owner age': 'owner_age',
+        'owner_age': 'owner_age',
+        'age': 'owner_age',
+        'emr': 'emr_system',
+        'emr system': 'emr_system',
+        'emr_system': 'emr_system',
+        'years': 'years_in_operation',
+        'years in operation': 'years_in_operation',
+        'years_in_operation': 'years_in_operation',
+        'source': 'source',
+        'lead source': 'source',
+        'assigned': 'assigned_to',
+        'assigned to': 'assigned_to',
+        'assigned_to': 'assigned_to',
+        'locations': 'num_locations',
+        'num locations': 'num_locations',
+        'number of locations': 'num_locations'
+      };
+
+      importState.headers.forEach(h => {
+        const normalized = h.toLowerCase().trim();
+        if (fieldMap[normalized]) {
+          importState.mappings[h] = fieldMap[normalized];
+        }
+      });
+
+      renderMappingGrid();
+    }
+
+    // Render column mapping UI
+    function renderMappingGrid() {
+      const grid = document.getElementById('import-mapping-grid');
+      if (!grid) return;
+
+      grid.innerHTML = importState.headers.map(h => `
+        <div class="mapping-row">
+          <span class="mapping-source">${escapeHtml(h)}</span>
+          <span class="mapping-arrow">→</span>
+          <select onchange="updateImportMapping('${escapeHtml(h).replace(/'/g, "\\'")}', this.value)">
+            ${IMPORT_FIELD_OPTIONS.map(opt => `
+              <option value="${opt.value}" ${importState.mappings[h] === opt.value ? 'selected' : ''}>
+                ${opt.label}
+              </option>
+            `).join('')}
+          </select>
+        </div>
+      `).join('');
+
+      document.getElementById('import-row-count').textContent =
+        `${importState.rawData.length} rows detected`;
+
+      renderImportPreview();
+    }
+
+    // Update mapping when user changes dropdown
+    function updateImportMapping(header, value) {
+      if (value) {
+        importState.mappings[header] = value;
+      } else {
+        delete importState.mappings[header];
+      }
+      renderImportPreview();
+    }
+
+    // Render preview table
+    function renderImportPreview() {
+      const mappedEntries = Object.entries(importState.mappings).filter(([k, v]) => v);
+      if (mappedEntries.length === 0) {
+        document.getElementById('import-preview-table').innerHTML =
+          '<tr><td style="padding: 1rem; color: #94a3b8;">Map at least one column to see preview</td></tr>';
+        return;
+      }
+
+      const preview = importState.rawData.slice(0, 5);
+      const table = document.getElementById('import-preview-table');
+
+      table.innerHTML = `
+        <thead>
+          <tr>${mappedEntries.map(([k, v]) => `<th>${escapeHtml(v)}</th>`).join('')}</tr>
+        </thead>
+        <tbody>
+          ${preview.map(row => `
+            <tr>
+              ${mappedEntries.map(([fileCol, field]) =>
+                `<td>${escapeHtml(row[fileCol] || '')}</td>`
+              ).join('')}
+            </tr>
+          `).join('')}
+        </tbody>
+      `;
+    }
+
+    // Validate and start import
+    async function validateAndImport() {
+      // Check required fields mapped
+      if (!Object.values(importState.mappings).includes('legal_name')) {
+        alert('Please map at least "Legal Name" to a column before importing.');
+        return;
+      }
+
+      goToImportStep('progress');
+
+      const practices = importState.rawData.map(row => {
+        const practice = {};
+        Object.entries(importState.mappings).forEach(([fileCol, field]) => {
+          if (field && row[fileCol]) {
+            practice[field] = row[fileCol];
+          }
+        });
+        return practice;
+      });
+
+      await importPracticesInChunks(practices, 50);
+    }
+
+    // Chunked import with progress
+    async function importPracticesInChunks(practices, chunkSize) {
+      const total = practices.length;
+      importState.imported = 0;
+      importState.failed = 0;
+      importState.errors = [];
+
+      for (let i = 0; i < total; i += chunkSize) {
+        const chunk = practices.slice(i, i + chunkSize);
+
+        try {
+          const rows = chunk.map(p => {
+            const canonical = createCanonicalPractice(p, new Date().toISOString());
+            return practiceToSupabaseRow(canonical);
+          });
+
+          const { data, error } = await window.sb
+            .from('practices')
+            .insert(rows)
+            .select('id');
+
+          if (error) {
+            importState.failed += chunk.length;
+            importState.errors.push({ batch: Math.floor(i / chunkSize) + 1, error: error.message });
+          } else {
+            importState.imported += data.length;
+          }
+        } catch (e) {
+          importState.failed += chunk.length;
+          importState.errors.push({ batch: Math.floor(i / chunkSize) + 1, error: e.message });
+        }
+
+        updateImportProgress(importState.imported + importState.failed, total);
+
+        // Small delay to avoid rate limits
+        await new Promise(r => setTimeout(r, 100));
+      }
+
+      goToImportStep('complete');
+      renderImportSummary();
+    }
+
+    // Update progress bar
+    function updateImportProgress(current, total) {
+      const pct = Math.round((current / total) * 100);
+      document.getElementById('import-progress-fill').style.width = pct + '%';
+      document.getElementById('import-progress-text').textContent =
+        `${importState.imported} / ${total} practices imported`;
+    }
+
+    // Render final summary
+    function renderImportSummary() {
+      const el = document.getElementById('import-summary');
+      el.innerHTML = `
+        <p>Successfully imported: <span class="success-count">${importState.imported}</span></p>
+        ${importState.failed > 0 ? `
+          <p>Failed: <span class="failed-count">${importState.failed}</span></p>
+        ` : ''}
+        ${importState.errors.length ? `
+          <details>
+            <summary>View errors</summary>
+            <ul>
+              ${importState.errors.map(e => `<li>Batch ${e.batch}: ${escapeHtml(e.error)}</li>`).join('')}
+            </ul>
+          </details>
+        ` : ''}
+      `;
+    }
+
+    // Navigation helper
+    function goToImportStep(step) {
+      ['upload', 'map', 'progress', 'complete'].forEach(s => {
+        const el = document.getElementById(`import-step-${s}`);
+        if (el) el.style.display = s === step ? 'block' : 'none';
+      });
+    }
+
+    // Setup drag and drop for upload zone
+    document.addEventListener('DOMContentLoaded', () => {
+      const dropzone = document.getElementById('import-dropzone');
+      if (dropzone) {
+        dropzone.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          dropzone.classList.add('dragover');
+        });
+        dropzone.addEventListener('dragleave', () => {
+          dropzone.classList.remove('dragover');
+        });
+        dropzone.addEventListener('drop', (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('dragover');
+          const files = e.dataTransfer.files;
+          if (files.length > 0) {
+            document.getElementById('import-file').files = files;
+            handleImportFile({ target: { files } });
+          }
+        });
+      }
+    });
 
     // Populate practice filter dropdown
     async function populateAuditPracticeFilter() {
