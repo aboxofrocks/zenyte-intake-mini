@@ -42,11 +42,25 @@ Zenyte Intake Mini helps M&A teams manage the intake process for healthcare prac
 - **DD Checklist** with phase-based items
 - **Document Hub** with categorized tabs (Financial, Corporate, Compliance, Contracts)
 
+### Data Import
+- **Bulk Lead Import** - Import 2000+ leads from CSV, Excel, or Google Sheets
+- **Smart Column Mapping** - Auto-detects 100+ column name variations
+- **Fuzzy Matching** - Handles messy headers like "# of Docs", "Physician Count"
+- **Data Normalization** - Cleans messy data automatically:
+  - Booleans: "Yes/Y/1/TRUE" → true
+  - Numbers: "$1.5M", "25%", "1,500" → proper numbers
+  - Dates: Various formats → ISO dates
+  - Status/Ownership: Normalizes to valid enum values
+- **Duplicate Detection** - Checks against existing practices before import
+- **First/Last Name Support** - Combines into practice name for contact-style data
+- **Progress Tracking** - Real-time progress bar for large imports
+
 ### Admin Features
 - **User access management** with role-based permissions
 - **Organization-scoped data** with Row Level Security
 - **Audit Log Viewer** (admin only) - browse all practice and document events
 - **Email allowlist** for access control
+- **Document Templates** - Create reusable document request packages
 
 ## Tech Stack
 

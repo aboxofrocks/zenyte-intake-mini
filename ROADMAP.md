@@ -21,6 +21,8 @@
 - Document request workflow (request -> received -> reviewed tracking)
 - OCR + Claude extraction (extract license numbers, expiration dates, contract terms, etc.)
 - Document templates (5 built-in templates: Standard DD, Compliance Audit, Financial Review, Real Estate DD, Corporate Docs)
+- Practice-level visibility permissions (assign users to specific practices with View/Edit/Admin access, visibility toggle, org admins bypass restrictions)
+- Bulk lead import (CSV/Excel/Google Sheets, 2000+ leads, smart column mapping, data normalization, duplicate detection)
 
 ## Next Up
 
@@ -39,8 +41,9 @@
 8. ~~**OCR + Claude extraction**~~ - DONE (Extract button on docs, category-specific prompts, auto-sets expiration dates)
 9. ~~**Document templates**~~ - DONE (5 built-in templates, template picker modal, email generation)
 10. ~~**Audit log viewer**~~ - DONE (Settings panel with combined events view, filters, CSV export)
+11. ~~**Bulk lead import**~~ - DONE (CSV/Excel/Sheets, smart column mapping, data normalization, duplicate detection, first/last name support)
 
 ### Polish
-11. **Mobile-responsive UI** - Better experience on tablets/phones
-12. **Keyboard shortcuts** - Quick navigation
-13. **Drag-and-drop reordering** - For checklist items
+12. **Mobile-responsive UI** - Better experience on tablets/phones
+13. **Keyboard shortcuts** - Quick navigation
+14. **Drag-and-drop reordering** - For checklist items

@@ -248,6 +248,66 @@
       color: #6b7280;
     }
 
+    /* Visibility settings in profile */
+    .visibility-setting {
+      padding: 0.75rem;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .visibility-setting .toggle-label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .visibility-setting .toggle-text {
+      font-size: 0.9rem;
+    }
+
+    .visibility-setting .setting-hint {
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+      font-size: 0.75rem;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+
+    .section-description {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.75rem;
+    }
+
+    .access-assignments-list {
+      margin-bottom: 0.75rem;
+    }
+
+    .access-assignments-list .empty-state {
+      text-align: left;
+      padding: 1rem;
+      font-size: 0.8rem;
+    }
+
+    .btn-add-user {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+      background: #f1f5f9;
+      border: 1px dashed #cbd5e1;
+      border-radius: 6px;
+      color: #475569;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-add-user:hover {
+      background: #e2e8f0;
+      border-color: #94a3b8;
+    }
+
     .actions {
       display: flex;
       gap: 0.5rem;
@@ -8366,6 +8426,18 @@
               <button type="button" class="btn btn-add-location" onclick="addProfileLocation()">+ Add Location</button>
             </div>
 
+            <!-- Visibility Settings (Admin only) -->
+            <div class="profile-subsection" id="profile-visibility-section" style="display: none;">
+              <h4>Visibility Settings</h4>
+              <div class="visibility-setting">
+                <label class="toggle-label">
+                  <input type="checkbox" id="profile-visibility-toggle" onchange="handleProfileVisibilityToggle()">
+                  <span class="toggle-text">Visible to all org members</span>
+                </label>
+                <p class="setting-hint">When enabled, all organization members can view this practice. When disabled, only assigned users and admins can access it.</p>
+              </div>
+            </div>
+
             <div class="profile-form-actions">
               <button type="submit" class="btn btn-save">Save Changes</button>
               <button type="button" class="btn btn-cancel" onclick="closeProfile()">Cancel</button>
@@ -8390,6 +8462,16 @@
             <button class="btn btn-packet" onclick="openPacketPreview()">Generate DD Packet</button>
             <button class="btn btn-request-docs" onclick="requestMissingDocsEmail()">Request Documents</button>
           </div>
+        </div>
+
+        <!-- Access Management Section (Admin only) -->
+        <div class="profile-section" id="profile-access-section" style="display: none;">
+          <h3>Access Management</h3>
+          <p class="section-description">Control who can access this practice and their permission level.</p>
+          <div class="access-assignments-list" id="profile-access-list">
+            <!-- Rendered by JS -->
+          </div>
+          <button class="btn btn-add-user" onclick="showAssignUserModalFromProfile()">+ Add User</button>
         </div>
 
         <div class="profile-section">
@@ -15732,6 +15814,28 @@ Zenyte Holdings
       // Store current practice for request workflow
       currentPractice = practice;
 
+      // Visibility and Access Management (Admin only)
+      const isAdminOrPracticeAdmin = isOrgAdmin() || isPracticeAdmin(practiceId);
+      const visibilitySection = document.getElementById('profile-visibility-section');
+      const accessSection = document.getElementById('profile-access-section');
+
+      if (visibilitySection) {
+        visibilitySection.style.display = isAdminOrPracticeAdmin ? 'block' : 'none';
+        if (isAdminOrPracticeAdmin) {
+          const visToggle = document.getElementById('profile-visibility-toggle');
+          if (visToggle) {
+            visToggle.checked = practice.is_visible_to_all !== false; // Default true
+          }
+        }
+      }
+
+      if (accessSection) {
+        accessSection.style.display = isAdminOrPracticeAdmin ? 'block' : 'none';
+        if (isAdminOrPracticeAdmin) {
+          loadProfileAccessList(practiceId);
+        }
+      }
+
       // Show modal
       document.getElementById('profile-modal').classList.add('visible');
     }
@@ -19014,6 +19118,8 @@ Zenyte Holdings
     const IMPORT_FIELD_OPTIONS = [
       { value: '', label: '-- Skip --' },
       { value: 'legal_name', label: 'Legal Name *' },
+      { value: '_first_name', label: 'First Name (for name)' },
+      { value: '_last_name', label: 'Last Name (for name)' },
       { value: 'dba_name', label: 'DBA Name' },
       { value: 'specialty', label: 'Specialty' },
       { value: 'status', label: 'Status' },
@@ -19371,11 +19477,16 @@ Zenyte Holdings
         'practice name': 'legal_name', 'practice': 'legal_name', 'business name': 'legal_name',
         'company name': 'legal_name', 'company': 'legal_name', 'clinic name': 'legal_name',
         'clinic': 'legal_name', 'office name': 'legal_name', 'entity name': 'legal_name',
+        // First/Last name (for contact-style data)
+        'first': '_first_name', 'first name': '_first_name', 'firstname': '_first_name',
+        'last': '_last_name', 'last name': '_last_name', 'lastname': '_last_name',
+        'full name': 'legal_name', 'contact name': 'legal_name', 'contact': 'legal_name',
         // DBA
         'dba': 'dba_name', 'dba name': 'dba_name', 'doing business as': 'dba_name', 'd/b/a': 'dba_name',
         // Specialty
         'specialty': 'specialty', 'speciality': 'specialty', 'practice type': 'specialty',
         'medical specialty': 'specialty', 'field': 'specialty', 'type': 'specialty',
+        'type of practice': 'specialty', 'practice specialty': 'specialty', 'discipline': 'specialty',
         // Status
         'status': 'status', 'stage': 'status', 'lead status': 'status', 'pipeline': 'status',
         // Ownership
@@ -19569,6 +19680,20 @@ Zenyte Holdings
             practice[field] = normalizeFieldValue(field, row[fileCol]);
           }
         });
+
+        // Combine first + last name into legal_name if no legal_name
+        if (!practice.legal_name && (practice._first_name || practice._last_name)) {
+          const first = (practice._first_name || '').trim();
+          const last = (practice._last_name || '').trim();
+          practice.legal_name = `${first} ${last}`.trim();
+        }
+        delete practice._first_name;
+        delete practice._last_name;
+
+        // Set default specialty if missing (required field)
+        if (!practice.specialty) {
+          practice.specialty = 'Other';
+        }
         return practice;
       }).filter(p => p.legal_name); // Filter out rows without a name
 
@@ -25438,6 +25563,283 @@ Thank you!`;
 
       } catch (err) {
         console.error('[PracticeAccess] Remove error:', err);
+      }
+    }
+
+    // =============================================
+    // PROFILE MODAL - VISIBILITY & ACCESS
+    // =============================================
+
+    // Handle visibility toggle in the profile modal
+    async function handleProfileVisibilityToggle() {
+      const practiceId = selectedPracticeId;
+      const checkbox = document.getElementById('profile-visibility-toggle');
+
+      if (!practiceId) return;
+
+      const isVisible = checkbox?.checked;
+
+      try {
+        const { error } = await window.sb
+          .from('practices')
+          .update({ is_visible_to_all: isVisible })
+          .eq('id', practiceId);
+
+        if (error) {
+          alert('Failed to update visibility: ' + error.message);
+          checkbox.checked = !isVisible;
+          return;
+        }
+
+        // Update local state
+        const practice = db.practices.find(p => p.id === practiceId);
+        if (practice) practice.is_visible_to_all = isVisible;
+
+        console.log('[PracticeAccess] Profile visibility updated:', practiceId, isVisible);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Profile visibility error:', err);
+      }
+    }
+
+    // Load access assignments for the profile modal
+    async function loadProfileAccessList(practiceId) {
+      const container = document.getElementById('profile-access-list');
+      if (!container) return;
+
+      container.innerHTML = '<div class="loading">Loading access list...</div>';
+
+      try {
+        const { data: assignments, error } = await window.sb
+          .from('practice_assignments')
+          .select('*')
+          .eq('practice_id', practiceId);
+
+        if (error) {
+          container.innerHTML = '<div class="error">Failed to load access list.</div>';
+          return;
+        }
+
+        if (!assignments || assignments.length === 0) {
+          container.innerHTML = '<div class="empty-state">No specific assignments. Access is controlled by org-level roles and visibility setting.</div>';
+          return;
+        }
+
+        // Get emails for assigned users
+        const rows = [];
+        for (const assignment of assignments) {
+          const { data: email } = await window.sb.rpc('get_user_email_by_id', { uid: assignment.user_id });
+          rows.push({
+            ...assignment,
+            email: email || 'Unknown'
+          });
+        }
+
+        container.innerHTML = `
+          <table class="assignments-table" style="width: 100%; font-size: 0.8rem;">
+            <thead>
+              <tr style="text-align: left; border-bottom: 1px solid #e5e7eb;">
+                <th style="padding: 0.5rem;">User</th>
+                <th style="padding: 0.5rem;">Access</th>
+                <th style="padding: 0.5rem;">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rows.map(row => `
+                <tr style="border-bottom: 1px solid #f3f4f6;">
+                  <td style="padding: 0.5rem;">${escapeHtml(row.email)}</td>
+                  <td style="padding: 0.5rem;">
+                    <select onchange="updateProfileAssignment('${row.id}', this.value)" style="padding: 0.25rem; font-size: 0.75rem; border: 1px solid #d1d5db; border-radius: 4px;">
+                      <option value="view" ${row.access_level === 'view' ? 'selected' : ''}>View</option>
+                      <option value="edit" ${row.access_level === 'edit' ? 'selected' : ''}>Edit</option>
+                      <option value="admin" ${row.access_level === 'admin' ? 'selected' : ''}>Admin</option>
+                    </select>
+                  </td>
+                  <td style="padding: 0.5rem;">
+                    <button class="btn btn-sm btn-danger" onclick="removeProfileAssignment('${row.id}')" style="padding: 0.2rem 0.5rem; font-size: 0.7rem;">Remove</button>
+                  </td>
+                </tr>
+              `).join('')}
+            </tbody>
+          </table>
+        `;
+
+      } catch (err) {
+        console.error('[PracticeAccess] Load profile access error:', err);
+        container.innerHTML = '<div class="error">Error loading access list.</div>';
+      }
+    }
+
+    // Update assignment from profile modal
+    async function updateProfileAssignment(assignmentId, newLevel) {
+      try {
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .update({ access_level: newLevel, updated_at: new Date().toISOString() })
+          .eq('id', assignmentId);
+
+        if (error) {
+          alert('Failed to update access level: ' + error.message);
+          await loadProfileAccessList(selectedPracticeId);
+          return;
+        }
+
+        console.log('[PracticeAccess] Profile assignment updated:', assignmentId, 'to', newLevel);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Profile update error:', err);
+      }
+    }
+
+    // Remove assignment from profile modal
+    async function removeProfileAssignment(assignmentId) {
+      if (!confirm('Remove this user\'s access to the practice?')) return;
+
+      try {
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .delete()
+          .eq('id', assignmentId);
+
+        if (error) {
+          alert('Failed to remove assignment: ' + error.message);
+          return;
+        }
+
+        await loadProfileAccessList(selectedPracticeId);
+        console.log('[PracticeAccess] Profile assignment removed:', assignmentId);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Profile remove error:', err);
+      }
+    }
+
+    // Show assign user modal from profile
+    async function showAssignUserModalFromProfile() {
+      const practiceId = selectedPracticeId;
+
+      if (!practiceId) {
+        alert('No practice selected.');
+        return;
+      }
+
+      const practice = db.practices.find(p => p.id === practiceId);
+      const practiceName = practice?.name || practice?.legal_name || practice?.dba_name || 'Practice';
+
+      // Get existing assignments
+      const { data: existingAssignments } = await window.sb
+        .from('practice_assignments')
+        .select('user_id')
+        .eq('practice_id', practiceId);
+
+      const assignedUserIds = new Set((existingAssignments || []).map(a => a.user_id));
+
+      // Get org members
+      const { data: members } = await window.sb
+        .from('org_members')
+        .select('user_id, role')
+        .eq('org_id', window.currentOrgId);
+
+      // Get emails
+      const availableMembers = [];
+      for (const member of (members || [])) {
+        if (assignedUserIds.has(member.user_id)) continue;
+        const { data: email } = await window.sb.rpc('get_user_email_by_id', { uid: member.user_id });
+        if (email) {
+          availableMembers.push({ user_id: member.user_id, email, role: member.role });
+        }
+      }
+
+      if (availableMembers.length === 0) {
+        alert('All org members are already assigned to this practice.');
+        return;
+      }
+
+      // Build modal
+      const modal = document.createElement('div');
+      modal.id = 'assign-user-profile-modal';
+      modal.className = 'modal-overlay visible';
+      modal.innerHTML = `
+        <div class="modal" style="max-width: 400px;">
+          <div class="modal-header">
+            <h3>Assign User to Practice</h3>
+            <button class="modal-close" onclick="closeAssignUserProfileModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom: 1rem; font-size: 0.85rem; color: #666;">
+              Assign a team member to <strong>${escapeHtml(practiceName)}</strong>
+            </p>
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">User</label>
+              <select id="assign-user-profile-select" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
+                ${availableMembers.map(m => `<option value="${m.user_id}">${escapeHtml(m.email)} (${m.role})</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Access Level</label>
+              <select id="assign-access-profile-level" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
+                <option value="view">View - Can view practice data</option>
+                <option value="edit" selected>Edit - Can view and edit</option>
+                <option value="admin">Admin - Full access including delete</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeAssignUserProfileModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="assignUserFromProfile()">Assign</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+    }
+
+    function closeAssignUserProfileModal() {
+      const modal = document.getElementById('assign-user-profile-modal');
+      if (modal) modal.remove();
+    }
+
+    // Assign user from profile modal
+    async function assignUserFromProfile() {
+      const practiceId = selectedPracticeId;
+      const userSelect = document.getElementById('assign-user-profile-select');
+      const levelSelect = document.getElementById('assign-access-profile-level');
+
+      const userId = userSelect?.value;
+      const accessLevel = levelSelect?.value;
+
+      if (!practiceId || !userId || !accessLevel) {
+        alert('Please select a user and access level.');
+        return;
+      }
+
+      try {
+        const id = 'pa_' + crypto.randomUUID().replace(/-/g, '').substring(0, 12);
+
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .insert({
+            id,
+            org_id: window.currentOrgId,
+            practice_id: practiceId,
+            user_id: userId,
+            access_level: accessLevel,
+            assigned_by: window.currentUser.id
+          });
+
+        if (error) {
+          alert('Failed to assign user: ' + error.message);
+          return;
+        }
+
+        closeAssignUserProfileModal();
+        await loadProfileAccessList(practiceId);
+
+        console.log('[PracticeAccess] Assigned user from profile:', userId, 'to practice:', practiceId);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Assign from profile error:', err);
+        alert('Failed to assign user.');
       }
     }
 
