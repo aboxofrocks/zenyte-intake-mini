@@ -36,7 +36,7 @@
 ### Advanced Features
 8. **OCR + Claude extraction** - Extract key data from uploaded docs (license numbers, expiration dates, amounts)
 9. **Document templates** - Pre-built templates for common requests
-10. **Audit log viewer** - UI to browse the document_events history
+10. ~~**Audit log viewer**~~ - DONE (Settings panel with combined events view, filters, CSV export)
 
 ### Polish
 11. **Mobile-responsive UI** - Better experience on tablets/phones
