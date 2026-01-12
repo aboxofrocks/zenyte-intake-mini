@@ -4753,6 +4753,324 @@
       background: #fecaca;
     }
 
+    /* Settings Button */
+    .settings-btn {
+      background: transparent;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      color: #64748b;
+      border-radius: 8px;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .settings-btn:hover {
+      background: #f1f5f9;
+      color: #334155;
+    }
+
+    /* Settings Panel Overlay */
+    .settings-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .settings-panel {
+      background: #fff;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 1200px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .settings-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .settings-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      color: #1e293b;
+    }
+
+    .settings-close {
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: #64748b;
+      cursor: pointer;
+      padding: 0;
+      line-height: 1;
+      transition: color 0.2s;
+    }
+
+    .settings-close:hover {
+      color: #ef4444;
+    }
+
+    .settings-tabs {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid #e5e7eb;
+      background: #f8fafc;
+    }
+
+    .settings-tab {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      background: transparent;
+      color: #64748b;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .settings-tab:hover {
+      background: #e2e8f0;
+      color: #334155;
+    }
+
+    .settings-tab.active {
+      background: #3b82f6;
+      color: white;
+    }
+
+    .settings-content {
+      display: none;
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .settings-content.active {
+      display: block;
+    }
+
+    .settings-placeholder {
+      text-align: center;
+      padding: 4rem 2rem;
+      color: #64748b;
+    }
+
+    .settings-placeholder h3 {
+      margin: 0 0 0.5rem 0;
+      color: #334155;
+    }
+
+    /* Audit Log Styles */
+    .audit-filters {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+      align-items: flex-end;
+    }
+
+    .audit-filter-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .audit-filter-group label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #64748b;
+      text-transform: uppercase;
+    }
+
+    .audit-filter-group select,
+    .audit-filter-group input {
+      padding: 0.5rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      min-width: 150px;
+    }
+
+    .audit-filter-group select:focus,
+    .audit-filter-group input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .audit-export-btn {
+      padding: 0.5rem 1rem;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+
+    .audit-export-btn:hover {
+      background: #059669;
+    }
+
+    .audit-table-container {
+      overflow-x: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .audit-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+
+    .audit-table th {
+      background: #f8fafc;
+      padding: 0.75rem 1rem;
+      text-align: left;
+      font-weight: 600;
+      color: #475569;
+      border-bottom: 1px solid #e5e7eb;
+      white-space: nowrap;
+    }
+
+    .audit-table td {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f1f5f9;
+      color: #334155;
+    }
+
+    .audit-table tbody tr:hover {
+      background: #f8fafc;
+    }
+
+    .audit-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    .audit-empty {
+      text-align: center;
+      color: #94a3b8;
+      padding: 3rem 1rem !important;
+    }
+
+    .audit-event-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+
+    .audit-event-badge.practice {
+      background: #dbeafe;
+      color: #1e40af;
+    }
+
+    .audit-event-badge.document {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .audit-event-badge.extraction {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .audit-event-badge.delete {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .audit-actor {
+      max-width: 180px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .audit-details {
+      max-width: 250px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .audit-timestamp {
+      white-space: nowrap;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .audit-practice {
+      font-weight: 500;
+      color: #1e293b;
+    }
+
+    .audit-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 0;
+    }
+
+    .audit-page-btn {
+      padding: 0.5rem 1rem;
+      border: 1px solid #d1d5db;
+      background: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      color: #334155;
+      transition: all 0.2s;
+    }
+
+    .audit-page-btn:hover:not(:disabled) {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+    }
+
+    .audit-page-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .audit-page-info {
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
     /* Dashboard View */
     .dashboard-container {
       display: none;
@@ -4978,6 +5296,970 @@
     .readiness-bar-fill.bar-high { background: #059669; }
     .readiness-bar-fill.bar-medium { background: #f59e0b; }
     .readiness-bar-fill.bar-low { background: #dc2626; }
+
+    /* Notification System */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .notification-bell {
+      position: relative;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+
+    .notification-bell:hover {
+      background: #f3f4f6;
+    }
+
+    .bell-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .bell-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: #4b5563;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .notification-bell:hover .bell-icon svg {
+      stroke: #1f2937;
+    }
+
+    .notification-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #dc2626;
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 600;
+      min-width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 4px;
+    }
+
+    .notification-center {
+      position: absolute;
+      top: 100%;
+      right: 0;
+      width: 400px;
+      max-height: 500px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      z-index: 1000;
+      overflow: hidden;
+    }
+
+    .notification-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .notification-header h4 {
+      margin: 0;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1f2937;
+    }
+
+    .notification-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .notification-actions button {
+      padding: 0.35rem 0.6rem;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-slack {
+      background: #4a154b;
+      color: #fff;
+    }
+
+    .btn-slack:hover {
+      background: #611f69;
+    }
+
+    .btn-email-digest {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-email-digest:hover {
+      background: #d1d5db;
+    }
+
+    .notification-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .notification-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .notification-item:hover {
+      background: #f9fafb;
+    }
+
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+
+    .notification-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .notification-icon.icon-expired {
+      background: #fee2e2;
+    }
+
+    .notification-icon.icon-expiring {
+      background: #fef3c7;
+    }
+
+    .notification-icon.icon-missing {
+      background: #dbeafe;
+    }
+
+    .notification-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notification-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1f2937;
+      margin-bottom: 0.15rem;
+    }
+
+    .notification-subtitle {
+      font-size: 0.75rem;
+      color: #6b7280;
+    }
+
+    .notification-time {
+      font-size: 0.7rem;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    .notification-empty {
+      padding: 2rem;
+      text-align: center;
+      color: #9ca3af;
+    }
+
+    .notification-empty-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Slack Settings Modal */
+    .slack-settings-content {
+      padding: 1.5rem;
+    }
+
+    .slack-settings-content label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .slack-settings-content input {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .slack-settings-content input:focus {
+      outline: none;
+      border-color: #4a154b;
+    }
+
+    .slack-test-result {
+      padding: 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+    }
+
+    .slack-test-result.success {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    .slack-test-result.error {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .slack-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .slack-actions button {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-test-slack {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-save-slack {
+      background: #4a154b;
+      color: #fff;
+    }
+
+    .btn-send-slack-now {
+      background: #059669;
+      color: #fff;
+    }
+
+    /* Email Digest Modal */
+    .email-digest-content {
+      padding: 1.5rem;
+    }
+
+    .email-digest-preview {
+      background: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      font-family: monospace;
+      font-size: 0.8rem;
+      white-space: pre-wrap;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+    }
+
+    .email-digest-actions {
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .email-digest-actions button {
+      flex: 1;
+      padding: 0.6rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-copy-email {
+      background: #4a6cf7;
+      color: #fff;
+    }
+
+    .btn-open-mailto {
+      background: #059669;
+      color: #fff;
+    }
+
+    /* Global Document Search */
+    .global-search-container {
+      position: relative;
+    }
+
+    .global-search-input-wrapper {
+      display: flex;
+      align-items: center;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 0.4rem 0.75rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .global-search-input-wrapper:focus-within {
+      border-color: #4a6cf7;
+      box-shadow: 0 0 0 3px rgba(74, 108, 247, 0.1);
+      background: #fff;
+    }
+
+    .global-search-input-wrapper .search-icon {
+      width: 16px;
+      height: 16px;
+      stroke: #9ca3af;
+      stroke-width: 2;
+      fill: none;
+      margin-right: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .global-search-input {
+      border: none;
+      background: transparent;
+      font-size: 0.85rem;
+      width: 200px;
+      outline: none;
+      color: #1f2937;
+    }
+
+    .global-search-input::placeholder {
+      color: #9ca3af;
+    }
+
+    .search-shortcut {
+      font-size: 0.65rem;
+      color: #9ca3af;
+      background: #e5e7eb;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      margin-left: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .global-search-results {
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      right: 0;
+      width: 400px;
+      max-height: 450px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      z-index: 1001;
+      overflow: hidden;
+    }
+
+    .search-results-header {
+      padding: 0.6rem 1rem;
+      background: #f8f9fa;
+      border-bottom: 1px solid #e5e7eb;
+      font-size: 0.75rem;
+      color: #6b7280;
+      font-weight: 500;
+    }
+
+    .search-results-list {
+      max-height: 380px;
+      overflow-y: auto;
+    }
+
+    .search-result-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .search-result-item:hover,
+    .search-result-item.selected {
+      background: #f3f4f6;
+    }
+
+    .search-result-item:last-child {
+      border-bottom: none;
+    }
+
+    .search-result-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .search-result-icon.icon-financial {
+      background: #d1fae5;
+    }
+
+    .search-result-icon.icon-dd {
+      background: #dbeafe;
+    }
+
+    .search-result-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .search-result-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #1f2937;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .search-result-title mark {
+      background: #fef08a;
+      color: inherit;
+      padding: 0 2px;
+      border-radius: 2px;
+    }
+
+    .search-result-meta {
+      font-size: 0.75rem;
+      color: #6b7280;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .search-result-tag {
+      font-size: 0.65rem;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      background: #e5e7eb;
+      color: #4b5563;
+    }
+
+    .search-result-tag.tag-financial {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    .search-result-tag.tag-dd {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    .search-no-results {
+      padding: 2rem;
+      text-align: center;
+      color: #9ca3af;
+    }
+
+    .search-no-results-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .search-loading {
+      padding: 1.5rem;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.85rem;
+    }
+
+    /* Export Toolbar */
+    .export-toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding: 0.75rem 1rem;
+      background: #f8f9fa;
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+    }
+
+    .export-label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: #6b7280;
+      margin-right: 0.5rem;
+    }
+
+    .export-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      background: #fff;
+      color: #374151;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .export-btn:hover {
+      background: #f3f4f6;
+      border-color: #9ca3af;
+    }
+
+    .export-btn svg {
+      flex-shrink: 0;
+    }
+
+    .export-btn-primary {
+      background: #4a6cf7;
+      color: #fff;
+      border-color: #4a6cf7;
+    }
+
+    .export-btn-primary:hover {
+      background: #3b5ce5;
+      border-color: #3b5ce5;
+    }
+
+    /* PDF Report Styles (for print) */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .print-report, .print-report * {
+        visibility: visible;
+      }
+      .print-report {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+    }
+
+    .print-report {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      background: #fff;
+    }
+
+    .print-report h1 {
+      font-size: 1.5rem;
+      color: #1a1a2e;
+      margin-bottom: 0.5rem;
+    }
+
+    .print-report .report-subtitle {
+      color: #6b7280;
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .print-report .report-section {
+      margin-bottom: 2rem;
+    }
+
+    .print-report .report-section h2 {
+      font-size: 1rem;
+      color: #374151;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .print-report table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+
+    .print-report th, .print-report td {
+      padding: 0.5rem;
+      text-align: left;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .print-report th {
+      background: #f8f9fa;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .print-report .score-cell {
+      font-weight: 600;
+    }
+
+    .print-report .score-high { color: #059669; }
+    .print-report .score-medium { color: #d97706; }
+    .print-report .score-low { color: #dc2626; }
+
+    .print-report .summary-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .print-report .summary-stat {
+      text-align: center;
+      padding: 1rem;
+      background: #f8f9fa;
+      border-radius: 8px;
+    }
+
+    .print-report .summary-stat .value {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #1a1a2e;
+    }
+
+    .print-report .summary-stat .label {
+      font-size: 0.75rem;
+      color: #6b7280;
+      text-transform: uppercase;
+    }
+
+    /* Document Request Workflow */
+    .btn-request-docs {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.75rem;
+      background: #8b5cf6;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.2s;
+    }
+
+    .btn-request-docs:hover {
+      background: #7c3aed;
+    }
+
+    .pending-requests-section {
+      background: #faf5ff;
+      border: 1px solid #e9d5ff;
+      border-radius: 8px;
+      margin: 1rem 0;
+      overflow: hidden;
+    }
+
+    .pending-requests-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 1rem;
+      background: #f3e8ff;
+      border-bottom: 1px solid #e9d5ff;
+    }
+
+    .pending-requests-title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: #6b21a8;
+    }
+
+    .pending-requests-count {
+      background: #8b5cf6;
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 0.2rem 0.5rem;
+      border-radius: 10px;
+    }
+
+    .pending-requests-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .request-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid #f3e8ff;
+      transition: background 0.15s;
+    }
+
+    .request-item:last-child {
+      border-bottom: none;
+    }
+
+    .request-item:hover {
+      background: #faf5ff;
+    }
+
+    .request-status-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .request-status-icon.status-requested {
+      background: #fef3c7;
+    }
+
+    .request-status-icon.status-received {
+      background: #dbeafe;
+    }
+
+    .request-status-icon.status-reviewed {
+      background: #d1fae5;
+    }
+
+    .request-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .request-doc-type {
+      font-weight: 500;
+      font-size: 0.85rem;
+      color: #1f2937;
+    }
+
+    .request-meta {
+      font-size: 0.75rem;
+      color: #6b7280;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .request-status-badge {
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    .request-status-badge.status-requested {
+      background: #fef3c7;
+      color: #d97706;
+    }
+
+    .request-status-badge.status-received {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    .request-status-badge.status-reviewed {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    .request-actions {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .request-actions button {
+      padding: 0.3rem 0.5rem;
+      font-size: 0.7rem;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background 0.15s;
+    }
+
+    .btn-mark-received {
+      background: #dbeafe;
+      color: #2563eb;
+    }
+
+    .btn-mark-received:hover {
+      background: #bfdbfe;
+    }
+
+    .btn-mark-reviewed {
+      background: #d1fae5;
+      color: #059669;
+    }
+
+    .btn-mark-reviewed:hover {
+      background: #a7f3d0;
+    }
+
+    .btn-cancel-request {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .btn-cancel-request:hover {
+      background: #fecaca;
+    }
+
+    /* Request Modal Styles */
+    .request-modal-content {
+      padding: 1.5rem;
+    }
+
+    .request-category-select {
+      margin-bottom: 1rem;
+    }
+
+    .request-category-select label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.4rem;
+    }
+
+    .request-category-select select {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.9rem;
+    }
+
+    .request-doc-types {
+      margin-bottom: 1rem;
+    }
+
+    .request-doc-types label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .request-doc-type-list {
+      max-height: 250px;
+      overflow-y: auto;
+      border: 1px solid #e5e7eb;
+      border-radius: 6px;
+    }
+
+    .request-doc-type-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 0.75rem;
+      border-bottom: 1px solid #f3f4f6;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .request-doc-type-item:last-child {
+      border-bottom: none;
+    }
+
+    .request-doc-type-item:hover {
+      background: #f9fafb;
+    }
+
+    .request-doc-type-item input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .request-doc-type-item .doc-type-label {
+      font-size: 0.85rem;
+      color: #374151;
+    }
+
+    .request-notes {
+      margin-bottom: 1rem;
+    }
+
+    .request-notes label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #374151;
+      margin-bottom: 0.4rem;
+    }
+
+    .request-notes textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .request-modal-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: flex-end;
+    }
+
+    .request-modal-actions button {
+      padding: 0.6rem 1.25rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-cancel-modal {
+      background: #e5e7eb;
+      color: #374151;
+    }
+
+    .btn-send-requests {
+      background: #8b5cf6;
+      color: #fff;
+    }
+
+    .btn-send-requests:hover {
+      background: #7c3aed;
+    }
+
+    .no-pending-requests {
+      padding: 1.5rem;
+      text-align: center;
+      color: #9ca3af;
+      font-size: 0.85rem;
+    }
   </style>
 </head>
 <body>
@@ -5067,12 +6349,151 @@
             <h1>Zenyte Holdings</h1>
             <p>ERP Intake Dashboard</p>
           </div>
-          <div id="user-indicator" class="user-indicator">
-            <span class="user-email" id="user-email"></span>
-            <button class="btn-logout" onclick="handleLogout()">Logout</button>
+          <div class="header-actions">
+            <div class="global-search-container">
+              <div class="global-search-input-wrapper">
+                <svg class="search-icon" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+                <input type="text" id="global-search-input" class="global-search-input" placeholder="Search documents..." oninput="handleGlobalSearch(this.value)" onfocus="showSearchResults()" onkeydown="handleSearchKeydown(event)">
+                <span class="search-shortcut">Ctrl+K</span>
+              </div>
+              <div class="global-search-results" id="global-search-results" style="display: none;">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+            <div class="notification-bell" onclick="toggleNotificationCenter()">
+              <span class="bell-icon"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></span>
+              <span class="notification-badge" id="notification-badge" style="display: none;">0</span>
+            </div>
+            <button class="settings-btn" id="settings-btn" onclick="openSettings()" title="Settings (Admin)" style="display: none;">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+            </button>
+            <div id="user-indicator" class="user-indicator">
+              <span class="user-email" id="user-email"></span>
+              <button class="btn-logout" onclick="handleLogout()">Logout</button>
+            </div>
+          </div>
+        </div>
+        <div class="notification-center" id="notification-center" style="display: none;">
+          <div class="notification-header">
+            <h4>Notifications</h4>
+            <div class="notification-actions">
+              <button class="btn-slack" onclick="openSlackSettings()">Slack Settings</button>
+              <button class="btn-email-digest" onclick="generateEmailDigest()">Email Digest</button>
+            </div>
+          </div>
+          <div class="notification-list" id="notification-list">
+            <!-- Populated by JS -->
           </div>
         </div>
       </header>
+
+    <!-- Settings Panel (full-screen overlay) -->
+    <div class="settings-overlay" id="settings-overlay" style="display: none;">
+      <div class="settings-panel">
+        <div class="settings-header">
+          <h2>Account Settings</h2>
+          <button class="settings-close" onclick="closeSettings()">&times;</button>
+        </div>
+
+        <!-- Settings Tabs -->
+        <div class="settings-tabs">
+          <button class="settings-tab active" data-tab="audit-log" onclick="switchSettingsTab('audit-log')">Audit Log</button>
+          <button class="settings-tab" data-tab="preferences" onclick="switchSettingsTab('preferences')">Preferences</button>
+          <button class="settings-tab" data-tab="team" onclick="switchSettingsTab('team')">Team</button>
+        </div>
+
+        <!-- Audit Log Tab Content -->
+        <div class="settings-content active" id="settings-audit-log">
+          <div class="audit-filters">
+            <div class="audit-filter-group">
+              <label>Event Type</label>
+              <select id="audit-filter-type" onchange="applyAuditFilters()">
+                <option value="">All Events</option>
+                <optgroup label="Practice Events">
+                  <option value="practice_created">Practice Created</option>
+                  <option value="practice_edited">Practice Edited</option>
+                  <option value="practice_deleted">Practice Deleted</option>
+                  <option value="status_changed">Status Changed</option>
+                  <option value="note_added">Note Added</option>
+                  <option value="tag_added">Tag Added</option>
+                  <option value="tag_removed">Tag Removed</option>
+                  <option value="packet_generated">Packet Generated</option>
+                </optgroup>
+                <optgroup label="Document Events">
+                  <option value="uploaded">Document Uploaded</option>
+                  <option value="deleted">Document Deleted</option>
+                  <option value="extraction_confirmed">Extraction Confirmed</option>
+                  <option value="verified">Document Verified</option>
+                  <option value="unverified">Document Unverified</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="audit-filter-group">
+              <label>Practice</label>
+              <select id="audit-filter-practice" onchange="applyAuditFilters()">
+                <option value="">All Practices</option>
+                <!-- Populated by JS -->
+              </select>
+            </div>
+            <div class="audit-filter-group">
+              <label>From</label>
+              <input type="date" id="audit-filter-from" onchange="applyAuditFilters()">
+            </div>
+            <div class="audit-filter-group">
+              <label>To</label>
+              <input type="date" id="audit-filter-to" onchange="applyAuditFilters()">
+            </div>
+            <div class="audit-filter-group">
+              <label>Search</label>
+              <input type="text" id="audit-search" placeholder="Search events..." oninput="debounceAuditSearch()">
+            </div>
+            <button class="audit-export-btn" onclick="exportAuditLog()">Export CSV</button>
+          </div>
+
+          <div class="audit-table-container">
+            <table class="audit-table">
+              <thead>
+                <tr>
+                  <th>Timestamp</th>
+                  <th>Practice</th>
+                  <th>Event</th>
+                  <th>Actor</th>
+                  <th>Details</th>
+                </tr>
+              </thead>
+              <tbody id="audit-tbody">
+                <tr><td colspan="5" class="audit-empty">Loading events...</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="audit-pagination" id="audit-pagination">
+            <button class="audit-page-btn" onclick="changeAuditPage(-1)" id="audit-prev-btn" disabled>&laquo; Previous</button>
+            <span class="audit-page-info" id="audit-page-info">Page 1</span>
+            <button class="audit-page-btn" onclick="changeAuditPage(1)" id="audit-next-btn" disabled>Next &raquo;</button>
+          </div>
+        </div>
+
+        <!-- Preferences Tab Content -->
+        <div class="settings-content" id="settings-preferences">
+          <div class="settings-placeholder">
+            <h3>Preferences</h3>
+            <p>User preferences coming soon...</p>
+          </div>
+        </div>
+
+        <!-- Team Tab Content -->
+        <div class="settings-content" id="settings-team">
+          <div class="settings-placeholder">
+            <h3>Team Management</h3>
+            <p>Team management coming soon...</p>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- Admin Panel (only visible to admins) -->
     <div id="admin-panel" class="admin-panel" style="display: none;">
@@ -5894,11 +7315,25 @@
             <button class="btn-bulk-upload" onclick="openBulkUpload()">
               Bulk Upload
             </button>
+            <button class="btn-request-docs" onclick="openRequestDocsModal()">
+              Request Documents
+            </button>
             <button class="btn-apply-template" id="btn-apply-template" onclick="applyDDTemplate()">
               Apply DD Checklist
             </button>
           </div>
           <input type="file" id="bulk-upload-input" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xlsx" style="display:none" onchange="handleBulkUpload(event)">
+
+          <!-- Pending Document Requests -->
+          <div class="pending-requests-section" id="pending-requests-section" style="display: none;">
+            <div class="pending-requests-header">
+              <span class="pending-requests-title">Pending Document Requests</span>
+              <span class="pending-requests-count" id="pending-requests-count">0</span>
+            </div>
+            <div class="pending-requests-list" id="pending-requests-list">
+              <!-- Populated by JS -->
+            </div>
+          </div>
 
           <!-- DD Checklist Section -->
           <div class="dd-checklist-section" id="dd-checklist-section">
@@ -6716,6 +8151,7 @@
 
     let currentView = 'table';
     let selectedPracticeId = null;
+    let currentPractice = null;
 
     // Document Type Registry Cache
     let documentTypeRegistry = {};  // slug -> { label, category, is_financial }
@@ -9818,6 +11254,1489 @@
       `;
     }
 
+    // =============================================
+    // DASHBOARD VIEW
+    // =============================================
+    async function renderDashboard() {
+      const container = document.getElementById('dashboard-container');
+      if (!container) return;
+
+      container.innerHTML = '<div class="dashboard-empty">Loading dashboard...</div>';
+
+      const practices = getPractices();
+      const now = new Date();
+      const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+      // Fetch all DD documents for expiration checking
+      let expiringDocs = [];
+      let expiredDocs = [];
+      try {
+        const { data: ddDocs } = await window.sb
+          .from('dd_documents')
+          .select('id, file_name, document_type, expires_at, practice_id')
+          .not('expires_at', 'is', null)
+          .eq('is_current_version', true);
+
+        if (ddDocs) {
+          ddDocs.forEach(doc => {
+            const expiresAt = new Date(doc.expires_at);
+            const practice = getPracticeById(doc.practice_id);
+            doc.practice_name = practice ? practice.name : 'Unknown';
+
+            if (expiresAt < now) {
+              expiredDocs.push(doc);
+            } else if (expiresAt <= thirtyDaysFromNow) {
+              expiringDocs.push(doc);
+            }
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching DD docs for dashboard:', e);
+      }
+
+      // Collect readiness data for each practice
+      const practiceReadiness = [];
+      for (const practice of practices) {
+        const readinessScore = practice.dd_readiness_score || 0;
+        const checklistCounts = await getDDChecklistCounts(practice.id);
+        practiceReadiness.push({
+          id: practice.id,
+          name: practice.name,
+          status: practice.status,
+          score: readinessScore,
+          completed: checklistCounts.completed,
+          total: checklistCounts.total,
+          missing: checklistCounts.total - checklistCounts.completed
+        });
+      }
+
+      // Sort by score ascending (worst first)
+      practiceReadiness.sort((a, b) => a.score - b.score);
+
+      // Calculate aggregate stats
+      const totalPractices = practices.length;
+      const avgScore = totalPractices > 0
+        ? Math.round(practiceReadiness.reduce((sum, p) => sum + p.score, 0) / totalPractices)
+        : 0;
+      const totalMissing = practiceReadiness.reduce((sum, p) => sum + p.missing, 0);
+      const totalExpiring = expiringDocs.length + expiredDocs.length;
+
+      // Stats row
+      const statsHtml = `
+        <div class="dashboard-grid">
+          <div class="dashboard-stat stat-blue">
+            <div class="stat-value">${totalPractices}</div>
+            <div class="stat-label">Total Practices</div>
+          </div>
+          <div class="dashboard-stat ${avgScore >= 80 ? 'stat-green' : avgScore >= 50 ? 'stat-yellow' : 'stat-red'}">
+            <div class="stat-value">${avgScore}%</div>
+            <div class="stat-label">Avg DD Readiness</div>
+          </div>
+          <div class="dashboard-stat ${totalExpiring > 0 ? 'stat-red' : 'stat-green'}">
+            <div class="stat-value">${totalExpiring}</div>
+            <div class="stat-label">Expiring Docs</div>
+          </div>
+          <div class="dashboard-stat ${totalMissing > 0 ? 'stat-yellow' : 'stat-green'}">
+            <div class="stat-value">${totalMissing}</div>
+            <div class="stat-label">Missing Items</div>
+          </div>
+        </div>
+      `;
+
+      // Readiness by practice section
+      let readinessRowsHtml = '';
+      if (practiceReadiness.length === 0) {
+        readinessRowsHtml = '<div class="dashboard-empty">No practices found</div>';
+      } else {
+        practiceReadiness.forEach(p => {
+          const barClass = p.score >= 80 ? 'bar-high' : p.score >= 50 ? 'bar-medium' : 'bar-low';
+          const scoreClass = p.score >= 80 ? 'score-high' : p.score >= 50 ? 'score-medium' : 'score-low';
+          readinessRowsHtml += `
+            <div class="dashboard-readiness-row" onclick="openPracticeDetail('${p.id}')">
+              <div>
+                <div class="dashboard-row-title">${p.name}</div>
+                <div class="dashboard-row-subtitle">${p.status} | ${p.completed}/${p.total} items</div>
+              </div>
+              <div class="dashboard-score ${scoreClass}">${p.score}%</div>
+              <div class="readiness-bar-container">
+                <div class="readiness-bar-fill ${barClass}" style="width: ${p.score}%"></div>
+              </div>
+              <div style="color: ${p.missing > 0 ? '#dc2626' : '#059669'}; font-weight: 500; font-size: 0.85rem;">
+                ${p.missing > 0 ? p.missing + ' missing' : 'Complete'}
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      const readinessSectionHtml = `
+        <div class="dashboard-section">
+          <div class="dashboard-section-header">
+            <h3>DD Readiness by Practice</h3>
+            <span class="badge ${avgScore < 50 ? 'badge-red' : avgScore < 80 ? 'badge-yellow' : ''}">${avgScore}% avg</span>
+          </div>
+          <div class="dashboard-section-body dashboard-readiness-table">
+            ${readinessRowsHtml}
+          </div>
+        </div>
+      `;
+
+      // Expiring/Expired documents section
+      let expiryRowsHtml = '';
+      const allExpiryDocs = [...expiredDocs, ...expiringDocs];
+
+      if (allExpiryDocs.length === 0) {
+        expiryRowsHtml = '<div class="dashboard-empty">No expiring documents</div>';
+      } else {
+        // Sort: expired first, then by expiration date
+        allExpiryDocs.sort((a, b) => new Date(a.expires_at) - new Date(b.expires_at));
+
+        allExpiryDocs.slice(0, 15).forEach(doc => {
+          const expiresAt = new Date(doc.expires_at);
+          const isExpired = expiresAt < now;
+          const daysUntil = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+          const badgeClass = isExpired ? 'expired' : 'expiring';
+          const badgeText = isExpired ? 'Expired' : `${daysUntil}d left`;
+
+          expiryRowsHtml += `
+            <div class="dashboard-row" onclick="openPracticeDetail('${doc.practice_id}')">
+              <div class="dashboard-row-info">
+                <div class="dashboard-row-title">${doc.file_name}</div>
+                <div class="dashboard-row-subtitle">${doc.practice_name} | ${formatDocumentType(doc.document_type)}</div>
+              </div>
+              <div class="dashboard-row-right">
+                <span class="dashboard-expiry-badge ${badgeClass}">${badgeText}</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      const expirySectionHtml = `
+        <div class="dashboard-section">
+          <div class="dashboard-section-header">
+            <h3>Expiring Documents</h3>
+            ${totalExpiring > 0 ? `<span class="badge badge-red">${expiredDocs.length} expired, ${expiringDocs.length} soon</span>` : ''}
+          </div>
+          <div class="dashboard-section-body">
+            ${expiryRowsHtml}
+          </div>
+        </div>
+      `;
+
+      // Practices needing attention (lowest scores)
+      let attentionRowsHtml = '';
+      const needsAttention = practiceReadiness.filter(p => p.score < 50);
+
+      if (needsAttention.length === 0) {
+        attentionRowsHtml = '<div class="dashboard-empty">All practices at 50%+ readiness</div>';
+      } else {
+        needsAttention.slice(0, 10).forEach(p => {
+          attentionRowsHtml += `
+            <div class="dashboard-row" onclick="openPracticeDetail('${p.id}')">
+              <div class="dashboard-row-info">
+                <div class="dashboard-row-title">${p.name}</div>
+                <div class="dashboard-row-subtitle">${p.missing} missing items | ${p.status}</div>
+              </div>
+              <div class="dashboard-row-right">
+                <span class="dashboard-score score-low">${p.score}%</span>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      const attentionSectionHtml = `
+        <div class="dashboard-section">
+          <div class="dashboard-section-header">
+            <h3>Needs Attention</h3>
+            ${needsAttention.length > 0 ? `<span class="badge badge-red">${needsAttention.length} practices</span>` : ''}
+          </div>
+          <div class="dashboard-section-body">
+            ${attentionRowsHtml}
+          </div>
+        </div>
+      `;
+
+      // Export toolbar
+      const exportToolbarHtml = `
+        <div class="export-toolbar">
+          <span class="export-label">Export Reports:</span>
+          <button class="export-btn" onclick="exportPracticesCSV()">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/></svg>
+            Practices (CSV)
+          </button>
+          <button class="export-btn" onclick="exportDocumentsCSV()">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/></svg>
+            Documents (CSV)
+          </button>
+          <button class="export-btn export-btn-primary" onclick="exportDDReadinessReport()">
+            <svg viewBox="0 0 24 24" width="16" height="16"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+            DD Readiness Report (PDF)
+          </button>
+        </div>
+      `;
+
+      // Assemble dashboard
+      container.innerHTML = `
+        ${statsHtml}
+        ${exportToolbarHtml}
+        <div class="dashboard-sections">
+          ${readinessSectionHtml}
+          ${expirySectionHtml}
+          ${attentionSectionHtml}
+        </div>
+      `;
+    }
+
+    // Helper to get DD checklist counts for a practice
+    async function getDDChecklistCounts(practiceId) {
+      try {
+        const { data: items } = await window.sb
+          .from('dd_checklist_items')
+          .select('id, is_complete')
+          .eq('practice_id', practiceId);
+
+        if (!items) return { completed: 0, total: 0 };
+        const completed = items.filter(i => i.is_complete).length;
+        return { completed, total: items.length };
+      } catch (e) {
+        return { completed: 0, total: 0 };
+      }
+    }
+
+    // Helper to format document type for display
+    function formatDocumentType(docType) {
+      if (!docType) return 'Document';
+      return docType
+        .split('_')
+        .map(w => w.charAt(0).toUpperCase() + w.slice(1))
+        .join(' ');
+    }
+
+    // =============================================
+    // NOTIFICATION SYSTEM
+    // =============================================
+    let cachedNotifications = null;
+    let notificationCenterOpen = false;
+
+    function toggleNotificationCenter() {
+      const center = document.getElementById('notification-center');
+      notificationCenterOpen = !notificationCenterOpen;
+
+      if (notificationCenterOpen) {
+        center.style.display = 'block';
+        loadNotifications();
+        // Close when clicking outside
+        setTimeout(() => {
+          document.addEventListener('click', closeNotificationOnClickOutside);
+        }, 100);
+      } else {
+        center.style.display = 'none';
+        document.removeEventListener('click', closeNotificationOnClickOutside);
+      }
+    }
+
+    function closeNotificationOnClickOutside(e) {
+      const center = document.getElementById('notification-center');
+      const bell = document.querySelector('.notification-bell');
+      if (!center.contains(e.target) && !bell.contains(e.target)) {
+        center.style.display = 'none';
+        notificationCenterOpen = false;
+        document.removeEventListener('click', closeNotificationOnClickOutside);
+      }
+    }
+
+    async function loadNotifications() {
+      const listEl = document.getElementById('notification-list');
+      listEl.innerHTML = '<div class="notification-empty">Loading...</div>';
+
+      const notifications = await getNotifications();
+      cachedNotifications = notifications;
+
+      if (notifications.length === 0) {
+        listEl.innerHTML = `
+          <div class="notification-empty">
+            <div class="notification-empty-icon">&#10004;</div>
+            <div>All caught up! No alerts.</div>
+          </div>
+        `;
+        return;
+      }
+
+      let html = '';
+      notifications.forEach(n => {
+        const iconClass = n.type === 'expired' ? 'icon-expired' :
+                          n.type === 'expiring' ? 'icon-expiring' : 'icon-missing';
+        const icon = n.type === 'expired' ? '&#9888;' :
+                     n.type === 'expiring' ? '&#128337;' : '&#128196;';
+
+        html += `
+          <div class="notification-item" onclick="openPracticeDetail('${n.practiceId}'); toggleNotificationCenter();">
+            <div class="notification-icon ${iconClass}">${icon}</div>
+            <div class="notification-content">
+              <div class="notification-title">${n.title}</div>
+              <div class="notification-subtitle">${n.subtitle}</div>
+            </div>
+            <div class="notification-time">${n.timeLabel}</div>
+          </div>
+        `;
+      });
+
+      listEl.innerHTML = html;
+    }
+
+    async function getNotifications() {
+      const notifications = [];
+      const now = new Date();
+      const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+      const practices = getPractices();
+
+      // Get expiring/expired documents
+      try {
+        const { data: ddDocs } = await window.sb
+          .from('dd_documents')
+          .select('id, file_name, document_type, expires_at, practice_id')
+          .not('expires_at', 'is', null)
+          .eq('is_current_version', true);
+
+        if (ddDocs) {
+          ddDocs.forEach(doc => {
+            const expiresAt = new Date(doc.expires_at);
+            const practice = getPracticeById(doc.practice_id);
+            const practiceName = practice ? practice.name : 'Unknown';
+            const daysUntil = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+
+            if (expiresAt < now) {
+              // Expired
+              const daysAgo = Math.abs(daysUntil);
+              notifications.push({
+                type: 'expired',
+                title: `${doc.file_name} has expired`,
+                subtitle: `${practiceName} - ${formatDocumentType(doc.document_type)}`,
+                timeLabel: daysAgo === 0 ? 'Today' : `${daysAgo}d ago`,
+                practiceId: doc.practice_id,
+                priority: 1,
+                date: expiresAt
+              });
+            } else if (expiresAt <= thirtyDaysFromNow) {
+              // Expiring soon
+              notifications.push({
+                type: 'expiring',
+                title: `${doc.file_name} expiring soon`,
+                subtitle: `${practiceName} - ${formatDocumentType(doc.document_type)}`,
+                timeLabel: `${daysUntil}d left`,
+                practiceId: doc.practice_id,
+                priority: 2,
+                date: expiresAt
+              });
+            }
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching docs for notifications:', e);
+      }
+
+      // Get practices with low readiness (below 30%)
+      for (const practice of practices) {
+        if (practice.dd_readiness_score !== undefined && practice.dd_readiness_score < 30) {
+          notifications.push({
+            type: 'missing',
+            title: `${practice.name} needs documents`,
+            subtitle: `DD Readiness at ${practice.dd_readiness_score}%`,
+            timeLabel: 'Action needed',
+            practiceId: practice.id,
+            priority: 3,
+            date: new Date()
+          });
+        }
+      }
+
+      // Sort: expired first, then expiring, then missing
+      notifications.sort((a, b) => {
+        if (a.priority !== b.priority) return a.priority - b.priority;
+        return a.date - b.date;
+      });
+
+      return notifications;
+    }
+
+    async function updateNotificationBadge() {
+      const notifications = await getNotifications();
+      const badge = document.getElementById('notification-badge');
+
+      if (notifications.length > 0) {
+        badge.textContent = notifications.length > 99 ? '99+' : notifications.length;
+        badge.style.display = 'flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+
+    // Slack Integration
+    function getSlackWebhookUrl() {
+      return localStorage.getItem('zenyte_slack_webhook') || '';
+    }
+
+    function setSlackWebhookUrl(url) {
+      localStorage.setItem('zenyte_slack_webhook', url);
+    }
+
+    function openSlackSettings() {
+      const currentUrl = getSlackWebhookUrl();
+
+      showModal('Slack Integration', `
+        <div class="slack-settings-content">
+          <label>Slack Webhook URL</label>
+          <input type="text" id="slack-webhook-input" placeholder="https://hooks.slack.com/services/..." value="${currentUrl}">
+          <p style="font-size: 0.75rem; color: #6b7280; margin-bottom: 1rem;">
+            Create an incoming webhook in your Slack workspace settings and paste the URL here.
+          </p>
+          <div id="slack-test-result"></div>
+          <div class="slack-actions">
+            <button class="btn-test-slack" onclick="testSlackWebhook()">Test Connection</button>
+            <button class="btn-save-slack" onclick="saveSlackSettings()">Save</button>
+            <button class="btn-send-slack-now" onclick="sendSlackDigestNow()">Send Digest Now</button>
+          </div>
+        </div>
+      `);
+    }
+
+    async function testSlackWebhook() {
+      const url = document.getElementById('slack-webhook-input').value.trim();
+      const resultEl = document.getElementById('slack-test-result');
+
+      if (!url) {
+        resultEl.innerHTML = '<div class="slack-test-result error">Please enter a webhook URL</div>';
+        return;
+      }
+
+      resultEl.innerHTML = '<div class="slack-test-result">Testing...</div>';
+
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors', // Slack webhooks don't support CORS
+          body: JSON.stringify({
+            text: '✅ Zenyte ERP test message - Slack integration is working!'
+          })
+        });
+
+        // With no-cors, we can't read the response, so assume success if no error thrown
+        resultEl.innerHTML = '<div class="slack-test-result success">Test message sent! Check your Slack channel.</div>';
+      } catch (e) {
+        resultEl.innerHTML = `<div class="slack-test-result error">Failed to send: ${e.message}</div>`;
+      }
+    }
+
+    function saveSlackSettings() {
+      const url = document.getElementById('slack-webhook-input').value.trim();
+      setSlackWebhookUrl(url);
+      closeModal();
+      alert('Slack settings saved!');
+    }
+
+    async function sendSlackDigestNow() {
+      const url = getSlackWebhookUrl();
+      if (!url) {
+        alert('Please configure a Slack webhook URL first');
+        return;
+      }
+
+      const notifications = cachedNotifications || await getNotifications();
+
+      if (notifications.length === 0) {
+        alert('No notifications to send');
+        return;
+      }
+
+      // Build Slack message
+      const expiredCount = notifications.filter(n => n.type === 'expired').length;
+      const expiringCount = notifications.filter(n => n.type === 'expiring').length;
+      const missingCount = notifications.filter(n => n.type === 'missing').length;
+
+      let blocks = [
+        {
+          type: 'header',
+          text: { type: 'plain_text', text: '📋 Zenyte Document Alert Digest' }
+        },
+        {
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `*Summary:* ${expiredCount} expired, ${expiringCount} expiring soon, ${missingCount} practices need attention`
+          }
+        },
+        { type: 'divider' }
+      ];
+
+      // Add top 10 notifications
+      notifications.slice(0, 10).forEach(n => {
+        const emoji = n.type === 'expired' ? '🔴' : n.type === 'expiring' ? '🟡' : '🔵';
+        blocks.push({
+          type: 'section',
+          text: {
+            type: 'mrkdwn',
+            text: `${emoji} *${n.title}*\n${n.subtitle} - ${n.timeLabel}`
+          }
+        });
+      });
+
+      if (notifications.length > 10) {
+        blocks.push({
+          type: 'context',
+          elements: [{ type: 'mrkdwn', text: `_...and ${notifications.length - 10} more alerts_` }]
+        });
+      }
+
+      try {
+        await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          mode: 'no-cors',
+          body: JSON.stringify({ blocks })
+        });
+        alert('Digest sent to Slack!');
+      } catch (e) {
+        alert('Failed to send to Slack: ' + e.message);
+      }
+    }
+
+    // Email Digest Generator
+    async function generateEmailDigest() {
+      const notifications = cachedNotifications || await getNotifications();
+
+      if (notifications.length === 0) {
+        showModal('Email Digest', `
+          <div class="email-digest-content">
+            <div class="notification-empty">
+              <div class="notification-empty-icon">&#10004;</div>
+              <div>No alerts to include in digest.</div>
+            </div>
+          </div>
+        `);
+        return;
+      }
+
+      const expiredCount = notifications.filter(n => n.type === 'expired').length;
+      const expiringCount = notifications.filter(n => n.type === 'expiring').length;
+      const missingCount = notifications.filter(n => n.type === 'missing').length;
+
+      const today = new Date().toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      let emailBody = `ZENYTE DOCUMENT ALERT DIGEST
+${today}
+
+SUMMARY
+-------
+- ${expiredCount} expired document(s)
+- ${expiringCount} document(s) expiring within 30 days
+- ${missingCount} practice(s) with low DD readiness
+
+DETAILS
+-------
+`;
+
+      if (expiredCount > 0) {
+        emailBody += '\n🔴 EXPIRED DOCUMENTS:\n';
+        notifications.filter(n => n.type === 'expired').forEach(n => {
+          emailBody += `   • ${n.title}\n     ${n.subtitle}\n`;
+        });
+      }
+
+      if (expiringCount > 0) {
+        emailBody += '\n🟡 EXPIRING SOON:\n';
+        notifications.filter(n => n.type === 'expiring').forEach(n => {
+          emailBody += `   • ${n.title} (${n.timeLabel})\n     ${n.subtitle}\n`;
+        });
+      }
+
+      if (missingCount > 0) {
+        emailBody += '\n🔵 NEEDS ATTENTION:\n';
+        notifications.filter(n => n.type === 'missing').forEach(n => {
+          emailBody += `   • ${n.title}\n     ${n.subtitle}\n`;
+        });
+      }
+
+      emailBody += `
+-------
+This digest was generated from Zenyte ERP.
+`;
+
+      const subject = `Zenyte Document Alerts: ${expiredCount} expired, ${expiringCount} expiring`;
+      const mailtoUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+
+      showModal('Email Digest', `
+        <div class="email-digest-content">
+          <div class="email-digest-preview">${emailBody}</div>
+          <div class="email-digest-actions">
+            <button class="btn-copy-email" onclick="copyEmailDigest()">Copy to Clipboard</button>
+            <button class="btn-open-mailto" onclick="window.open('${mailtoUrl}')">Open in Email App</button>
+          </div>
+        </div>
+      `);
+
+      // Store for copy function
+      window._emailDigestContent = emailBody;
+    }
+
+    function copyEmailDigest() {
+      if (window._emailDigestContent && navigator.clipboard) {
+        navigator.clipboard.writeText(window._emailDigestContent).then(() => {
+          const btn = event.target;
+          btn.textContent = 'Copied!';
+          btn.style.background = '#059669';
+          setTimeout(() => {
+            btn.textContent = 'Copy to Clipboard';
+            btn.style.background = '';
+          }, 1500);
+        });
+      }
+    }
+
+    // Update notification badge on page load and periodically
+    function initNotifications() {
+      updateNotificationBadge();
+      // Update every 5 minutes
+      setInterval(updateNotificationBadge, 5 * 60 * 1000);
+    }
+
+    // =============================================
+    // GLOBAL DOCUMENT SEARCH
+    // =============================================
+    let searchDebounceTimer = null;
+    let searchResultsVisible = false;
+    let selectedSearchIndex = -1;
+    let currentSearchResults = [];
+
+    function handleGlobalSearch(query) {
+      // Debounce search
+      clearTimeout(searchDebounceTimer);
+
+      if (!query || query.trim().length < 2) {
+        hideSearchResults();
+        return;
+      }
+
+      const resultsEl = document.getElementById('global-search-results');
+      resultsEl.style.display = 'block';
+      resultsEl.innerHTML = '<div class="search-loading">Searching...</div>';
+      searchResultsVisible = true;
+
+      searchDebounceTimer = setTimeout(() => {
+        performSearch(query.trim());
+      }, 300);
+    }
+
+    async function performSearch(query) {
+      const resultsEl = document.getElementById('global-search-results');
+      const lowerQuery = query.toLowerCase();
+      const results = [];
+
+      try {
+        // Search financial_documents
+        const { data: financialDocs } = await window.sb
+          .from('financial_documents')
+          .select('id, file_name, document_type, practice_id, notes, created_at')
+          .or(`file_name.ilike.%${query}%,document_type.ilike.%${query}%,notes.ilike.%${query}%`)
+          .limit(20);
+
+        if (financialDocs) {
+          financialDocs.forEach(doc => {
+            const practice = getPracticeById(doc.practice_id);
+            results.push({
+              id: doc.id,
+              type: 'financial',
+              fileName: doc.file_name,
+              docType: doc.document_type,
+              practiceName: practice ? practice.name : 'Unknown',
+              practiceId: doc.practice_id,
+              notes: doc.notes,
+              createdAt: doc.created_at
+            });
+          });
+        }
+
+        // Search dd_documents
+        const { data: ddDocs } = await window.sb
+          .from('dd_documents')
+          .select('id, file_name, document_type, category_slug, practice_id, notes, created_at')
+          .eq('is_current_version', true)
+          .or(`file_name.ilike.%${query}%,document_type.ilike.%${query}%,notes.ilike.%${query}%`)
+          .limit(20);
+
+        if (ddDocs) {
+          ddDocs.forEach(doc => {
+            const practice = getPracticeById(doc.practice_id);
+            results.push({
+              id: doc.id,
+              type: 'dd',
+              category: doc.category_slug,
+              fileName: doc.file_name,
+              docType: doc.document_type,
+              practiceName: practice ? practice.name : 'Unknown',
+              practiceId: doc.practice_id,
+              notes: doc.notes,
+              createdAt: doc.created_at
+            });
+          });
+        }
+
+        // Also search practices by name
+        const practices = getPractices();
+        practices.forEach(p => {
+          if (p.name.toLowerCase().includes(lowerQuery)) {
+            results.push({
+              id: p.id,
+              type: 'practice',
+              fileName: p.name,
+              docType: 'Practice',
+              practiceName: p.name,
+              practiceId: p.id,
+              status: p.status
+            });
+          }
+        });
+
+      } catch (e) {
+        console.error('Search error:', e);
+      }
+
+      currentSearchResults = results;
+      selectedSearchIndex = -1;
+      renderSearchResults(results, query);
+    }
+
+    function renderSearchResults(results, query) {
+      const resultsEl = document.getElementById('global-search-results');
+
+      if (results.length === 0) {
+        resultsEl.innerHTML = `
+          <div class="search-no-results">
+            <div class="search-no-results-icon">&#128269;</div>
+            <div>No documents found for "${query}"</div>
+          </div>
+        `;
+        return;
+      }
+
+      // Group by type
+      const financialResults = results.filter(r => r.type === 'financial');
+      const ddResults = results.filter(r => r.type === 'dd');
+      const practiceResults = results.filter(r => r.type === 'practice');
+
+      let html = `<div class="search-results-header">${results.length} result${results.length !== 1 ? 's' : ''} for "${query}"</div>`;
+      html += '<div class="search-results-list">';
+
+      let idx = 0;
+
+      // Practice results first
+      if (practiceResults.length > 0) {
+        practiceResults.forEach(r => {
+          html += renderSearchResultItem(r, query, idx++);
+        });
+      }
+
+      // Financial documents
+      if (financialResults.length > 0) {
+        financialResults.forEach(r => {
+          html += renderSearchResultItem(r, query, idx++);
+        });
+      }
+
+      // DD documents
+      if (ddResults.length > 0) {
+        ddResults.forEach(r => {
+          html += renderSearchResultItem(r, query, idx++);
+        });
+      }
+
+      html += '</div>';
+      resultsEl.innerHTML = html;
+    }
+
+    function renderSearchResultItem(result, query, index) {
+      const highlightedName = highlightMatch(result.fileName, query);
+      const icon = result.type === 'financial' ? '💰' : result.type === 'dd' ? '📄' : '🏢';
+      const iconClass = result.type === 'financial' ? 'icon-financial' : result.type === 'dd' ? 'icon-dd' : 'icon-financial';
+      const tagClass = result.type === 'financial' ? 'tag-financial' : result.type === 'dd' ? 'tag-dd' : '';
+      const tagLabel = result.type === 'financial' ? 'Financial' : result.type === 'dd' ? (result.category || 'DD').replace('dd-', '').replace('-', ' ') : 'Practice';
+
+      let meta = result.practiceName;
+      if (result.docType && result.type !== 'practice') {
+        meta += ` · ${formatDocumentType(result.docType)}`;
+      }
+      if (result.status) {
+        meta += ` · ${result.status}`;
+      }
+
+      return `
+        <div class="search-result-item" data-index="${index}" onclick="selectSearchResult(${index})" onmouseenter="highlightSearchResult(${index})">
+          <div class="search-result-icon ${iconClass}">${icon}</div>
+          <div class="search-result-content">
+            <div class="search-result-title">${highlightedName}</div>
+            <div class="search-result-meta">
+              <span class="search-result-tag ${tagClass}">${tagLabel}</span>
+              <span>${meta}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function highlightMatch(text, query) {
+      if (!text || !query) return text || '';
+      const regex = new RegExp(`(${escapeRegex(query)})`, 'gi');
+      return text.replace(regex, '<mark>$1</mark>');
+    }
+
+    function escapeRegex(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    }
+
+    function showSearchResults() {
+      const input = document.getElementById('global-search-input');
+      if (input.value.trim().length >= 2 && currentSearchResults.length > 0) {
+        const resultsEl = document.getElementById('global-search-results');
+        resultsEl.style.display = 'block';
+        searchResultsVisible = true;
+      }
+    }
+
+    function hideSearchResults() {
+      const resultsEl = document.getElementById('global-search-results');
+      resultsEl.style.display = 'none';
+      searchResultsVisible = false;
+      selectedSearchIndex = -1;
+    }
+
+    function highlightSearchResult(index) {
+      selectedSearchIndex = index;
+      const items = document.querySelectorAll('.search-result-item');
+      items.forEach((item, i) => {
+        item.classList.toggle('selected', i === index);
+      });
+    }
+
+    function selectSearchResult(index) {
+      const result = currentSearchResults[index];
+      if (!result) return;
+
+      hideSearchResults();
+      document.getElementById('global-search-input').value = '';
+
+      if (result.type === 'practice') {
+        openPracticeDetail(result.practiceId);
+      } else {
+        // Open practice and switch to appropriate document tab
+        openPracticeDetail(result.practiceId);
+        setTimeout(() => {
+          if (result.type === 'financial') {
+            switchDocTab('financial');
+          } else if (result.type === 'dd' && result.category) {
+            switchDocTab(result.category);
+          }
+        }, 100);
+      }
+    }
+
+    function handleSearchKeydown(event) {
+      if (!searchResultsVisible) return;
+
+      const items = document.querySelectorAll('.search-result-item');
+
+      switch (event.key) {
+        case 'ArrowDown':
+          event.preventDefault();
+          selectedSearchIndex = Math.min(selectedSearchIndex + 1, items.length - 1);
+          highlightSearchResult(selectedSearchIndex);
+          items[selectedSearchIndex]?.scrollIntoView({ block: 'nearest' });
+          break;
+        case 'ArrowUp':
+          event.preventDefault();
+          selectedSearchIndex = Math.max(selectedSearchIndex - 1, 0);
+          highlightSearchResult(selectedSearchIndex);
+          items[selectedSearchIndex]?.scrollIntoView({ block: 'nearest' });
+          break;
+        case 'Enter':
+          event.preventDefault();
+          if (selectedSearchIndex >= 0) {
+            selectSearchResult(selectedSearchIndex);
+          }
+          break;
+        case 'Escape':
+          hideSearchResults();
+          document.getElementById('global-search-input').blur();
+          break;
+      }
+    }
+
+    // Global keyboard shortcut: Ctrl+K or Cmd+K to focus search
+    document.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        const input = document.getElementById('global-search-input');
+        if (input) {
+          input.focus();
+          input.select();
+        }
+      }
+    });
+
+    // Close search results when clicking outside
+    document.addEventListener('click', (e) => {
+      const container = document.querySelector('.global-search-container');
+      if (container && !container.contains(e.target)) {
+        hideSearchResults();
+      }
+    });
+
+    // =============================================
+    // EXPORT FUNCTIONS
+    // =============================================
+
+    function downloadCSV(filename, csvContent) {
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    }
+
+    function escapeCSV(value) {
+      if (value === null || value === undefined) return '';
+      const str = String(value);
+      if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+        return '"' + str.replace(/"/g, '""') + '"';
+      }
+      return str;
+    }
+
+    async function exportPracticesCSV() {
+      const practices = getPractices();
+      const headers = ['Name', 'Specialty', 'Owner', 'Revenue', 'Status', 'DD Readiness %', 'Tags', 'Created At'];
+
+      let csv = headers.join(',') + '\n';
+
+      for (const p of practices) {
+        const tags = (p.tags || []).join('; ');
+        const row = [
+          escapeCSV(p.name),
+          escapeCSV(p.specialty),
+          escapeCSV(p.owner),
+          escapeCSV(p.revenue),
+          escapeCSV(p.status),
+          escapeCSV(p.dd_readiness_score || 0),
+          escapeCSV(tags),
+          escapeCSV(p.created_at ? new Date(p.created_at).toLocaleDateString() : '')
+        ];
+        csv += row.join(',') + '\n';
+      }
+
+      const date = new Date().toISOString().split('T')[0];
+      downloadCSV(`zenyte-practices-${date}.csv`, csv);
+    }
+
+    async function exportDocumentsCSV() {
+      const practices = getPractices();
+      const headers = ['Practice', 'Document Name', 'Category', 'Document Type', 'Expires At', 'Version', 'Notes', 'Uploaded At'];
+
+      let csv = headers.join(',') + '\n';
+
+      // Fetch all financial documents
+      try {
+        const { data: financialDocs } = await window.sb
+          .from('financial_documents')
+          .select('file_name, document_type, practice_id, notes, created_at');
+
+        if (financialDocs) {
+          financialDocs.forEach(doc => {
+            const practice = getPracticeById(doc.practice_id);
+            const row = [
+              escapeCSV(practice ? practice.name : 'Unknown'),
+              escapeCSV(doc.file_name),
+              escapeCSV('Financial'),
+              escapeCSV(formatDocumentType(doc.document_type)),
+              escapeCSV(''),
+              escapeCSV(''),
+              escapeCSV(doc.notes || ''),
+              escapeCSV(doc.created_at ? new Date(doc.created_at).toLocaleDateString() : '')
+            ];
+            csv += row.join(',') + '\n';
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching financial docs:', e);
+      }
+
+      // Fetch all DD documents
+      try {
+        const { data: ddDocs } = await window.sb
+          .from('dd_documents')
+          .select('file_name, document_type, category_slug, practice_id, expires_at, version_number, notes, created_at')
+          .eq('is_current_version', true);
+
+        if (ddDocs) {
+          ddDocs.forEach(doc => {
+            const practice = getPracticeById(doc.practice_id);
+            const categoryLabel = (doc.category_slug || 'DD').replace('dd-', '').replace('-', ' ');
+            const row = [
+              escapeCSV(practice ? practice.name : 'Unknown'),
+              escapeCSV(doc.file_name),
+              escapeCSV(categoryLabel.charAt(0).toUpperCase() + categoryLabel.slice(1)),
+              escapeCSV(formatDocumentType(doc.document_type)),
+              escapeCSV(doc.expires_at ? new Date(doc.expires_at).toLocaleDateString() : ''),
+              escapeCSV(doc.version_number || 1),
+              escapeCSV(doc.notes || ''),
+              escapeCSV(doc.created_at ? new Date(doc.created_at).toLocaleDateString() : '')
+            ];
+            csv += row.join(',') + '\n';
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching DD docs:', e);
+      }
+
+      const date = new Date().toISOString().split('T')[0];
+      downloadCSV(`zenyte-documents-${date}.csv`, csv);
+    }
+
+    async function exportDDReadinessReport() {
+      const practices = getPractices();
+      const now = new Date();
+      const thirtyDaysFromNow = new Date(now.getTime() + 30 * 24 * 60 * 60 * 1000);
+
+      // Collect data
+      const practiceData = [];
+      let totalScore = 0;
+      let expiredCount = 0;
+      let expiringCount = 0;
+
+      for (const practice of practices) {
+        const score = practice.dd_readiness_score || 0;
+        totalScore += score;
+
+        const counts = await getDDChecklistCounts(practice.id);
+
+        practiceData.push({
+          name: practice.name,
+          status: practice.status,
+          score: score,
+          completed: counts.completed,
+          total: counts.total
+        });
+      }
+
+      // Get expiring docs
+      try {
+        const { data: ddDocs } = await window.sb
+          .from('dd_documents')
+          .select('expires_at')
+          .not('expires_at', 'is', null)
+          .eq('is_current_version', true);
+
+        if (ddDocs) {
+          ddDocs.forEach(doc => {
+            const expiresAt = new Date(doc.expires_at);
+            if (expiresAt < now) {
+              expiredCount++;
+            } else if (expiresAt <= thirtyDaysFromNow) {
+              expiringCount++;
+            }
+          });
+        }
+      } catch (e) {
+        console.error('Error fetching docs for report:', e);
+      }
+
+      const avgScore = practices.length > 0 ? Math.round(totalScore / practices.length) : 0;
+
+      // Sort by score ascending (worst first)
+      practiceData.sort((a, b) => a.score - b.score);
+
+      // Generate HTML report
+      const reportDate = now.toLocaleDateString('en-US', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      });
+
+      let practiceRows = '';
+      practiceData.forEach(p => {
+        const scoreClass = p.score >= 80 ? 'score-high' : p.score >= 50 ? 'score-medium' : 'score-low';
+        practiceRows += `
+          <tr>
+            <td>${p.name}</td>
+            <td>${p.status}</td>
+            <td class="score-cell ${scoreClass}">${p.score}%</td>
+            <td>${p.completed}/${p.total}</td>
+            <td>${p.total - p.completed}</td>
+          </tr>
+        `;
+      });
+
+      const reportHtml = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>DD Readiness Report - ${reportDate}</title>
+          <style>
+            body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 800px; margin: 0 auto; padding: 2rem; }
+            h1 { font-size: 1.5rem; color: #1a1a2e; margin-bottom: 0.5rem; }
+            .subtitle { color: #6b7280; font-size: 0.9rem; margin-bottom: 2rem; }
+            .summary-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem; }
+            .summary-stat { text-align: center; padding: 1rem; background: #f8f9fa; border-radius: 8px; }
+            .summary-stat .value { font-size: 1.5rem; font-weight: 700; color: #1a1a2e; }
+            .summary-stat .label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; }
+            .section { margin-bottom: 2rem; }
+            .section h2 { font-size: 1rem; color: #374151; border-bottom: 2px solid #e5e7eb; padding-bottom: 0.5rem; margin-bottom: 1rem; }
+            table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+            th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid #e5e7eb; }
+            th { background: #f8f9fa; font-weight: 600; color: #374151; }
+            .score-cell { font-weight: 600; }
+            .score-high { color: #059669; }
+            .score-medium { color: #d97706; }
+            .score-low { color: #dc2626; }
+            @media print { body { padding: 0; } }
+          </style>
+        </head>
+        <body>
+          <h1>DD Readiness Report</h1>
+          <div class="subtitle">Generated on ${reportDate}</div>
+
+          <div class="summary-stats">
+            <div class="summary-stat">
+              <div class="value">${practices.length}</div>
+              <div class="label">Total Practices</div>
+            </div>
+            <div class="summary-stat">
+              <div class="value">${avgScore}%</div>
+              <div class="label">Avg Readiness</div>
+            </div>
+            <div class="summary-stat">
+              <div class="value">${expiredCount}</div>
+              <div class="label">Expired Docs</div>
+            </div>
+            <div class="summary-stat">
+              <div class="value">${expiringCount}</div>
+              <div class="label">Expiring Soon</div>
+            </div>
+          </div>
+
+          <div class="section">
+            <h2>Practice DD Readiness (Sorted by Score)</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Practice</th>
+                  <th>Status</th>
+                  <th>DD Score</th>
+                  <th>Checklist</th>
+                  <th>Missing</th>
+                </tr>
+              </thead>
+              <tbody>
+                ${practiceRows}
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section">
+            <h2>Summary</h2>
+            <p>This report shows the Due Diligence readiness status for all practices in the Zenyte portfolio.</p>
+            <ul>
+              <li><strong>${practiceData.filter(p => p.score >= 80).length}</strong> practices are at 80%+ readiness (green)</li>
+              <li><strong>${practiceData.filter(p => p.score >= 50 && p.score < 80).length}</strong> practices are at 50-79% readiness (yellow)</li>
+              <li><strong>${practiceData.filter(p => p.score < 50).length}</strong> practices are below 50% readiness (red)</li>
+            </ul>
+          </div>
+        </body>
+        </html>
+      `;
+
+      // Open in new window for printing/saving as PDF
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write(reportHtml);
+      printWindow.document.close();
+
+      // Auto-trigger print dialog after a short delay
+      setTimeout(() => {
+        printWindow.print();
+      }, 500);
+    }
+
+    // =============================================
+    // DOCUMENT REQUEST WORKFLOW
+    // =============================================
+
+    // Document types available for requesting by category
+    const requestableDocTypes = {
+      'financial': [
+        { value: 'bank_statement', label: 'Bank Statements (12+ months)' },
+        { value: 'income_statement', label: 'Income Statement / P&L' },
+        { value: 'balance_sheet', label: 'Balance Sheet' },
+        { value: 'tax_return', label: 'Tax Returns (3 years)' },
+        { value: 'ar_aging', label: 'Accounts Receivable Aging' },
+        { value: 'ap_aging', label: 'Accounts Payable Aging' }
+      ],
+      'dd-corporate': [
+        { value: 'articles_of_incorporation', label: 'Articles of Incorporation' },
+        { value: 'operating_agreement', label: 'Operating Agreement' },
+        { value: 'bylaws', label: 'Bylaws' },
+        { value: 'org_chart', label: 'Organization Chart' },
+        { value: 'ownership_docs', label: 'Ownership Documentation' }
+      ],
+      'dd-compliance': [
+        { value: 'medical_license', label: 'Medical License' },
+        { value: 'dea_certificate', label: 'DEA Certificate' },
+        { value: 'malpractice_insurance', label: 'Malpractice Insurance' },
+        { value: 'hipaa_docs', label: 'HIPAA Documentation' },
+        { value: 'osha_compliance', label: 'OSHA Compliance Records' },
+        { value: 'accreditation', label: 'Accreditation Certificates' }
+      ],
+      'dd-contracts': [
+        { value: 'lease_agreement', label: 'Lease Agreement' },
+        { value: 'vendor_contracts', label: 'Vendor Contracts' },
+        { value: 'employment_agreements', label: 'Employment Agreements' },
+        { value: 'payor_contracts', label: 'Payor Contracts' },
+        { value: 'equipment_leases', label: 'Equipment Leases' }
+      ],
+      'dd-other': [
+        { value: 'equipment_list', label: 'Equipment List' },
+        { value: 'employee_roster', label: 'Employee Roster' },
+        { value: 'patient_demographics', label: 'Patient Demographics' },
+        { value: 'marketing_materials', label: 'Marketing Materials' },
+        { value: 'other', label: 'Other Documents' }
+      ]
+    };
+
+    function openRequestDocsModal() {
+      const practiceId = currentPractice?.id;
+      if (!practiceId) {
+        alert('No practice selected');
+        return;
+      }
+
+      // Build category options
+      const categories = [
+        { value: 'financial', label: 'Financial' },
+        { value: 'dd-corporate', label: 'Corporate' },
+        { value: 'dd-compliance', label: 'Compliance' },
+        { value: 'dd-contracts', label: 'Contracts' },
+        { value: 'dd-other', label: 'Other DD' }
+      ];
+
+      const categoryOptions = categories.map(c =>
+        `<option value="${c.value}">${c.label}</option>`
+      ).join('');
+
+      // Initial doc types for first category
+      const initialDocTypes = requestableDocTypes['financial'];
+      const docTypeItems = initialDocTypes.map(dt =>
+        `<div class="request-doc-type-item" onclick="toggleRequestCheckbox('${dt.value}')">
+          <input type="checkbox" id="req-${dt.value}" value="${dt.value}">
+          <span class="doc-type-label">${dt.label}</span>
+        </div>`
+      ).join('');
+
+      showModal('Request Documents', `
+        <div class="request-modal-content">
+          <div class="request-category-select">
+            <label>Category</label>
+            <select id="request-category" onchange="updateRequestDocTypes()">
+              ${categoryOptions}
+            </select>
+          </div>
+
+          <div class="request-doc-types">
+            <label>Select documents to request:</label>
+            <div class="request-doc-type-list" id="request-doc-type-list">
+              ${docTypeItems}
+            </div>
+          </div>
+
+          <div class="request-notes">
+            <label>Notes (optional)</label>
+            <textarea id="request-notes" placeholder="Add any specific instructions or notes for the practice..."></textarea>
+          </div>
+
+          <div class="request-modal-actions">
+            <button class="btn-cancel-modal" onclick="closeModal()">Cancel</button>
+            <button class="btn-send-requests" onclick="sendDocumentRequests()">Send Requests</button>
+          </div>
+        </div>
+      `);
+    }
+
+    function toggleRequestCheckbox(value) {
+      const checkbox = document.getElementById(`req-${value}`);
+      if (checkbox) {
+        checkbox.checked = !checkbox.checked;
+      }
+    }
+
+    function updateRequestDocTypes() {
+      const category = document.getElementById('request-category').value;
+      const docTypes = requestableDocTypes[category] || [];
+      const listEl = document.getElementById('request-doc-type-list');
+
+      listEl.innerHTML = docTypes.map(dt =>
+        `<div class="request-doc-type-item" onclick="toggleRequestCheckbox('${dt.value}')">
+          <input type="checkbox" id="req-${dt.value}" value="${dt.value}">
+          <span class="doc-type-label">${dt.label}</span>
+        </div>`
+      ).join('');
+    }
+
+    async function sendDocumentRequests() {
+      const practiceId = currentPractice?.id;
+      if (!practiceId) return;
+
+      const category = document.getElementById('request-category').value;
+      const notes = document.getElementById('request-notes').value.trim();
+
+      // Get selected doc types
+      const checkboxes = document.querySelectorAll('#request-doc-type-list input[type="checkbox"]:checked');
+      const selectedTypes = Array.from(checkboxes).map(cb => cb.value);
+
+      if (selectedTypes.length === 0) {
+        alert('Please select at least one document type to request');
+        return;
+      }
+
+      // Create requests
+      const requests = selectedTypes.map(docType => ({
+        practice_id: practiceId,
+        document_type: docType,
+        category_slug: category,
+        status: 'requested',
+        notes: notes || null,
+        requested_by: currentUser?.id,
+        requested_at: new Date().toISOString()
+      }));
+
+      try {
+        const { error } = await window.sb
+          .from('document_requests')
+          .insert(requests);
+
+        if (error) throw error;
+
+        closeModal();
+        await loadPendingRequests(practiceId);
+        alert(`${selectedTypes.length} document request(s) created successfully!`);
+      } catch (e) {
+        console.error('Error creating requests:', e);
+        alert('Failed to create requests: ' + e.message);
+      }
+    }
+
+    async function loadPendingRequests(practiceId) {
+      const section = document.getElementById('pending-requests-section');
+      const list = document.getElementById('pending-requests-list');
+      const countEl = document.getElementById('pending-requests-count');
+
+      if (!section || !list) return;
+
+      try {
+        const { data: requests, error } = await window.sb
+          .from('document_requests')
+          .select('*')
+          .eq('practice_id', practiceId)
+          .neq('status', 'cancelled')
+          .order('requested_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!requests || requests.length === 0) {
+          section.style.display = 'none';
+          return;
+        }
+
+        section.style.display = 'block';
+        const pendingCount = requests.filter(r => r.status !== 'reviewed').length;
+        countEl.textContent = pendingCount;
+
+        let html = '';
+        requests.forEach(req => {
+          const statusIcon = req.status === 'requested' ? '📨' :
+                            req.status === 'received' ? '📥' : '✅';
+          const requestedDate = new Date(req.requested_at).toLocaleDateString();
+          const docTypeLabel = formatDocumentType(req.document_type);
+
+          let actionsHtml = '';
+          if (req.status === 'requested') {
+            actionsHtml = `
+              <button class="btn-mark-received" onclick="updateRequestStatus('${req.id}', 'received')">Mark Received</button>
+              <button class="btn-cancel-request" onclick="updateRequestStatus('${req.id}', 'cancelled')">Cancel</button>
+            `;
+          } else if (req.status === 'received') {
+            actionsHtml = `
+              <button class="btn-mark-reviewed" onclick="updateRequestStatus('${req.id}', 'reviewed')">Mark Reviewed</button>
+            `;
+          }
+
+          html += `
+            <div class="request-item">
+              <div class="request-status-icon status-${req.status}">${statusIcon}</div>
+              <div class="request-info">
+                <div class="request-doc-type">${docTypeLabel}</div>
+                <div class="request-meta">
+                  <span class="request-status-badge status-${req.status}">${req.status}</span>
+                  <span>Requested ${requestedDate}</span>
+                  ${req.notes ? `<span title="${req.notes}">📝</span>` : ''}
+                </div>
+              </div>
+              <div class="request-actions">
+                ${actionsHtml}
+              </div>
+            </div>
+          `;
+        });
+
+        list.innerHTML = html;
+
+      } catch (e) {
+        console.error('Error loading pending requests:', e);
+        section.style.display = 'none';
+      }
+    }
+
+    async function updateRequestStatus(requestId, newStatus) {
+      const practiceId = currentPractice?.id;
+
+      const updates = {
+        status: newStatus,
+        updated_at: new Date().toISOString()
+      };
+
+      if (newStatus === 'received') {
+        updates.received_at = new Date().toISOString();
+      } else if (newStatus === 'reviewed') {
+        updates.reviewed_at = new Date().toISOString();
+        updates.reviewed_by = currentUser?.id;
+      }
+
+      try {
+        const { error } = await window.sb
+          .from('document_requests')
+          .update(updates)
+          .eq('id', requestId);
+
+        if (error) throw error;
+
+        // Reload the requests list
+        if (practiceId) {
+          await loadPendingRequests(practiceId);
+        }
+      } catch (e) {
+        console.error('Error updating request status:', e);
+        alert('Failed to update status: ' + e.message);
+      }
+    }
+
     /**
      * toggleCollapsedTasks(groupId)
      * Expands/collapses the hidden tasks for a practice group
@@ -11447,8 +14366,19 @@
       checkDDChecklistStatus(practiceId);
       loadDDChecklist(practiceId);
 
+      // Load pending document requests
+      loadPendingRequests(practiceId);
+
+      // Store current practice for request workflow
+      currentPractice = practice;
+
       // Show modal
       document.getElementById('profile-modal').classList.add('visible');
+    }
+
+    // Alias for openProfile used in dashboard/search
+    function openPracticeDetail(practiceId) {
+      openProfile(practiceId);
     }
 
     function closeProfile() {
@@ -14357,6 +17287,447 @@
         resetLoginButton();
       }
     }
+
+    // =============================================
+    // SETTINGS & AUDIT LOG FUNCTIONS
+    // =============================================
+
+    // Audit log state
+    let auditLogData = [];
+    let auditCurrentPage = 1;
+    const auditPageSize = 25;
+    let auditTotalCount = 0;
+    let auditSearchTimeout = null;
+
+    // Open settings panel (admin only)
+    async function openSettings() {
+      // Admin check
+      if (window.currentUserRole !== 'admin') {
+        alert('Access denied. Admin privileges required.');
+        return;
+      }
+
+      document.getElementById('settings-overlay').style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+
+      // Populate practice filter dropdown
+      await populateAuditPracticeFilter();
+
+      // Load audit log
+      await loadAuditLog();
+    }
+
+    // Close settings panel
+    function closeSettings() {
+      document.getElementById('settings-overlay').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+
+    // Close on overlay click
+    document.addEventListener('click', (e) => {
+      if (e.target.id === 'settings-overlay') {
+        closeSettings();
+      }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('settings-overlay').style.display === 'flex') {
+        closeSettings();
+      }
+    });
+
+    // Switch settings tabs
+    function switchSettingsTab(tabName) {
+      // Update tab buttons
+      document.querySelectorAll('.settings-tab').forEach(tab => {
+        tab.classList.toggle('active', tab.dataset.tab === tabName);
+      });
+
+      // Update tab content
+      document.querySelectorAll('.settings-content').forEach(content => {
+        content.classList.toggle('active', content.id === `settings-${tabName}`);
+      });
+    }
+
+    // Populate practice filter dropdown
+    async function populateAuditPracticeFilter() {
+      const select = document.getElementById('audit-filter-practice');
+      if (!select) return;
+
+      // Keep the "All Practices" option
+      select.innerHTML = '<option value="">All Practices</option>';
+
+      // Add practices from the db
+      if (db.practices && db.practices.length > 0) {
+        db.practices.forEach(p => {
+          const opt = document.createElement('option');
+          opt.value = p.id;
+          opt.textContent = p.name;
+          select.appendChild(opt);
+        });
+      }
+    }
+
+    // Load audit log with filters
+    async function loadAuditLog() {
+      const tbody = document.getElementById('audit-tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = '<tr><td colspan="5" class="audit-empty">Loading events...</td></tr>';
+
+      try {
+        // Get filter values
+        const typeFilter = document.getElementById('audit-filter-type')?.value || '';
+        const practiceFilter = document.getElementById('audit-filter-practice')?.value || '';
+        const fromDate = document.getElementById('audit-filter-from')?.value || '';
+        const toDate = document.getElementById('audit-filter-to')?.value || '';
+        const searchTerm = document.getElementById('audit-search')?.value?.toLowerCase() || '';
+
+        // Fetch from both events and document_events tables
+        const [eventsResult, docEventsResult] = await Promise.all([
+          fetchPracticeEvents(typeFilter, practiceFilter, fromDate, toDate),
+          fetchDocumentEvents(typeFilter, practiceFilter, fromDate, toDate)
+        ]);
+
+        // Combine and sort by timestamp (newest first)
+        let allEvents = [...(eventsResult || []), ...(docEventsResult || [])];
+        allEvents.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+        // Apply search filter
+        if (searchTerm) {
+          allEvents = allEvents.filter(evt => {
+            const searchable = [
+              evt.event_type,
+              evt.practice_name,
+              evt.actor_email,
+              JSON.stringify(evt.payload)
+            ].join(' ').toLowerCase();
+            return searchable.includes(searchTerm);
+          });
+        }
+
+        auditLogData = allEvents;
+        auditTotalCount = allEvents.length;
+        auditCurrentPage = 1;
+
+        renderAuditLog();
+      } catch (err) {
+        console.error('Error loading audit log:', err);
+        tbody.innerHTML = '<tr><td colspan="5" class="audit-empty">Error loading events</td></tr>';
+      }
+    }
+
+    // Fetch practice events
+    async function fetchPracticeEvents(typeFilter, practiceFilter, fromDate, toDate) {
+      try {
+        let query = window.sb
+          .from('events')
+          .select('id, practice_id, event_type, actor_id, timestamp, payload')
+          .order('timestamp', { ascending: false })
+          .limit(500);
+
+        // Apply filters
+        if (typeFilter && ['practice_created', 'practice_edited', 'practice_deleted', 'status_changed',
+            'note_added', 'tag_added', 'tag_removed', 'packet_generated', 'metric_added', 'owner_added'].includes(typeFilter)) {
+          query = query.eq('event_type', typeFilter);
+        }
+        if (practiceFilter) {
+          query = query.eq('practice_id', practiceFilter);
+        }
+        if (fromDate) {
+          query = query.gte('timestamp', fromDate);
+        }
+        if (toDate) {
+          query = query.lte('timestamp', toDate + 'T23:59:59');
+        }
+
+        const { data, error } = await query;
+        if (error) throw error;
+
+        // Enrich with practice names
+        return (data || []).map(evt => {
+          const practice = db.practices.find(p => p.id === evt.practice_id);
+          return {
+            ...evt,
+            source: 'events',
+            practice_name: practice?.name || 'Unknown',
+            actor_email: evt.actor_id || 'System',
+            timestamp: evt.timestamp
+          };
+        });
+      } catch (err) {
+        console.error('Error fetching practice events:', err);
+        return [];
+      }
+    }
+
+    // Fetch document events
+    async function fetchDocumentEvents(typeFilter, practiceFilter, fromDate, toDate) {
+      try {
+        let query = window.sb
+          .from('document_events')
+          .select('id, practice_id, document_id, document_type, event_type, actor_email, payload, created_at')
+          .order('created_at', { ascending: false })
+          .limit(500);
+
+        // Apply filters
+        if (typeFilter && ['uploaded', 'deleted', 'extraction_confirmed', 'verified', 'unverified'].includes(typeFilter)) {
+          query = query.eq('event_type', typeFilter);
+        }
+        if (practiceFilter) {
+          query = query.eq('practice_id', practiceFilter);
+        }
+        if (fromDate) {
+          query = query.gte('created_at', fromDate);
+        }
+        if (toDate) {
+          query = query.lte('created_at', toDate + 'T23:59:59');
+        }
+
+        const { data, error } = await query;
+        if (error) throw error;
+
+        // Enrich with practice names
+        return (data || []).map(evt => {
+          const practice = db.practices.find(p => p.id === evt.practice_id);
+          return {
+            ...evt,
+            source: 'document_events',
+            practice_name: practice?.name || 'Unknown',
+            actor_email: evt.actor_email || 'System',
+            timestamp: evt.created_at
+          };
+        });
+      } catch (err) {
+        console.error('Error fetching document events:', err);
+        return [];
+      }
+    }
+
+    // Render audit log table
+    function renderAuditLog() {
+      const tbody = document.getElementById('audit-tbody');
+      if (!tbody) return;
+
+      const startIdx = (auditCurrentPage - 1) * auditPageSize;
+      const endIdx = startIdx + auditPageSize;
+      const pageData = auditLogData.slice(startIdx, endIdx);
+
+      if (pageData.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="5" class="audit-empty">No events found</td></tr>';
+        updateAuditPagination();
+        return;
+      }
+
+      tbody.innerHTML = pageData.map(evt => {
+        const timestamp = formatAuditTimestamp(evt.timestamp);
+        const eventBadge = formatEventBadge(evt.event_type, evt.source);
+        const details = formatEventDetails(evt);
+
+        return `
+          <tr>
+            <td class="audit-timestamp">${timestamp}</td>
+            <td class="audit-practice">${escapeHtml(evt.practice_name)}</td>
+            <td>${eventBadge}</td>
+            <td class="audit-actor" title="${escapeHtml(evt.actor_email)}">${escapeHtml(evt.actor_email)}</td>
+            <td class="audit-details" title="${escapeHtml(details)}">${escapeHtml(details)}</td>
+          </tr>
+        `;
+      }).join('');
+
+      updateAuditPagination();
+    }
+
+    // Format timestamp for display
+    function formatAuditTimestamp(ts) {
+      if (!ts) return '--';
+      const date = new Date(ts);
+      return date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: '2-digit'
+      });
+    }
+
+    // Format event badge with icon
+    function formatEventBadge(eventType, source) {
+      const icons = {
+        practice_created: '&#43;',
+        practice_edited: '&#9998;',
+        practice_deleted: '&#128465;',
+        status_changed: '&#8634;',
+        note_added: '&#128221;',
+        tag_added: '&#127991;',
+        tag_removed: '&#127991;',
+        packet_generated: '&#128196;',
+        metric_added: '&#128200;',
+        owner_added: '&#128100;',
+        uploaded: '&#128194;',
+        deleted: '&#128465;',
+        extraction_confirmed: '&#10003;',
+        verified: '&#10003;',
+        unverified: '&#10007;'
+      };
+
+      const labels = {
+        practice_created: 'Created',
+        practice_edited: 'Edited',
+        practice_deleted: 'Deleted',
+        status_changed: 'Status',
+        note_added: 'Note',
+        tag_added: 'Tag +',
+        tag_removed: 'Tag -',
+        packet_generated: 'Packet',
+        metric_added: 'Metric',
+        owner_added: 'Owner',
+        uploaded: 'Uploaded',
+        deleted: 'Deleted',
+        extraction_confirmed: 'Extracted',
+        verified: 'Verified',
+        unverified: 'Unverified'
+      };
+
+      let badgeClass = 'practice';
+      if (source === 'document_events') badgeClass = 'document';
+      if (eventType === 'extraction_confirmed') badgeClass = 'extraction';
+      if (eventType.includes('deleted')) badgeClass = 'delete';
+
+      const icon = icons[eventType] || '&#9679;';
+      const label = labels[eventType] || eventType.replace(/_/g, ' ');
+
+      return `<span class="audit-event-badge ${badgeClass}">${icon} ${label}</span>`;
+    }
+
+    // Format event details
+    function formatEventDetails(evt) {
+      if (!evt.payload) return '--';
+
+      try {
+        const p = typeof evt.payload === 'string' ? JSON.parse(evt.payload) : evt.payload;
+
+        // Status change
+        if (evt.event_type === 'status_changed' && p.old && p.new) {
+          return `${p.old} → ${p.new}`;
+        }
+
+        // Document upload
+        if (evt.event_type === 'uploaded' && p.file_name) {
+          return p.file_name;
+        }
+
+        // Extraction
+        if (evt.event_type === 'extraction_confirmed') {
+          if (p.deposits) return `$${Number(p.deposits).toLocaleString()} (${p.period || 'N/A'})`;
+          return p.period || 'Extracted';
+        }
+
+        // Tag
+        if ((evt.event_type === 'tag_added' || evt.event_type === 'tag_removed') && p.tag) {
+          return p.tag;
+        }
+
+        // Note
+        if (evt.event_type === 'note_added' && p.content_preview) {
+          return p.content_preview;
+        }
+
+        // Generic - show first key/value
+        const keys = Object.keys(p);
+        if (keys.length > 0) {
+          const val = p[keys[0]];
+          if (typeof val === 'string' || typeof val === 'number') {
+            return `${keys[0]}: ${val}`.substring(0, 50);
+          }
+        }
+
+        return '--';
+      } catch {
+        return '--';
+      }
+    }
+
+    // Update pagination controls
+    function updateAuditPagination() {
+      const totalPages = Math.ceil(auditTotalCount / auditPageSize) || 1;
+      const pageInfo = document.getElementById('audit-page-info');
+      const prevBtn = document.getElementById('audit-prev-btn');
+      const nextBtn = document.getElementById('audit-next-btn');
+
+      if (pageInfo) {
+        pageInfo.textContent = `Page ${auditCurrentPage} of ${totalPages} (${auditTotalCount} events)`;
+      }
+      if (prevBtn) {
+        prevBtn.disabled = auditCurrentPage <= 1;
+      }
+      if (nextBtn) {
+        nextBtn.disabled = auditCurrentPage >= totalPages;
+      }
+    }
+
+    // Change page
+    function changeAuditPage(direction) {
+      const totalPages = Math.ceil(auditTotalCount / auditPageSize) || 1;
+      const newPage = auditCurrentPage + direction;
+
+      if (newPage >= 1 && newPage <= totalPages) {
+        auditCurrentPage = newPage;
+        renderAuditLog();
+      }
+    }
+
+    // Apply filters with debounce for search
+    function applyAuditFilters() {
+      loadAuditLog();
+    }
+
+    function debounceAuditSearch() {
+      clearTimeout(auditSearchTimeout);
+      auditSearchTimeout = setTimeout(() => {
+        loadAuditLog();
+      }, 300);
+    }
+
+    // Export audit log to CSV
+    function exportAuditLog() {
+      if (auditLogData.length === 0) {
+        alert('No events to export');
+        return;
+      }
+
+      const headers = ['Timestamp', 'Practice', 'Event Type', 'Actor', 'Details'];
+      const rows = auditLogData.map(evt => [
+        evt.timestamp,
+        evt.practice_name,
+        evt.event_type,
+        evt.actor_email,
+        formatEventDetails(evt)
+      ]);
+
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(row => row.map(cell => `"${String(cell).replace(/"/g, '""')}"`).join(','))
+      ].join('\n');
+
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `audit-log-${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+    }
+
+    // Helper to escape HTML
+    function escapeHtml(text) {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // =============================================
+    // END SETTINGS & AUDIT LOG FUNCTIONS
+    // =============================================
 
     async function handleLogout() {
       try {
@@ -18448,6 +21819,9 @@ Suggested info to include:
     function showAdminPanel() {
       if (window.currentUserRole === 'admin') {
         document.getElementById('admin-panel').style.display = 'block';
+        // Show settings button for admins
+        const settingsBtn = document.getElementById('settings-btn');
+        if (settingsBtn) settingsBtn.style.display = 'flex';
         // Populate org info
         const orgSlugEl = document.getElementById('admin-org-slug');
         const orgIdEl = document.getElementById('admin-org-id');
@@ -18474,6 +21848,7 @@ Suggested info to include:
       await initializeDocumentTypeDropdowns();
       renderTable();
       updateMetrics();
+      initNotifications();
     }
 
     // =============================================
@@ -18652,6 +22027,9 @@ Suggested info to include:
           hideAwaitingApproval();
           hideNoOrgScreen();
           document.getElementById('admin-panel').style.display = 'none';
+          // Hide admin-only settings button
+          const settingsBtn = document.getElementById('settings-btn');
+          if (settingsBtn) settingsBtn.style.display = 'none';
           resetLoginButton();
         }
       });

@@ -14,17 +14,22 @@
 - Document notes with type guidance
 - DD Readiness trends over time
 - Missing docs report across all practices
+- Dashboard overview (readiness scores, expiring docs, missing items)
+- Email/Slack notifications (notification center, Slack webhooks, email digest)
+- Global document search (Ctrl+K, searches docs by name/type/notes)
+- Export to CSV/PDF (practices, documents, DD readiness report)
+- Document request workflow (request -> received -> reviewed tracking)
 
 ## Next Up
 
 ### Quick Wins
-1. **Email/Slack notifications** - Alert when documents expire or are missing
-2. **Document search** - Global search across all documents by name, type, notes
-3. **Dashboard overview** - Single view showing all practices' readiness scores, expiring docs, missing items [IN PROGRESS]
-4. **Export to PDF/Excel** - Generate reports for stakeholders
+1. ~~Email/Slack notifications~~ - DONE
+2. ~~Document search~~ - DONE
+3. ~~Dashboard overview~~ - DONE
+4. ~~Export to PDF/Excel~~ - DONE
 
 ### Workflow Improvements
-5. **Document request workflow** - Request specific docs from practice, track status (requested -> received -> reviewed)
+5. ~~Document request workflow~~ - DONE
 6. **Review/approval workflow** - Mark documents as reviewed, approved, or needs resubmission
 7. **Auto-reminders** - Scheduled checks for expiring docs, incomplete checklists
 

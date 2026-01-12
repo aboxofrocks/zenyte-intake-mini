@@ -4,7 +4,11 @@
       "Bash(open /Users/austinreiser/Desktop/Bloops/zenyte-intake-mini/index.html)",
       "Bash(git init:*)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(gh auth status:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)"
     ]
   }
 }
