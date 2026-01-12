@@ -19,6 +19,8 @@
 - Global document search (Ctrl+K, searches docs by name/type/notes)
 - Export to CSV/PDF (practices, documents, DD readiness report)
 - Document request workflow (request -> received -> reviewed tracking)
+- OCR + Claude extraction (extract license numbers, expiration dates, contract terms, etc.)
+- Document templates (5 built-in templates: Standard DD, Compliance Audit, Financial Review, Real Estate DD, Corporate Docs)
 
 ## Next Up
 
@@ -34,8 +36,8 @@
 7. **Auto-reminders** - Scheduled checks for expiring docs, incomplete checklists
 
 ### Advanced Features
-8. **OCR + Claude extraction** - Extract key data from uploaded docs (license numbers, expiration dates, amounts)
-9. **Document templates** - Pre-built templates for common requests
+8. ~~**OCR + Claude extraction**~~ - DONE (Extract button on docs, category-specific prompts, auto-sets expiration dates)
+9. ~~**Document templates**~~ - DONE (5 built-in templates, template picker modal, email generation)
 10. ~~**Audit log viewer**~~ - DONE (Settings panel with combined events view, filters, CSV export)
 
 ### Polish

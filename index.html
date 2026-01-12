@@ -2359,6 +2359,230 @@
       background: #c7d2fe;
     }
 
+    /* Extraction styles */
+    .btn-extract {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      color: #0284c7;
+    }
+
+    .btn-extract:hover {
+      background: #e0f2fe;
+    }
+
+    .btn-extract.extracting {
+      opacity: 0.6;
+      cursor: wait;
+    }
+
+    .dd-doc-extracted {
+      margin-top: 0.5rem;
+      padding: 0.5rem 0.75rem;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      border-radius: 6px;
+      font-size: 0.75rem;
+    }
+
+    .dd-doc-extracted-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+      color: #15803d;
+    }
+
+    .dd-doc-extracted-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.35rem 1rem;
+    }
+
+    .dd-doc-extracted-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dd-doc-extracted-label {
+      font-size: 0.65rem;
+      color: #6b7280;
+      text-transform: uppercase;
+    }
+
+    .dd-doc-extracted-value {
+      color: #1f2937;
+      font-weight: 500;
+    }
+
+    /* Extraction modal */
+    .extraction-modal-content {
+      max-width: 500px;
+    }
+
+    .extraction-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      margin: 1rem 0;
+    }
+
+    .extraction-field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .extraction-field label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    .extraction-field input {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.875rem;
+    }
+
+    .extraction-field input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+    }
+
+    .extraction-status {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem;
+      background: #f3f4f6;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+
+    .extraction-status.processing {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .extraction-status.success {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .extraction-status.error {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .extraction-spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid #d1d5db;
+      border-top-color: #3b82f6;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    /* Template picker modal */
+    .template-picker-modal {
+      max-width: 600px;
+    }
+
+    .template-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .template-card {
+      border: 2px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .template-card:hover {
+      border-color: #3b82f6;
+      background: #f8fafc;
+    }
+
+    .template-card.selected {
+      border-color: #3b82f6;
+      background: #eff6ff;
+    }
+
+    .template-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.5rem;
+    }
+
+    .template-card-name {
+      font-weight: 600;
+      color: #1a1a2e;
+      font-size: 0.95rem;
+    }
+
+    .template-card-badge {
+      font-size: 0.65rem;
+      padding: 0.15rem 0.4rem;
+      background: #e0e7ff;
+      color: #4338ca;
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    .template-card-desc {
+      font-size: 0.8rem;
+      color: #6b7280;
+      margin-bottom: 0.75rem;
+    }
+
+    .template-card-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+
+    .template-item-tag {
+      font-size: 0.7rem;
+      padding: 0.2rem 0.5rem;
+      background: #f3f4f6;
+      color: #4b5563;
+      border-radius: 4px;
+    }
+
+    .template-item-tag.category {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .template-options {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid #e5e7eb;
+    }
+
+    .template-option {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: #374151;
+    }
+
+    .template-option input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+    }
+
     /* Version history dropdown */
     .version-history {
       position: absolute;
@@ -5071,6 +5295,348 @@
       font-size: 0.9rem;
     }
 
+    /* Document Templates Styles */
+    .templates-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .templates-header h3 {
+      margin: 0 0 0.25rem 0;
+      color: #1e293b;
+    }
+
+    .templates-description {
+      color: #64748b;
+      margin: 0 0 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .btn-create-template {
+      padding: 0.6rem 1.2rem;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-create-template:hover {
+      background: #2563eb;
+    }
+
+    .templates-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .templates-loading {
+      text-align: center;
+      padding: 3rem;
+      color: #64748b;
+    }
+
+    .templates-empty {
+      text-align: center;
+      padding: 3rem;
+      color: #64748b;
+      background: #f8fafc;
+      border-radius: 8px;
+      border: 1px dashed #d1d5db;
+    }
+
+    .template-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 1.25rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .template-card:hover {
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .template-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.75rem;
+    }
+
+    .template-card-title {
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: #1e293b;
+      margin: 0;
+    }
+
+    .template-card-category {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.6rem;
+      background: #e0e7ff;
+      color: #4338ca;
+      border-radius: 12px;
+      text-transform: capitalize;
+    }
+
+    .template-card-description {
+      color: #64748b;
+      font-size: 0.9rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .template-card-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .template-item-tag {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.5rem;
+      background: #f1f5f9;
+      color: #475569;
+      border-radius: 4px;
+    }
+
+    .template-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 0.75rem;
+      border-top: 1px solid #f1f5f9;
+    }
+
+    .template-card-meta {
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+
+    .template-card-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .template-card-actions button {
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-edit-template {
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+    }
+
+    .btn-edit-template:hover {
+      background: #e2e8f0;
+    }
+
+    .btn-delete-template {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+    }
+
+    .btn-delete-template:hover {
+      background: #fee2e2;
+    }
+
+    /* Template Modal */
+    .template-modal {
+      background: white;
+      width: 600px;
+      max-width: 95vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .template-modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .template-modal-header h3 {
+      margin: 0;
+      color: #1e293b;
+    }
+
+    .template-modal-body {
+      padding: 1.5rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    .template-form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    .template-form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .template-form-group input,
+    .template-form-group select {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 0.95rem;
+    }
+
+    .template-form-group input:focus,
+    .template-form-group select:focus {
+      outline: none;
+      border-color: #3b82f6;
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+    }
+
+    .template-items-section {
+      border: 1px solid #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      background: #f8fafc;
+    }
+
+    .template-items-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+
+    .template-items-header label {
+      font-weight: 600;
+      color: #374151;
+      margin: 0;
+    }
+
+    .btn-add-item {
+      padding: 0.4rem 0.8rem;
+      background: #10b981;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .btn-add-item:hover {
+      background: #059669;
+    }
+
+    .template-items-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .template-item-row {
+      display: grid;
+      grid-template-columns: 1fr 150px 80px 40px;
+      gap: 0.5rem;
+      align-items: center;
+      background: white;
+      padding: 0.75rem;
+      border-radius: 6px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .template-item-row input,
+    .template-item-row select {
+      padding: 0.5rem;
+      border: 1px solid #d1d5db;
+      border-radius: 4px;
+      font-size: 0.9rem;
+    }
+
+    .template-item-row .required-toggle {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      font-size: 0.8rem;
+      color: #64748b;
+    }
+
+    .template-item-row .required-toggle input {
+      width: auto;
+    }
+
+    .btn-remove-item {
+      padding: 0.4rem;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #dc2626;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1rem;
+      line-height: 1;
+    }
+
+    .btn-remove-item:hover {
+      background: #fee2e2;
+    }
+
+    .template-items-empty {
+      text-align: center;
+      padding: 1.5rem;
+      color: #94a3b8;
+      font-size: 0.9rem;
+    }
+
+    .template-modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.75rem;
+      padding: 1rem 1.5rem;
+      border-top: 1px solid #e5e7eb;
+      background: #f8fafc;
+    }
+
+    .template-modal-footer .btn-cancel {
+      padding: 0.6rem 1.2rem;
+      background: white;
+      border: 1px solid #d1d5db;
+      color: #374151;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .template-modal-footer .btn-cancel:hover {
+      background: #f1f5f9;
+    }
+
+    .template-modal-footer .btn-save {
+      padding: 0.6rem 1.2rem;
+      background: #3b82f6;
+      border: none;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .template-modal-footer .btn-save:hover {
+      background: #2563eb;
+    }
+
     /* Dashboard View */
     .dashboard-container {
       display: none;
@@ -6403,6 +6969,7 @@
           <button class="settings-tab active" data-tab="audit-log" onclick="switchSettingsTab('audit-log')">Audit Log</button>
           <button class="settings-tab" data-tab="preferences" onclick="switchSettingsTab('preferences')">Preferences</button>
           <button class="settings-tab" data-tab="team" onclick="switchSettingsTab('team')">Team</button>
+          <button class="settings-tab" data-tab="templates" onclick="switchSettingsTab('templates')">Document Templates</button>
         </div>
 
         <!-- Audit Log Tab Content -->
@@ -6491,6 +7058,68 @@
             <h3>Team Management</h3>
             <p>Team management coming soon...</p>
           </div>
+        </div>
+
+        <!-- Templates Tab Content -->
+        <div class="settings-content" id="settings-templates">
+          <div class="templates-header">
+            <h3>Document Templates</h3>
+            <p class="templates-description">Create reusable document request packages for practices.</p>
+            <button class="btn-create-template" onclick="openTemplateModal()">+ Create Template</button>
+          </div>
+
+          <div class="templates-list" id="templates-list">
+            <div class="templates-loading">Loading templates...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template Create/Edit Modal -->
+    <div class="modal-overlay" id="template-modal-overlay" style="display: none;">
+      <div class="template-modal">
+        <div class="template-modal-header">
+          <h3 id="template-modal-title">Create Template</h3>
+          <button class="modal-close" onclick="closeTemplateModal()">&times;</button>
+        </div>
+        <div class="template-modal-body">
+          <input type="hidden" id="template-edit-id">
+
+          <div class="template-form-group">
+            <label>Template Name *</label>
+            <input type="text" id="template-name" placeholder="e.g., Credentialing Package">
+          </div>
+
+          <div class="template-form-group">
+            <label>Description</label>
+            <input type="text" id="template-description" placeholder="Brief description of this template">
+          </div>
+
+          <div class="template-form-group">
+            <label>Category</label>
+            <select id="template-category">
+              <option value="intake">Initial Intake</option>
+              <option value="credentialing">Credentialing</option>
+              <option value="financial">Financial Review</option>
+              <option value="compliance">Compliance</option>
+              <option value="real_estate">Real Estate</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <div class="template-items-section">
+            <div class="template-items-header">
+              <label>Template Items</label>
+              <button class="btn-add-item" onclick="addTemplateItem()">+ Add Item</button>
+            </div>
+            <div class="template-items-list" id="template-items-list">
+              <!-- Items added dynamically -->
+            </div>
+          </div>
+        </div>
+        <div class="template-modal-footer">
+          <button class="btn-cancel" onclick="closeTemplateModal()">Cancel</button>
+          <button class="btn-save" onclick="saveTemplate()">Save Template</button>
         </div>
       </div>
     </div>
@@ -7316,8 +7945,8 @@
             <button class="btn-bulk-upload" onclick="openBulkUpload()">
               Bulk Upload
             </button>
-            <button class="btn-apply-template" id="btn-apply-template" onclick="applyDDTemplate()">
-              Apply DD Checklist
+            <button class="btn-apply-template" id="btn-apply-template" onclick="showTemplatePickerModal()">
+              Apply Template
             </button>
           </div>
           <input type="file" id="bulk-upload-input" multiple accept=".pdf,.png,.jpg,.jpeg,.doc,.docx,.xlsx" style="display:none" onchange="handleBulkUpload(event)">
@@ -17469,6 +18098,289 @@ Zenyte Holdings
       document.querySelectorAll('.settings-content').forEach(content => {
         content.classList.toggle('active', content.id === `settings-${tabName}`);
       });
+
+      // Load templates when switching to templates tab
+      if (tabName === 'templates') {
+        loadTemplates();
+      }
+    }
+
+    // ========== Document Templates Functions ==========
+
+    let documentTypesCache = [];
+
+    // Load document types from database
+    async function loadDocumentTypes() {
+      if (documentTypesCache.length > 0) return documentTypesCache;
+      try {
+        const { data, error } = await window.sb
+          .from('document_types')
+          .select('code, label, category')
+          .order('label');
+        if (error) throw error;
+        documentTypesCache = data || [];
+        return documentTypesCache;
+      } catch (err) {
+        console.error('[Templates] Failed to load document types:', err);
+        return [];
+      }
+    }
+
+    // Load templates from database
+    async function loadTemplates() {
+      const container = document.getElementById('templates-list');
+      if (!container) return;
+
+      container.innerHTML = '<div class="templates-loading">Loading templates...</div>';
+
+      try {
+        const { data, error } = await window.sb
+          .from('document_templates')
+          .select('*')
+          .eq('org_id', window.currentOrgId)
+          .order('created_at', { ascending: false });
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          container.innerHTML = `
+            <div class="templates-empty">
+              <p>No templates yet. Create your first template to streamline document requests.</p>
+            </div>
+          `;
+          return;
+        }
+
+        container.innerHTML = data.map(template => renderTemplateCard(template)).join('');
+      } catch (err) {
+        console.error('[Templates] Load error:', err);
+        container.innerHTML = '<div class="templates-empty">Failed to load templates.</div>';
+      }
+    }
+
+    // Render a template card
+    function renderTemplateCard(template) {
+      const items = template.items || [];
+      const itemTags = items.slice(0, 5).map(item =>
+        `<span class="template-item-tag">${escapeHtml(item.item_name)}</span>`
+      ).join('');
+      const moreItems = items.length > 5 ? `<span class="template-item-tag">+${items.length - 5} more</span>` : '';
+
+      const categoryLabels = {
+        intake: 'Intake',
+        credentialing: 'Credentialing',
+        financial: 'Financial',
+        compliance: 'Compliance',
+        real_estate: 'Real Estate',
+        other: 'Other'
+      };
+
+      return `
+        <div class="template-card" data-template-id="${template.id}">
+          <div class="template-card-header">
+            <h4 class="template-card-title">${escapeHtml(template.name)}</h4>
+            <span class="template-card-category">${categoryLabels[template.category] || template.category || 'Other'}</span>
+          </div>
+          ${template.description ? `<p class="template-card-description">${escapeHtml(template.description)}</p>` : ''}
+          <div class="template-card-items">
+            ${itemTags}${moreItems}
+          </div>
+          <div class="template-card-footer">
+            <span class="template-card-meta">${items.length} item${items.length !== 1 ? 's' : ''} • Used ${template.usage_count || 0} times</span>
+            <div class="template-card-actions">
+              <button class="btn-edit-template" onclick="editTemplate('${template.id}')">Edit</button>
+              <button class="btn-delete-template" onclick="deleteTemplate('${template.id}')">Delete</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // Open template modal for create/edit
+    async function openTemplateModal(templateId = null) {
+      await loadDocumentTypes();
+
+      document.getElementById('template-modal-overlay').style.display = 'flex';
+      document.getElementById('template-modal-title').textContent = templateId ? 'Edit Template' : 'Create Template';
+      document.getElementById('template-edit-id').value = templateId || '';
+      document.getElementById('template-name').value = '';
+      document.getElementById('template-description').value = '';
+      document.getElementById('template-category').value = 'intake';
+      document.getElementById('template-items-list').innerHTML = '<div class="template-items-empty">No items yet. Click "+ Add Item" to add documents.</div>';
+
+      if (templateId) {
+        // Load existing template data
+        try {
+          const { data, error } = await window.sb
+            .from('document_templates')
+            .select('*')
+            .eq('id', templateId)
+            .single();
+
+          if (error) throw error;
+
+          document.getElementById('template-name').value = data.name || '';
+          document.getElementById('template-description').value = data.description || '';
+          document.getElementById('template-category').value = data.category || 'other';
+
+          // Render existing items
+          const items = data.items || [];
+          if (items.length > 0) {
+            document.getElementById('template-items-list').innerHTML = items.map((item, idx) =>
+              renderTemplateItemRow(item, idx)
+            ).join('');
+          }
+        } catch (err) {
+          console.error('[Templates] Failed to load template:', err);
+          alert('Failed to load template.');
+        }
+      }
+    }
+
+    // Close template modal
+    function closeTemplateModal() {
+      document.getElementById('template-modal-overlay').style.display = 'none';
+    }
+
+    // Edit template
+    function editTemplate(templateId) {
+      openTemplateModal(templateId);
+    }
+
+    // Render a template item row
+    function renderTemplateItemRow(item = {}, index = 0) {
+      const docTypeOptions = documentTypesCache.map(dt =>
+        `<option value="${dt.code}" ${item.doc_type_code === dt.code ? 'selected' : ''}>${dt.label}</option>`
+      ).join('');
+
+      const categoryOptions = `
+        <option value="dd_corporate" ${item.category_slug === 'dd_corporate' ? 'selected' : ''}>Corporate</option>
+        <option value="dd_compliance" ${item.category_slug === 'dd_compliance' ? 'selected' : ''}>Compliance</option>
+        <option value="dd_contracts" ${item.category_slug === 'dd_contracts' ? 'selected' : ''}>Contracts</option>
+        <option value="financial" ${item.category_slug === 'financial' ? 'selected' : ''}>Financial</option>
+        <option value="other" ${item.category_slug === 'other' ? 'selected' : ''}>Other</option>
+      `;
+
+      return `
+        <div class="template-item-row" data-index="${index}">
+          <input type="text" placeholder="Item name (e.g., Medical License)" value="${escapeHtml(item.item_name || '')}" class="item-name">
+          <select class="item-category">${categoryOptions}</select>
+          <label class="required-toggle">
+            <input type="checkbox" ${item.required !== false ? 'checked' : ''}> Req
+          </label>
+          <button class="btn-remove-item" onclick="removeTemplateItem(this)">&times;</button>
+        </div>
+      `;
+    }
+
+    // Add a new template item row
+    function addTemplateItem() {
+      const list = document.getElementById('template-items-list');
+      const emptyMsg = list.querySelector('.template-items-empty');
+      if (emptyMsg) emptyMsg.remove();
+
+      const index = list.querySelectorAll('.template-item-row').length;
+      list.insertAdjacentHTML('beforeend', renderTemplateItemRow({}, index));
+    }
+
+    // Remove a template item row
+    function removeTemplateItem(btn) {
+      btn.closest('.template-item-row').remove();
+      const list = document.getElementById('template-items-list');
+      if (list.querySelectorAll('.template-item-row').length === 0) {
+        list.innerHTML = '<div class="template-items-empty">No items yet. Click "+ Add Item" to add documents.</div>';
+      }
+    }
+
+    // Save template
+    async function saveTemplate() {
+      const templateId = document.getElementById('template-edit-id').value;
+      const name = document.getElementById('template-name').value.trim();
+      const description = document.getElementById('template-description').value.trim();
+      const category = document.getElementById('template-category').value;
+
+      if (!name) {
+        alert('Please enter a template name.');
+        return;
+      }
+
+      // Collect items
+      const items = [];
+      document.querySelectorAll('#template-items-list .template-item-row').forEach(row => {
+        const itemName = row.querySelector('.item-name').value.trim();
+        const categorySlug = row.querySelector('.item-category').value;
+        const required = row.querySelector('.required-toggle input').checked;
+
+        if (itemName) {
+          items.push({
+            item_key: itemName.toLowerCase().replace(/[^a-z0-9]+/g, '_'),
+            item_name: itemName,
+            category_slug: categorySlug,
+            required: required,
+            doc_type_code: null
+          });
+        }
+      });
+
+      try {
+        if (templateId) {
+          // Update existing
+          const { error } = await window.sb
+            .from('document_templates')
+            .update({
+              name,
+              description,
+              category,
+              items,
+              updated_at: new Date().toISOString()
+            })
+            .eq('id', templateId);
+
+          if (error) throw error;
+        } else {
+          // Create new
+          const newId = 'tmpl_' + Math.random().toString(36).substring(2, 10);
+          const { error } = await window.sb
+            .from('document_templates')
+            .insert({
+              id: newId,
+              org_id: window.currentOrgId,
+              name,
+              description,
+              category,
+              items,
+              created_by: window.currentUser?.email,
+              is_active: true
+            });
+
+          if (error) throw error;
+        }
+
+        closeTemplateModal();
+        loadTemplates();
+      } catch (err) {
+        console.error('[Templates] Save error:', err);
+        alert('Failed to save template: ' + err.message);
+      }
+    }
+
+    // Delete template
+    async function deleteTemplate(templateId) {
+      if (!confirm('Are you sure you want to delete this template?')) return;
+
+      try {
+        const { error } = await window.sb
+          .from('document_templates')
+          .delete()
+          .eq('id', templateId);
+
+        if (error) throw error;
+
+        loadTemplates();
+      } catch (err) {
+        console.error('[Templates] Delete error:', err);
+        alert('Failed to delete template: ' + err.message);
+      }
     }
 
     // Populate practice filter dropdown
@@ -20284,16 +21196,41 @@ Zenyte Holdings
         const hasNotes = doc.notes && doc.notes.trim().length > 0;
         const notesBtn = `<button class="btn-doc-notes ${hasNotes ? 'has-notes' : 'no-notes'}" onclick="showNotesModal('${doc.id}', 'dd')">${hasNotes ? '📝 Notes' : '+ Note'}</button>`;
 
+        // Extract button - only show for extractable file types
+        const extractableTypes = ['application/pdf', 'image/png', 'image/jpeg', 'image/jpg'];
+        const canExtract = extractableTypes.includes(doc.file_type);
+        const isExtracting = doc.extraction_status === 'processing';
+        const hasExtraction = doc.extraction_status === 'completed' && doc.extracted_data;
+
+        let extractBtn = '';
+        if (canExtract) {
+          if (isExtracting) {
+            extractBtn = `<button class="btn-extract extracting" disabled>Extracting...</button>`;
+          } else if (hasExtraction) {
+            extractBtn = `<button class="btn-extract" onclick="viewExtraction('${doc.id}')">View Data</button>`;
+          } else {
+            extractBtn = `<button class="btn-extract" onclick="extractDDDocument('${doc.id}')">Extract</button>`;
+          }
+        }
+
+        // Render extracted data if available
+        let extractedHtml = '';
+        if (hasExtraction && doc.extracted_data) {
+          extractedHtml = renderExtractedData(doc.extracted_data);
+        }
+
         return `
           <div class="dd-doc-item" data-doc-id="${doc.id}">
             <div class="dd-doc-icon">${icon}</div>
             <div class="dd-doc-info">
               <div class="dd-doc-name">${escapeHtml(doc.file_name)}${versionBadge}${expiryHtml}</div>
               <div class="dd-doc-meta">${catLabel ? catLabel + ' • ' : ''}${fileSize} • ${uploadDate} ${expiryBtnHtml}${newVersionBtn}${notesBtn}</div>
+              ${extractedHtml}
             </div>
             <span class="dd-doc-status ${statusClass}">${statusLabel}</span>
             <div class="dd-doc-actions">
               <button onclick="viewDDDocument('${doc.id}')">View</button>
+              ${extractBtn}
               <button onclick="verifyDDDocument('${doc.id}')" class="${doc.verification_status === 'verified' ? 'verified' : ''}">
                 ${doc.verification_status === 'verified' ? '✓ Verified' : 'Verify'}
               </button>
@@ -20379,6 +21316,476 @@ Zenyte Holdings
         console.error('[DDDocs] Verify error:', err);
         alert('Failed to verify document: ' + err.message);
       }
+    }
+
+    // Extraction prompts by document category
+    const EXTRACTION_PROMPTS = {
+      'dd_compliance': {
+        types: ['license', 'certification', 'dea', 'npi'],
+        prompt: `Extract the following information from this document. Return ONLY a JSON object with these fields (use null for missing values):
+{
+  "document_type": "license|certification|dea_registration|npi|other",
+  "license_number": "the license/certificate/DEA number",
+  "holder_name": "name of the person or entity",
+  "issuing_authority": "state board, agency, or organization that issued it",
+  "issue_date": "YYYY-MM-DD format",
+  "expiration_date": "YYYY-MM-DD format",
+  "status": "active|expired|pending",
+  "specialty": "medical specialty if applicable",
+  "state": "two-letter state code if applicable"
+}`
+      },
+      'dd_corporate': {
+        types: ['articles', 'operating_agreement', 'bylaws', 'ein'],
+        prompt: `Extract the following information from this corporate document. Return ONLY a JSON object with these fields (use null for missing values):
+{
+  "document_type": "articles_of_incorporation|operating_agreement|bylaws|ein_letter|other",
+  "entity_name": "legal name of the entity",
+  "entity_type": "LLC|Corporation|Partnership|Sole Proprietorship|other",
+  "formation_date": "YYYY-MM-DD format",
+  "state_of_formation": "two-letter state code",
+  "ein": "XX-XXXXXXX format if present",
+  "registered_agent": "name of registered agent",
+  "principal_address": "main business address",
+  "members_or_officers": ["list of member/officer names"]
+}`
+      },
+      'dd_contracts': {
+        types: ['lease', 'employment', 'vendor', 'partnership'],
+        prompt: `Extract the following information from this contract. Return ONLY a JSON object with these fields (use null for missing values):
+{
+  "document_type": "lease|employment_agreement|vendor_contract|partnership_agreement|other",
+  "parties": ["list of parties to the contract"],
+  "effective_date": "YYYY-MM-DD format",
+  "expiration_date": "YYYY-MM-DD format or null if no end date",
+  "term_length": "e.g., '5 years', '12 months'",
+  "monthly_amount": numeric value in dollars if applicable,
+  "total_value": numeric total contract value if stated,
+  "auto_renews": true/false,
+  "notice_period": "e.g., '30 days', '90 days'",
+  "key_terms": ["list of important terms or conditions"]
+}`
+      },
+      'dd_insurance': {
+        types: ['malpractice', 'general_liability', 'property', 'workers_comp'],
+        prompt: `Extract the following information from this insurance document. Return ONLY a JSON object with these fields (use null for missing values):
+{
+  "document_type": "malpractice|general_liability|property|workers_comp|other",
+  "policy_number": "the policy number",
+  "carrier_name": "insurance company name",
+  "insured_name": "name of the insured party",
+  "effective_date": "YYYY-MM-DD format",
+  "expiration_date": "YYYY-MM-DD format",
+  "coverage_amount": numeric value (per occurrence limit)",
+  "aggregate_limit": numeric value (aggregate limit)",
+  "deductible": numeric value,
+  "premium": numeric annual premium if stated
+}`
+      },
+      'dd_other': {
+        types: ['other'],
+        prompt: `Extract key information from this document. Return ONLY a JSON object with these fields (use null for missing values):
+{
+  "document_type": "brief description of document type",
+  "title": "document title if present",
+  "date": "YYYY-MM-DD format of primary date",
+  "parties": ["list of relevant parties/names"],
+  "key_values": {"label": "value pairs for important numbers or data"},
+  "summary": "one sentence summary of what this document is"
+}`
+      }
+    };
+
+    // Extract data from DD document using Claude
+    async function extractDDDocument(docId) {
+      try {
+        // Get document info
+        const { data: doc, error: docError } = await window.sb
+          .from('dd_documents')
+          .select('*')
+          .eq('id', docId)
+          .single();
+
+        if (docError || !doc) {
+          alert('Document not found');
+          return;
+        }
+
+        // Check if API key is configured
+        const apiKey = localStorage.getItem('claude_api_key');
+        if (!apiKey) {
+          alert('Please configure your Claude API key in Settings to use extraction.');
+          return;
+        }
+
+        // Update status to processing
+        await window.sb
+          .from('dd_documents')
+          .update({ extraction_status: 'processing' })
+          .eq('id', docId);
+
+        // Refresh UI to show processing state
+        await loadDDDocuments(selectedPracticeId);
+
+        // Get signed URL for the document
+        const { data: urlData, error: urlError } = await window.sb.storage
+          .from('financial-documents')
+          .createSignedUrl(doc.storage_path, 300);
+
+        if (urlError) {
+          throw new Error('Failed to get document URL: ' + urlError.message);
+        }
+
+        // Determine extraction prompt based on category
+        const category = doc.category_slug || 'dd_other';
+        const promptConfig = EXTRACTION_PROMPTS[category] || EXTRACTION_PROMPTS['dd_other'];
+
+        // Fetch the document as base64 for Claude
+        const response = await fetch(urlData.signedUrl);
+        const blob = await response.blob();
+        const base64 = await blobToBase64(blob);
+
+        // Determine media type
+        let mediaType = doc.file_type;
+        if (mediaType === 'application/pdf') {
+          mediaType = 'application/pdf';
+        } else if (mediaType.startsWith('image/')) {
+          // Keep as is
+        } else {
+          mediaType = 'image/png'; // fallback
+        }
+
+        // Call Claude API
+        const claudeResponse = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-sonnet-4-20250514',
+            max_tokens: 1024,
+            messages: [{
+              role: 'user',
+              content: [
+                {
+                  type: mediaType === 'application/pdf' ? 'document' : 'image',
+                  source: {
+                    type: 'base64',
+                    media_type: mediaType,
+                    data: base64.split(',')[1]
+                  }
+                },
+                {
+                  type: 'text',
+                  text: promptConfig.prompt
+                }
+              ]
+            }]
+          })
+        });
+
+        if (!claudeResponse.ok) {
+          const errorData = await claudeResponse.json();
+          throw new Error(errorData.error?.message || 'Claude API error');
+        }
+
+        const claudeData = await claudeResponse.json();
+        const extractedText = claudeData.content[0]?.text || '';
+
+        // Parse JSON from response
+        let extractedData;
+        try {
+          // Try to extract JSON from the response
+          const jsonMatch = extractedText.match(/\{[\s\S]*\}/);
+          if (jsonMatch) {
+            extractedData = JSON.parse(jsonMatch[0]);
+          } else {
+            throw new Error('No JSON found in response');
+          }
+        } catch (parseErr) {
+          console.error('[Extract] Parse error:', parseErr, extractedText);
+          throw new Error('Failed to parse extraction results');
+        }
+
+        // Save extracted data
+        await window.sb
+          .from('dd_documents')
+          .update({
+            extracted_data: extractedData,
+            extraction_status: 'completed',
+            extracted_at: new Date().toISOString()
+          })
+          .eq('id', docId);
+
+        // Auto-set expiration if extracted
+        if (extractedData.expiration_date && !doc.expires_at) {
+          await window.sb
+            .from('dd_documents')
+            .update({ expires_at: extractedData.expiration_date })
+            .eq('id', docId);
+        }
+
+        // Log extraction event
+        await window.sb.from('document_events').insert({
+          org_id: window.currentOrgId,
+          practice_id: selectedPracticeId,
+          document_type: 'dd',
+          document_id: docId,
+          event_type: 'extraction_completed',
+          actor_user_id: window.currentUser.id,
+          actor_email: window.currentUser.email,
+          payload: { fields_extracted: Object.keys(extractedData).length }
+        });
+
+        // Refresh UI
+        await loadDDDocuments(selectedPracticeId);
+
+        // Show extraction modal with results
+        showExtractionResultModal(doc, extractedData);
+
+      } catch (err) {
+        console.error('[Extract] Error:', err);
+
+        // Update status to failed
+        await window.sb
+          .from('dd_documents')
+          .update({ extraction_status: 'failed' })
+          .eq('id', docId);
+
+        await loadDDDocuments(selectedPracticeId);
+        alert('Extraction failed: ' + err.message);
+      }
+    }
+
+    // Convert blob to base64
+    function blobToBase64(blob) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onloadend = () => resolve(reader.result);
+        reader.onerror = reject;
+        reader.readAsDataURL(blob);
+      });
+    }
+
+    // Render extracted data on document card
+    function renderExtractedData(data) {
+      if (!data || typeof data !== 'object') return '';
+
+      // Define display fields by document type
+      const displayFields = {
+        // Compliance docs
+        'license_number': 'License #',
+        'holder_name': 'Holder',
+        'expiration_date': 'Expires',
+        'issuing_authority': 'Issuer',
+        'state': 'State',
+        // Corporate docs
+        'entity_name': 'Entity',
+        'entity_type': 'Type',
+        'ein': 'EIN',
+        'formation_date': 'Formed',
+        // Contracts
+        'parties': 'Parties',
+        'effective_date': 'Effective',
+        'monthly_amount': 'Monthly',
+        'term_length': 'Term',
+        // Insurance
+        'policy_number': 'Policy #',
+        'carrier_name': 'Carrier',
+        'coverage_amount': 'Coverage',
+        // General
+        'document_type': 'Type'
+      };
+
+      // Get non-null fields
+      const fields = Object.entries(data)
+        .filter(([key, value]) => value !== null && value !== undefined && displayFields[key])
+        .slice(0, 4); // Show max 4 fields
+
+      if (fields.length === 0) return '';
+
+      const fieldsHtml = fields.map(([key, value]) => {
+        let displayValue = value;
+
+        // Format values
+        if (Array.isArray(value)) {
+          displayValue = value.slice(0, 2).join(', ');
+          if (value.length > 2) displayValue += '...';
+        } else if (typeof value === 'number') {
+          displayValue = '$' + value.toLocaleString();
+        } else if (key.includes('date') && value) {
+          try {
+            displayValue = new Date(value).toLocaleDateString();
+          } catch (e) {
+            displayValue = value;
+          }
+        }
+
+        return `
+          <div class="dd-doc-extracted-field">
+            <span class="dd-doc-extracted-label">${displayFields[key]}</span>
+            <span class="dd-doc-extracted-value">${escapeHtml(String(displayValue))}</span>
+          </div>
+        `;
+      }).join('');
+
+      return `
+        <div class="dd-doc-extracted">
+          <div class="dd-doc-extracted-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"/>
+              <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            Extracted Data
+          </div>
+          <div class="dd-doc-extracted-grid">
+            ${fieldsHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    // View extraction results
+    async function viewExtraction(docId) {
+      try {
+        const { data: doc, error } = await window.sb
+          .from('dd_documents')
+          .select('*')
+          .eq('id', docId)
+          .single();
+
+        if (error || !doc || !doc.extracted_data) {
+          alert('No extraction data found');
+          return;
+        }
+
+        showExtractionResultModal(doc, doc.extracted_data);
+
+      } catch (err) {
+        console.error('[Extract] View error:', err);
+        alert('Failed to load extraction data');
+      }
+    }
+
+    // Show extraction result modal
+    function showExtractionResultModal(doc, data) {
+      // Remove existing modal if any
+      const existingModal = document.getElementById('extraction-result-modal');
+      if (existingModal) existingModal.remove();
+
+      // Build fields HTML
+      const fieldsHtml = Object.entries(data)
+        .filter(([key, value]) => value !== null && value !== undefined)
+        .map(([key, value]) => {
+          let displayValue = value;
+          let inputType = 'text';
+
+          if (Array.isArray(value)) {
+            displayValue = value.join(', ');
+          } else if (typeof value === 'object') {
+            displayValue = JSON.stringify(value);
+          } else if (typeof value === 'number') {
+            inputType = 'number';
+          }
+
+          const label = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+          return `
+            <div class="extraction-field">
+              <label>${label}</label>
+              <input type="${inputType}" name="${key}" value="${escapeHtml(String(displayValue))}" />
+            </div>
+          `;
+        }).join('');
+
+      const modal = document.createElement('div');
+      modal.id = 'extraction-result-modal';
+      modal.className = 'modal-overlay visible';
+      modal.innerHTML = `
+        <div class="modal extraction-modal-content">
+          <div class="modal-header">
+            <h3>Extracted Data</h3>
+            <button class="modal-close" onclick="closeExtractionResultModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div style="margin-bottom: 0.75rem; font-size: 0.85rem; color: #6b7280;">
+              From: <strong>${escapeHtml(doc.file_name)}</strong>
+            </div>
+            <div class="extraction-fields">
+              ${fieldsHtml}
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeExtractionResultModal()">Close</button>
+            <button class="btn btn-primary" onclick="saveExtractionEdits('${doc.id}')">Save Changes</button>
+            <button class="btn btn-secondary" onclick="reExtractDocument('${doc.id}')">Re-Extract</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+    }
+
+    function closeExtractionResultModal() {
+      const modal = document.getElementById('extraction-result-modal');
+      if (modal) modal.remove();
+    }
+
+    async function saveExtractionEdits(docId) {
+      const modal = document.getElementById('extraction-result-modal');
+      if (!modal) return;
+
+      const inputs = modal.querySelectorAll('.extraction-field input');
+      const updatedData = {};
+
+      inputs.forEach(input => {
+        let value = input.value;
+        // Try to parse numbers
+        if (input.type === 'number' && value) {
+          value = parseFloat(value);
+        }
+        // Try to parse arrays (comma-separated)
+        if (value && value.includes(',') && !value.match(/^\d{4}-\d{2}-\d{2}$/)) {
+          value = value.split(',').map(s => s.trim());
+        }
+        updatedData[input.name] = value || null;
+      });
+
+      try {
+        await window.sb
+          .from('dd_documents')
+          .update({ extracted_data: updatedData })
+          .eq('id', docId);
+
+        closeExtractionResultModal();
+        await loadDDDocuments(selectedPracticeId);
+
+      } catch (err) {
+        console.error('[Extract] Save error:', err);
+        alert('Failed to save changes');
+      }
+    }
+
+    async function reExtractDocument(docId) {
+      closeExtractionResultModal();
+
+      // Reset extraction status
+      await window.sb
+        .from('dd_documents')
+        .update({
+          extracted_data: null,
+          extraction_status: null,
+          extracted_at: null
+        })
+        .eq('id', docId);
+
+      await loadDDDocuments(selectedPracticeId);
+
+      // Run extraction again
+      await extractDDDocument(docId);
     }
 
     // Delete DD document
@@ -20841,7 +22248,441 @@ Suggested info to include:
       }
     }
 
-    // Apply DD Checklist Template to practice
+    // Built-in document request templates
+    const BUILT_IN_TEMPLATES = [
+      {
+        id: 'standard-dd',
+        name: 'Standard DD Package',
+        description: 'Complete due diligence package for practice acquisitions',
+        is_default: true,
+        items: [
+          { category: 'financial', name: 'Bank Statements (12+ months)', required: true },
+          { category: 'financial', name: 'Income Statement / P&L (YTD + prior 2 years)', required: true },
+          { category: 'financial', name: 'Balance Sheet (current)', required: true },
+          { category: 'financial', name: 'Tax Returns (3 years)', required: true },
+          { category: 'financial', name: 'Accounts Receivable Aging Report', required: false },
+          { category: 'financial', name: 'Accounts Payable Summary', required: false },
+          { category: 'dd_compliance', name: 'Medical License (all providers)', required: true },
+          { category: 'dd_compliance', name: 'DEA Registration', required: true },
+          { category: 'dd_compliance', name: 'NPI Documentation', required: true },
+          { category: 'dd_compliance', name: 'Malpractice Insurance Certificate', required: true },
+          { category: 'dd_compliance', name: 'State Medical Board Verification', required: false },
+          { category: 'dd_corporate', name: 'Articles of Incorporation/Organization', required: true },
+          { category: 'dd_corporate', name: 'Operating Agreement / Bylaws', required: true },
+          { category: 'dd_corporate', name: 'EIN Letter (IRS SS-4)', required: true },
+          { category: 'dd_corporate', name: 'Good Standing Certificate', required: false },
+          { category: 'dd_contracts', name: 'Facility Lease Agreement', required: true },
+          { category: 'dd_contracts', name: 'Equipment Leases', required: false },
+          { category: 'dd_contracts', name: 'Payor Contracts Summary', required: true },
+          { category: 'dd_contracts', name: 'Employment Agreements (key staff)', required: false }
+        ]
+      },
+      {
+        id: 'compliance-audit',
+        name: 'Compliance Audit',
+        description: 'Focus on licenses, certifications, and regulatory compliance',
+        items: [
+          { category: 'dd_compliance', name: 'Medical License (all providers)', required: true },
+          { category: 'dd_compliance', name: 'DEA Registration', required: true },
+          { category: 'dd_compliance', name: 'State Controlled Substance License', required: true },
+          { category: 'dd_compliance', name: 'NPI Documentation', required: true },
+          { category: 'dd_compliance', name: 'Board Certifications', required: true },
+          { category: 'dd_compliance', name: 'Malpractice Insurance Certificate', required: true },
+          { category: 'dd_compliance', name: 'HIPAA Compliance Documentation', required: true },
+          { category: 'dd_compliance', name: 'OSHA Compliance Records', required: false },
+          { category: 'dd_compliance', name: 'Medicare/Medicaid Enrollment', required: true },
+          { category: 'dd_compliance', name: 'Credentialing Documentation', required: false },
+          { category: 'dd_compliance', name: 'Liability Insurance Policy', required: true },
+          { category: 'dd_compliance', name: 'Workers Compensation Certificate', required: false }
+        ]
+      },
+      {
+        id: 'financial-review',
+        name: 'Financial Review',
+        description: 'Comprehensive financial documentation for valuation',
+        items: [
+          { category: 'financial', name: 'Bank Statements (24 months)', required: true },
+          { category: 'financial', name: 'Tax Returns (3 years - business)', required: true },
+          { category: 'financial', name: 'Tax Returns (3 years - personal if pass-through)', required: true },
+          { category: 'financial', name: 'Income Statement / P&L (monthly, 3 years)', required: true },
+          { category: 'financial', name: 'Balance Sheet (year-end, 3 years)', required: true },
+          { category: 'financial', name: 'Accounts Receivable Aging', required: true },
+          { category: 'financial', name: 'Accounts Payable Aging', required: true },
+          { category: 'financial', name: 'Debt Schedule', required: true },
+          { category: 'financial', name: 'Payroll Reports (12 months)', required: true },
+          { category: 'financial', name: 'Production Reports by Provider', required: true },
+          { category: 'financial', name: 'Fee Schedule', required: false },
+          { category: 'financial', name: 'Payor Mix Report', required: true }
+        ]
+      },
+      {
+        id: 'real-estate-dd',
+        name: 'Real Estate DD',
+        description: 'Documents for facility and property due diligence',
+        items: [
+          { category: 'dd_contracts', name: 'Facility Lease Agreement', required: true },
+          { category: 'dd_contracts', name: 'Lease Amendments/Addendums', required: false },
+          { category: 'dd_contracts', name: 'Landlord Estoppel Certificate', required: true },
+          { category: 'dd_contracts', name: 'Property Tax Statements', required: false },
+          { category: 'dd_other', name: 'Floor Plan / Layout', required: true },
+          { category: 'dd_other', name: 'Property Photos', required: true },
+          { category: 'dd_other', name: 'Certificate of Occupancy', required: true },
+          { category: 'dd_other', name: 'Environmental Reports', required: false },
+          { category: 'dd_other', name: 'ADA Compliance Documentation', required: false },
+          { category: 'dd_contracts', name: 'Equipment List with Values', required: true },
+          { category: 'dd_contracts', name: 'Equipment Lease Agreements', required: false },
+          { category: 'dd_other', name: 'Maintenance Records', required: false }
+        ]
+      },
+      {
+        id: 'corporate-docs',
+        name: 'Corporate Documents',
+        description: 'Entity formation and governance documents',
+        items: [
+          { category: 'dd_corporate', name: 'Articles of Incorporation/Organization', required: true },
+          { category: 'dd_corporate', name: 'Operating Agreement / Bylaws', required: true },
+          { category: 'dd_corporate', name: 'Amendments to Formation Documents', required: false },
+          { category: 'dd_corporate', name: 'EIN Letter (IRS SS-4)', required: true },
+          { category: 'dd_corporate', name: 'Good Standing Certificate', required: true },
+          { category: 'dd_corporate', name: 'Stock/Membership Certificates', required: true },
+          { category: 'dd_corporate', name: 'Cap Table / Ownership Summary', required: true },
+          { category: 'dd_corporate', name: 'Board Meeting Minutes', required: false },
+          { category: 'dd_corporate', name: 'Shareholder/Member Resolutions', required: false },
+          { category: 'dd_corporate', name: 'Buy-Sell Agreement', required: false },
+          { category: 'dd_corporate', name: 'Organization Chart', required: true }
+        ]
+      }
+    ];
+
+    // Selected template state
+    let selectedTemplateId = null;
+
+    // Show template picker modal
+    function showTemplatePickerModal() {
+      if (!selectedPracticeId) {
+        alert('Please select a practice first.');
+        return;
+      }
+
+      // Remove existing modal
+      const existingModal = document.getElementById('template-picker-modal');
+      if (existingModal) existingModal.remove();
+
+      // Build template cards
+      const templateCardsHtml = BUILT_IN_TEMPLATES.map(template => {
+        const categoryGroups = {};
+        template.items.forEach(item => {
+          if (!categoryGroups[item.category]) categoryGroups[item.category] = 0;
+          categoryGroups[item.category]++;
+        });
+
+        const categoryLabels = {
+          'financial': 'Financial',
+          'dd_compliance': 'Compliance',
+          'dd_corporate': 'Corporate',
+          'dd_contracts': 'Contracts',
+          'dd_other': 'Other'
+        };
+
+        const previewTags = Object.entries(categoryGroups).map(([cat, count]) =>
+          `<span class="template-item-tag category">${categoryLabels[cat] || cat}: ${count}</span>`
+        ).join('');
+
+        const defaultBadge = template.is_default ? '<span class="template-card-badge">Default</span>' : '';
+
+        return `
+          <div class="template-card" data-template-id="${template.id}" onclick="selectTemplate('${template.id}')">
+            <div class="template-card-header">
+              <span class="template-card-name">${escapeHtml(template.name)}</span>
+              ${defaultBadge}
+            </div>
+            <div class="template-card-desc">${escapeHtml(template.description)}</div>
+            <div class="template-card-preview">
+              ${previewTags}
+              <span class="template-item-tag">${template.items.length} items total</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      const modal = document.createElement('div');
+      modal.id = 'template-picker-modal';
+      modal.className = 'modal-overlay visible';
+      modal.innerHTML = `
+        <div class="modal template-picker-modal">
+          <div class="modal-header">
+            <h3>Apply Document Template</h3>
+            <button class="modal-close" onclick="closeTemplatePickerModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom: 1rem; color: #6b7280; font-size: 0.85rem;">
+              Select a template to create a DD checklist for this practice. Items will be added to the requirements list.
+            </p>
+            <div class="template-list">
+              ${templateCardsHtml}
+            </div>
+            <div class="template-options">
+              <label class="template-option">
+                <input type="checkbox" id="template-send-email" checked>
+                Generate email request after applying
+              </label>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeTemplatePickerModal()">Cancel</button>
+            <button class="btn btn-primary" id="apply-template-btn" onclick="applySelectedTemplate()" disabled>
+              Apply Template
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      // Select default template
+      const defaultTemplate = BUILT_IN_TEMPLATES.find(t => t.is_default);
+      if (defaultTemplate) {
+        selectTemplate(defaultTemplate.id);
+      }
+    }
+
+    function selectTemplate(templateId) {
+      selectedTemplateId = templateId;
+
+      // Update UI
+      document.querySelectorAll('.template-card').forEach(card => {
+        card.classList.toggle('selected', card.dataset.templateId === templateId);
+      });
+
+      // Enable apply button
+      const applyBtn = document.getElementById('apply-template-btn');
+      if (applyBtn) applyBtn.disabled = false;
+    }
+
+    function closeTemplatePickerModal() {
+      const modal = document.getElementById('template-picker-modal');
+      if (modal) modal.remove();
+      selectedTemplateId = null;
+    }
+
+    // Apply selected template
+    async function applySelectedTemplate() {
+      if (!selectedTemplateId || !selectedPracticeId) return;
+
+      const template = BUILT_IN_TEMPLATES.find(t => t.id === selectedTemplateId);
+      if (!template) return;
+
+      const sendEmail = document.getElementById('template-send-email')?.checked;
+      const applyBtn = document.getElementById('apply-template-btn');
+
+      try {
+        applyBtn.disabled = true;
+        applyBtn.textContent = 'Applying...';
+
+        // Check for existing items
+        const { data: existingItems } = await window.sb
+          .from('dd_checklist_items')
+          .select('item_name')
+          .eq('practice_id', selectedPracticeId);
+
+        const existingNames = new Set((existingItems || []).map(i => i.item_name.toLowerCase()));
+
+        // Filter out duplicates
+        const newItems = template.items.filter(item =>
+          !existingNames.has(item.name.toLowerCase())
+        );
+
+        if (newItems.length === 0) {
+          alert('All items from this template already exist in the checklist.');
+          closeTemplatePickerModal();
+          return;
+        }
+
+        // Insert new checklist items
+        const itemsToInsert = newItems.map(item => ({
+          id: crypto.randomUUID(),
+          org_id: window.currentOrgId,
+          practice_id: selectedPracticeId,
+          category_slug: item.category,
+          item_name: item.name,
+          is_required: item.required,
+          is_complete: false,
+          created_at: new Date().toISOString()
+        }));
+
+        const { error: insertError } = await window.sb
+          .from('dd_checklist_items')
+          .insert(itemsToInsert);
+
+        if (insertError) {
+          throw new Error(insertError.message);
+        }
+
+        // Log event
+        await window.sb.from('document_events').insert({
+          org_id: window.currentOrgId,
+          practice_id: selectedPracticeId,
+          document_type: 'dd',
+          document_id: template.id,
+          event_type: 'metadata_updated',
+          actor_user_id: window.currentUser.id,
+          actor_email: window.currentUser.email,
+          payload: { action: 'applied_template', template_name: template.name, items_created: newItems.length }
+        });
+
+        closeTemplatePickerModal();
+
+        // Update button state
+        const mainBtn = document.getElementById('btn-apply-template');
+        if (mainBtn) {
+          mainBtn.classList.add('applied');
+          mainBtn.textContent = '✓ Template Applied';
+        }
+
+        // Reload checklist
+        await loadDDDocuments(selectedPracticeId);
+        await loadDDChecklist(selectedPracticeId);
+
+        // Expand checklist
+        const content = document.getElementById('dd-checklist-content');
+        const icon = document.getElementById('checklist-toggle-icon');
+        if (content) content.style.display = 'block';
+        if (icon) icon.classList.add('open');
+
+        // Generate email if requested
+        if (sendEmail) {
+          setTimeout(() => {
+            generateTemplateEmail(template, newItems);
+          }, 300);
+        } else {
+          alert(`Template applied! ${newItems.length} checklist items created.`);
+        }
+
+      } catch (err) {
+        console.error('[Template] Apply error:', err);
+        alert('Failed to apply template: ' + err.message);
+        applyBtn.disabled = false;
+        applyBtn.textContent = 'Apply Template';
+      }
+    }
+
+    // Generate email for template items
+    function generateTemplateEmail(template, items) {
+      const practice = getPracticeById(selectedPracticeId);
+      const practiceName = practice?.name || practice?.dba_name || 'Practice';
+
+      const categoryLabels = {
+        'financial': 'Financial Documents',
+        'dd_compliance': 'Compliance & Licensing',
+        'dd_corporate': 'Corporate Documents',
+        'dd_contracts': 'Contracts & Agreements',
+        'dd_other': 'Other Documents'
+      };
+
+      // Group items by category
+      const grouped = {};
+      items.forEach(item => {
+        const cat = item.category || 'dd_other';
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(item);
+      });
+
+      // Build email body
+      let emailBody = `Hello,
+
+We are requesting the following documents for ${practiceName} as part of our due diligence process using the "${template.name}" template.
+
+REQUESTED DOCUMENTS
+==================
+`;
+
+      Object.entries(grouped).forEach(([category, catItems]) => {
+        emailBody += `\n${categoryLabels[category] || category}\n`;
+        emailBody += '-'.repeat(30) + '\n';
+        catItems.forEach(item => {
+          const reqLabel = item.required ? ' *' : '';
+          emailBody += `  • ${item.name}${reqLabel}\n`;
+        });
+      });
+
+      emailBody += `\n* = Required document
+
+==================
+
+Please upload these documents to our secure portal or reply to this email with the requested files attached.
+
+If you have any questions about what's needed, please don't hesitate to reach out.
+
+Thank you!`;
+
+      const subject = `Document Request - ${practiceName} - ${template.name}`;
+
+      // Show email modal
+      showTemplateEmailModal(subject, emailBody, practiceName);
+    }
+
+    function showTemplateEmailModal(subject, body, practiceName) {
+      const existingModal = document.getElementById('template-email-modal');
+      if (existingModal) existingModal.remove();
+
+      const modal = document.createElement('div');
+      modal.id = 'template-email-modal';
+      modal.className = 'modal-overlay visible';
+      modal.innerHTML = `
+        <div class="modal" style="max-width: 600px;">
+          <div class="modal-header">
+            <h3>Document Request Email</h3>
+            <button class="modal-close" onclick="closeTemplateEmailModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom: 1rem; color: #059669; font-size: 0.85rem;">
+              ✓ Template applied successfully! Send this email to request the documents.
+            </p>
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.75rem; font-weight: 600; color: #374151; display: block; margin-bottom: 0.25rem;">Subject</label>
+              <input type="text" id="template-email-subject" value="${escapeHtml(subject)}" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
+            </div>
+            <div>
+              <label style="font-size: 0.75rem; font-weight: 600; color: #374151; display: block; margin-bottom: 0.25rem;">Email Body</label>
+              <textarea id="template-email-body" style="width: 100%; height: 300px; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px; font-family: monospace; font-size: 0.8rem;">${escapeHtml(body)}</textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeTemplateEmailModal()">Close</button>
+            <button class="btn btn-secondary" onclick="copyTemplateEmail()">Copy to Clipboard</button>
+            <button class="btn btn-primary" onclick="openTemplateEmailClient()">Open in Email App</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+    }
+
+    function closeTemplateEmailModal() {
+      const modal = document.getElementById('template-email-modal');
+      if (modal) modal.remove();
+    }
+
+    function copyTemplateEmail() {
+      const subject = document.getElementById('template-email-subject').value;
+      const body = document.getElementById('template-email-body').value;
+      const fullText = `Subject: ${subject}\n\n${body}`;
+
+      navigator.clipboard.writeText(fullText).then(() => {
+        alert('Email copied to clipboard!');
+      }).catch(err => {
+        console.error('Copy failed:', err);
+        alert('Failed to copy. Please select and copy manually.');
+      });
+    }
+
+    function openTemplateEmailClient() {
+      const subject = encodeURIComponent(document.getElementById('template-email-subject').value);
+      const body = encodeURIComponent(document.getElementById('template-email-body').value);
+      window.open(`mailto:?subject=${subject}&body=${body}`, '_blank');
+    }
+
+    // Apply DD Checklist Template to practice (legacy - now uses modal)
     async function applyDDTemplate() {
       if (!selectedPracticeId) {
         alert('Please select a practice first.');
@@ -21699,10 +23540,6 @@ Suggested info to include:
 
         trendContainer.innerHTML = `
           <span class="trend-indicator ${trendClass}">${trendIcon}</span>
-          <svg class="trend-sparkline" width="60" height="20" viewBox="0 0 60 20">
-            <polyline points="${sparklinePoints}" fill="none" stroke="currentColor" stroke-width="1.5"/>
-          </svg>
-          <span class="trend-label">${history.length} readings</span>
         `;
 
       } catch (err) {
