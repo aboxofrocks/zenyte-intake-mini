@@ -221,6 +221,33 @@
       color: #2e7d32;
     }
 
+    /* Practice access level badges */
+    .access-badge {
+      display: inline-block;
+      padding: 0.15rem 0.4rem;
+      border-radius: 4px;
+      font-size: 0.65rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+    }
+
+    .access-admin {
+      background: #fce7f3;
+      color: #be185d;
+    }
+
+    .access-edit {
+      background: #e0e7ff;
+      color: #4338ca;
+    }
+
+    .access-view {
+      background: #f3f4f6;
+      color: #6b7280;
+    }
+
     .actions {
       display: flex;
       gap: 0.5rem;
@@ -7645,6 +7672,48 @@
           <!-- Populated by JS -->
         </tbody>
       </table>
+
+      <!-- Practice Access Management -->
+      <div id="practice-access-section" style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e5e7eb;">
+        <h4 style="font-size: 0.85rem; color: #92400e; margin-bottom: 0.5rem;">Practice Access Management</h4>
+        <p style="font-size: 0.75rem; color: #666; margin-bottom: 0.75rem;">
+          Control which team members can access specific practices. By default, new practices are visible to all org members.
+        </p>
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.75rem;">
+          <select id="practice-access-select" style="flex: 1; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;" onchange="loadPracticeAssignments()">
+            <option value="">Select a practice...</option>
+            <!-- Populated by JS -->
+          </select>
+          <button onclick="showAssignUserModal()" style="padding: 0.5rem 1rem; background: #4a6cf7; color: white; border: none; border-radius: 6px; cursor: pointer;">
+            + Assign User
+          </button>
+        </div>
+        <div id="practice-visibility-toggle" style="margin-bottom: 0.75rem; display: none;">
+          <label style="display: flex; align-items: center; gap: 0.5rem; font-size: 0.8rem; cursor: pointer;">
+            <input type="checkbox" id="practice-visible-all" onchange="toggleSelectedPracticeVisibility()">
+            <span>Visible to all org members</span>
+          </label>
+        </div>
+        <table class="allowlist-table" id="practice-assignments-table" style="display: none;">
+          <thead>
+            <tr>
+              <th>User</th>
+              <th>Access Level</th>
+              <th>Assigned</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="practice-assignments-tbody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+        <div id="no-practice-selected" style="font-size: 0.8rem; color: #888; padding: 0.5rem;">
+          Select a practice to manage access
+        </div>
+        <div id="no-practice-assignments" style="font-size: 0.8rem; color: #888; padding: 0.5rem; display: none;">
+          No specific assignments. Practice uses default visibility settings.
+        </div>
+      </div>
     </div>
 
     <div class="metrics" id="metrics">
@@ -9465,6 +9534,110 @@
       alert(`Permission denied: You don't have access to ${action}. Contact your administrator.`);
     }
 
+    // =============================================
+    // PRACTICE-LEVEL PERMISSIONS
+    // =============================================
+
+    // Global state for practice access levels
+    window.practiceAccessLevels = {}; // { practice_id: 'admin'|'edit'|'view' }
+
+    /**
+     * Get access level for a specific practice
+     * @param {string} practiceId
+     * @returns {'admin'|'edit'|'view'|null}
+     */
+    function getPracticeAccessLevel(practiceId) {
+      // Org admins always have admin access
+      if (isOrgAdmin()) return 'admin';
+      return window.practiceAccessLevels[practiceId] || null;
+    }
+
+    /**
+     * Check if user can view a practice
+     * @param {string} practiceId
+     * @returns {boolean}
+     */
+    function canViewPractice(practiceId) {
+      return getPracticeAccessLevel(practiceId) !== null;
+    }
+
+    /**
+     * Check if user can edit a practice
+     * @param {string} practiceId
+     * @returns {boolean}
+     */
+    function canEditPractice(practiceId) {
+      const level = getPracticeAccessLevel(practiceId);
+      return level === 'admin' || level === 'edit';
+    }
+
+    /**
+     * Check if user is admin for a practice
+     * @param {string} practiceId
+     * @returns {boolean}
+     */
+    function isPracticeAdmin(practiceId) {
+      return getPracticeAccessLevel(practiceId) === 'admin';
+    }
+
+    /**
+     * Check permission for practice-level action
+     * Combines org role + practice access level
+     * @param {string} permission - Permission key
+     * @param {string} practiceId - Practice to check
+     * @returns {boolean}
+     */
+    function hasPracticePermission(permission, practiceId) {
+      // Org admins always have access
+      if (isOrgAdmin()) return true;
+
+      // Check practice-specific access
+      const practiceLevel = getPracticeAccessLevel(practiceId);
+      if (!practiceLevel) return false;
+
+      // Map permissions to required practice levels
+      const practicePermissionMap = {
+        'VIEW_PRACTICE': ['admin', 'edit', 'view'],
+        'EDIT_PRACTICE': ['admin', 'edit'],
+        'DELETE_PRACTICE': ['admin'],
+        'CREATE_NOTE': ['admin', 'edit'],
+        'EDIT_NOTE': ['admin', 'edit'],
+        'DELETE_NOTE': ['admin'],
+        'UPLOAD_DOCUMENT': ['admin', 'edit'],
+        'DELETE_DOCUMENT': ['admin'],
+        'MANAGE_PRACTICE_ACCESS': ['admin']
+      };
+
+      const allowedLevels = practicePermissionMap[permission];
+      if (!allowedLevels) return false;
+
+      return allowedLevels.includes(practiceLevel);
+    }
+
+    /**
+     * Load practice access levels from database
+     * Called during app initialization
+     */
+    async function loadPracticeAccessLevels() {
+      try {
+        const { data, error } = await window.sb.rpc('get_user_practice_access_levels');
+
+        if (error) {
+          console.error('[Permissions] Failed to load practice access levels:', error);
+          return;
+        }
+
+        window.practiceAccessLevels = (data || []).reduce((acc, row) => {
+          acc[row.practice_id] = row.access_level;
+          return acc;
+        }, {});
+
+        console.log('[Permissions] Loaded access levels for', Object.keys(window.practiceAccessLevels).length, 'practices');
+      } catch (err) {
+        console.error('[Permissions] Error loading practice access levels:', err);
+      }
+    }
+
     function showNoOrgScreen(email) {
       document.getElementById('auth-loading-screen').style.display = 'none';
       document.getElementById('login-screen').style.display = 'none';
@@ -9697,7 +9870,10 @@
         events: []
       };
 
-      // Step 1: Fetch org-scoped practices
+      // Step 0: Load practice access levels (needed for RLS and UI)
+      await loadPracticeAccessLevels();
+
+      // Step 1: Fetch org-scoped practices (RLS filters by access)
       console.log('[Supabase] fetching practices for org:', window.currentOrgId);
       const { data: practicesData, error: practicesError } = await window.sb
         .from('practices')
@@ -15307,17 +15483,30 @@ Zenyte Holdings
         const statusClass = 'status-' + practice.status.toLowerCase();
         const isActive = practice.status === 'Active';
 
+        // Practice-level permission checks
+        const accessLevel = getPracticeAccessLevel(practice.id);
+        const canEdit = canEditPractice(practice.id);
+        const canDelete = isPracticeAdmin(practice.id);
+
+        // Access level badge
+        const accessBadge = accessLevel && !isOrgAdmin() ?
+          `<span class="access-badge access-${accessLevel}">${accessLevel}</span>` : '';
+
         row.innerHTML = `
-          <td><span class="practice-name-link" onclick="openProfile('${practice.id}')">${practice.name}</span></td>
+          <td><span class="practice-name-link" onclick="openProfile('${practice.id}')">${practice.name}</span>${accessBadge}</td>
           <td>${practice.specialty}</td>
           <td>${practice.owner}</td>
           <td>${formatCurrency(practice.revenue)}</td>
           <td><span class="status-badge ${statusClass}">${practice.status}</span></td>
           <td class="actions">
-            <button class="btn btn-small btn-advance" onclick="advanceStatus('${practice.id}', event)" ${isActive ? 'disabled' : ''}>
-              ${isActive ? 'Active' : 'Advance'}
-            </button>
-            <button class="btn btn-small btn-delete" onclick="deletePractice('${practice.id}')">Delete</button>
+            ${canEdit ? `
+              <button class="btn btn-small btn-advance" onclick="advanceStatus('${practice.id}', event)" ${isActive ? 'disabled' : ''}>
+                ${isActive ? 'Active' : 'Advance'}
+              </button>
+            ` : ''}
+            ${canDelete ? `
+              <button class="btn btn-small btn-delete" onclick="deletePractice('${practice.id}')">Delete</button>
+            ` : ''}
           </td>
         `;
         tbody.appendChild(row);
@@ -18859,6 +19048,173 @@ Zenyte Holdings
       { value: 'assigned_to', label: 'Assigned To' }
     ];
 
+    // ===== DATA CLEANING & NORMALIZATION =====
+
+    // Normalize boolean values
+    function normalizeBoolean(val) {
+      if (val === null || val === undefined || val === '') return null;
+      const v = String(val).toLowerCase().trim();
+      if (['yes', 'y', '1', 'true', 't', 'x', 'on'].includes(v)) return true;
+      if (['no', 'n', '0', 'false', 'f', '', 'off'].includes(v)) return false;
+      return null;
+    }
+
+    // Normalize numeric values (handles $, %, commas)
+    function normalizeNumber(val) {
+      if (val === null || val === undefined || val === '') return null;
+      let v = String(val).trim();
+      // Remove currency symbols, commas, spaces
+      v = v.replace(/[$,\s]/g, '');
+      // Handle percentages
+      if (v.endsWith('%')) {
+        v = v.slice(0, -1);
+        const num = parseFloat(v);
+        return isNaN(num) ? null : num;
+      }
+      // Handle K/M/B suffixes
+      const suffixMatch = v.match(/^([\d.]+)\s*(k|m|b)$/i);
+      if (suffixMatch) {
+        const num = parseFloat(suffixMatch[1]);
+        const suffix = suffixMatch[2].toLowerCase();
+        if (suffix === 'k') return num * 1000;
+        if (suffix === 'm') return num * 1000000;
+        if (suffix === 'b') return num * 1000000000;
+      }
+      const num = parseFloat(v);
+      return isNaN(num) ? null : num;
+    }
+
+    // Normalize date values
+    function normalizeDate(val) {
+      if (val === null || val === undefined || val === '') return null;
+      const v = String(val).trim();
+      // Try parsing as date
+      const d = new Date(v);
+      if (!isNaN(d.getTime())) {
+        return d.toISOString().split('T')[0]; // YYYY-MM-DD
+      }
+      // Handle MM/DD/YYYY or DD/MM/YYYY
+      const parts = v.split(/[\/\-\.]/);
+      if (parts.length === 3) {
+        let [a, b, c] = parts.map(p => parseInt(p, 10));
+        // Assume MM/DD/YYYY if first part <= 12
+        if (a <= 12 && b <= 31) {
+          const year = c < 100 ? 2000 + c : c;
+          const d = new Date(year, a - 1, b);
+          if (!isNaN(d.getTime())) return d.toISOString().split('T')[0];
+        }
+      }
+      return null;
+    }
+
+    // Normalize status values
+    function normalizeStatus(val) {
+      if (!val) return 'Lead';
+      const v = String(val).toLowerCase().trim();
+      if (['lead', 'new', 'prospect', 'inquiry'].includes(v)) return 'Lead';
+      if (['onboarding', 'onboard', 'in progress', 'active intake'].includes(v)) return 'Onboarding';
+      if (['active', 'current', 'client', 'customer'].includes(v)) return 'Active';
+      if (['exited', 'exit', 'sold', 'closed', 'completed'].includes(v)) return 'Exited';
+      if (['archived', 'archive', 'inactive', 'dead'].includes(v)) return 'Archived';
+      return 'Lead';
+    }
+
+    // Normalize ownership structure
+    function normalizeOwnership(val) {
+      if (!val) return 'Unknown';
+      const v = String(val).toLowerCase().trim();
+      if (['solo', 'single', 'individual', 'sole', 'owner-operated'].includes(v)) return 'Solo';
+      if (['partnership', 'partners', 'partner'].includes(v)) return 'Partnership';
+      if (['group', 'multi', 'multi-provider', 'multiple'].includes(v)) return 'Group';
+      if (['pe', 'pe-backed', 'private equity', 'pe backed', 'investor'].includes(v)) return 'PE-Backed';
+      if (['hospital', 'hospital-owned', 'health system', 'hospital owned'].includes(v)) return 'Hospital-Owned';
+      return 'Unknown';
+    }
+
+    // Clean and trim string values
+    function normalizeString(val) {
+      if (val === null || val === undefined) return '';
+      return String(val).trim();
+    }
+
+    // Define field types for smart normalization
+    const FIELD_TYPES = {
+      // Boolean fields
+      has_telehealth: 'boolean',
+      accepts_new_patients: 'boolean',
+      emr_data_exportable: 'boolean',
+      outstanding_litigation: 'boolean',
+      contracts_assignable: 'boolean',
+      seller_financing_available: 'boolean',
+      earnout_acceptable: 'boolean',
+      expansion_possible: 'boolean',
+      replacement_doctor_required: 'boolean',
+      openness_to_rebrand: 'boolean',
+      willingness_to_stay_on: 'boolean',
+      // Number fields
+      years_in_operation: 'number',
+      num_providers: 'number',
+      num_locations: 'number',
+      num_exam_rooms: 'number',
+      num_staff_clinical: 'number',
+      num_staff_admin: 'number',
+      monthly_patient_volume_claimed: 'number',
+      new_patients_monthly_claimed: 'number',
+      hours_per_week: 'number',
+      asking_price: 'number',
+      est_ebitda_margin: 'number',
+      growth_rate_est: 'number',
+      payer_mix_commercial: 'number',
+      payer_mix_medicare: 'number',
+      payer_mix_medicaid: 'number',
+      payer_mix_cash: 'number',
+      payer_mix_other: 'number',
+      lease_monthly_rent_claimed: 'number',
+      square_footage: 'number',
+      malpractice_claims_5yr: 'number',
+      transition_support_months: 'number',
+      google_rating_claimed: 'number',
+      google_review_count_claimed: 'number',
+      owner_age: 'number',
+      // Date fields
+      lease_expiration: 'date',
+      exclusivity_expires: 'date',
+      // Enum fields
+      status: 'status',
+      ownership_structure: 'ownership'
+    };
+
+    // Normalize a value based on field type
+    function normalizeFieldValue(field, value) {
+      const type = FIELD_TYPES[field];
+      switch (type) {
+        case 'boolean': return normalizeBoolean(value);
+        case 'number': return normalizeNumber(value);
+        case 'date': return normalizeDate(value);
+        case 'status': return normalizeStatus(value);
+        case 'ownership': return normalizeOwnership(value);
+        default: return normalizeString(value);
+      }
+    }
+
+    // Calculate string similarity (Levenshtein-based)
+    function stringSimilarity(a, b) {
+      a = a.toLowerCase().replace(/[^a-z0-9]/g, '');
+      b = b.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (a === b) return 1;
+      if (a.length === 0 || b.length === 0) return 0;
+
+      // Check if one contains the other
+      if (a.includes(b) || b.includes(a)) return 0.8;
+
+      // Simple character overlap score
+      const aChars = new Set(a.split(''));
+      const bChars = new Set(b.split(''));
+      let overlap = 0;
+      aChars.forEach(c => { if (bChars.has(c)) overlap++; });
+      return overlap / Math.max(aChars.size, bChars.size);
+    }
+
     // Reset import state
     function resetImportState() {
       importState = {
@@ -18867,7 +19223,9 @@ Zenyte Holdings
         mappings: {},
         errors: [],
         imported: 0,
-        failed: 0
+        failed: 0,
+        skipped: 0,
+        duplicates: []
       };
       goToImportStep('upload');
       document.getElementById('import-file').value = '';
@@ -19002,60 +19360,124 @@ Zenyte Holdings
       goToImportStep('map');
     }
 
-    // Auto-map columns based on header name matching
+    // Auto-map columns based on header name matching (with fuzzy matching)
     function autoMapColumns() {
       importState.mappings = {};
 
+      // Comprehensive field mapping with many variations
       const fieldMap = {
-        'name': 'legal_name',
-        'legal name': 'legal_name',
-        'legal_name': 'legal_name',
-        'practice name': 'legal_name',
-        'practice': 'legal_name',
-        'dba': 'dba_name',
-        'dba name': 'dba_name',
-        'dba_name': 'dba_name',
-        'doing business as': 'dba_name',
-        'specialty': 'specialty',
-        'speciality': 'specialty',
-        'status': 'status',
-        'ownership': 'ownership_structure',
-        'ownership structure': 'ownership_structure',
-        'ownership_structure': 'ownership_structure',
-        'owner type': 'ownership_structure',
-        'providers': 'num_providers',
-        'num providers': 'num_providers',
-        'number of providers': 'num_providers',
-        'physicians': 'num_providers',
-        'doctors': 'num_providers',
-        'price': 'asking_price',
-        'asking price': 'asking_price',
-        'asking_price': 'asking_price',
-        'revenue': 'revenue_model',
-        'revenue model': 'revenue_model',
-        'owner age': 'owner_age',
-        'owner_age': 'owner_age',
-        'age': 'owner_age',
-        'emr': 'emr_system',
-        'emr system': 'emr_system',
-        'emr_system': 'emr_system',
-        'years': 'years_in_operation',
-        'years in operation': 'years_in_operation',
-        'years_in_operation': 'years_in_operation',
-        'source': 'source',
-        'lead source': 'source',
-        'assigned': 'assigned_to',
-        'assigned to': 'assigned_to',
-        'assigned_to': 'assigned_to',
-        'locations': 'num_locations',
-        'num locations': 'num_locations',
-        'number of locations': 'num_locations'
+        // Legal Name
+        'name': 'legal_name', 'legal name': 'legal_name', 'legal_name': 'legal_name',
+        'practice name': 'legal_name', 'practice': 'legal_name', 'business name': 'legal_name',
+        'company name': 'legal_name', 'company': 'legal_name', 'clinic name': 'legal_name',
+        'clinic': 'legal_name', 'office name': 'legal_name', 'entity name': 'legal_name',
+        // DBA
+        'dba': 'dba_name', 'dba name': 'dba_name', 'doing business as': 'dba_name', 'd/b/a': 'dba_name',
+        // Specialty
+        'specialty': 'specialty', 'speciality': 'specialty', 'practice type': 'specialty',
+        'medical specialty': 'specialty', 'field': 'specialty', 'type': 'specialty',
+        // Status
+        'status': 'status', 'stage': 'status', 'lead status': 'status', 'pipeline': 'status',
+        // Ownership
+        'ownership': 'ownership_structure', 'ownership structure': 'ownership_structure',
+        'ownership_structure': 'ownership_structure', 'owner type': 'ownership_structure',
+        'structure': 'ownership_structure', 'business type': 'ownership_structure',
+        // Providers
+        'providers': 'num_providers', 'num providers': 'num_providers', '# providers': 'num_providers',
+        'number of providers': 'num_providers', 'physicians': 'num_providers', 'doctors': 'num_providers',
+        'num physicians': 'num_providers', '# of providers': 'num_providers', 'provider count': 'num_providers',
+        'doctor count': 'num_providers', 'md count': 'num_providers', 'clinicians': 'num_providers',
+        // Locations
+        'locations': 'num_locations', 'num locations': 'num_locations', '# locations': 'num_locations',
+        'number of locations': 'num_locations', 'offices': 'num_locations', 'sites': 'num_locations',
+        // Staff
+        'staff': 'num_staff_clinical', 'clinical staff': 'num_staff_clinical', 'nurses': 'num_staff_clinical',
+        'admin staff': 'num_staff_admin', 'employees': 'num_staff_clinical', 'fte': 'num_staff_clinical',
+        // Price
+        'price': 'asking_price', 'asking price': 'asking_price', 'asking_price': 'asking_price',
+        'ask': 'asking_price', 'valuation': 'asking_price', 'value': 'asking_price',
+        'listing price': 'asking_price', 'sale price': 'asking_price',
+        // Revenue
+        'revenue': 'revenue_model', 'revenue model': 'revenue_model', 'billing': 'revenue_model',
+        'collections': 'revenue_model', 'annual revenue': 'revenue_model',
+        // EBITDA
+        'ebitda': 'est_ebitda_margin', 'margin': 'est_ebitda_margin', 'profit margin': 'est_ebitda_margin',
+        // Owner
+        'owner age': 'owner_age', 'owner_age': 'owner_age', 'age': 'owner_age',
+        'seller age': 'owner_age', 'doctor age': 'owner_age',
+        'owner exit': 'owner_exit_intent', 'exit intent': 'owner_exit_intent', 'retirement': 'owner_exit_intent',
+        // EMR
+        'emr': 'emr_system', 'emr system': 'emr_system', 'emr_system': 'emr_system',
+        'ehr': 'emr_system', 'ehr system': 'emr_system', 'electronic health record': 'emr_system',
+        // Practice management
+        'pms': 'practice_mgmt_system', 'practice management': 'practice_mgmt_system',
+        // Years
+        'years': 'years_in_operation', 'years in operation': 'years_in_operation',
+        'years_in_operation': 'years_in_operation', 'age of practice': 'years_in_operation',
+        'established': 'years_in_operation', 'founded': 'years_in_operation', 'years in business': 'years_in_operation',
+        // Source
+        'source': 'source', 'lead source': 'source', 'referral': 'source', 'channel': 'source',
+        // Assigned
+        'assigned': 'assigned_to', 'assigned to': 'assigned_to', 'assigned_to': 'assigned_to',
+        'rep': 'assigned_to', 'salesperson': 'assigned_to', 'account manager': 'assigned_to',
+        // Payer mix
+        'commercial': 'payer_mix_commercial', 'commercial %': 'payer_mix_commercial',
+        'medicare': 'payer_mix_medicare', 'medicare %': 'payer_mix_medicare',
+        'medicaid': 'payer_mix_medicaid', 'medicaid %': 'payer_mix_medicaid',
+        'cash': 'payer_mix_cash', 'cash %': 'payer_mix_cash', 'self pay': 'payer_mix_cash',
+        // Patient volume
+        'patients': 'monthly_patient_volume_claimed', 'patient volume': 'monthly_patient_volume_claimed',
+        'monthly patients': 'monthly_patient_volume_claimed', 'visits': 'monthly_patient_volume_claimed',
+        // Real estate
+        'real estate': 'real_estate_status', 'lease': 'real_estate_status',
+        'lease expiration': 'lease_expiration', 'lease end': 'lease_expiration',
+        'rent': 'lease_monthly_rent_claimed', 'monthly rent': 'lease_monthly_rent_claimed',
+        'sqft': 'square_footage', 'square feet': 'square_footage', 'sq ft': 'square_footage',
+        // Google
+        'google rating': 'google_rating_claimed', 'rating': 'google_rating_claimed', 'stars': 'google_rating_claimed',
+        'reviews': 'google_review_count_claimed', 'google reviews': 'google_review_count_claimed',
+        // Telehealth
+        'telehealth': 'has_telehealth', 'telemedicine': 'has_telehealth', 'virtual': 'has_telehealth',
+        // Entity
+        'entity': 'entity_type', 'entity type': 'entity_type', 'legal entity': 'entity_type',
+        'state': 'state_of_incorporation', 'incorporated': 'state_of_incorporation'
       };
 
+      // First pass: exact match (normalize header)
       importState.headers.forEach(h => {
-        const normalized = h.toLowerCase().trim();
+        const normalized = h.toLowerCase().trim().replace(/[#_\-\.]/g, ' ').replace(/\s+/g, ' ');
         if (fieldMap[normalized]) {
           importState.mappings[h] = fieldMap[normalized];
+        }
+      });
+
+      // Second pass: fuzzy match for unmapped columns
+      const unmappedHeaders = importState.headers.filter(h => !importState.mappings[h]);
+      const fieldLabels = IMPORT_FIELD_OPTIONS.filter(o => o.value).map(o => ({
+        value: o.value,
+        label: o.label.replace(' *', '').toLowerCase()
+      }));
+
+      unmappedHeaders.forEach(h => {
+        const normalized = h.toLowerCase().trim();
+        let bestMatch = null;
+        let bestScore = 0.6; // Minimum threshold
+
+        fieldLabels.forEach(f => {
+          const score = stringSimilarity(normalized, f.label);
+          if (score > bestScore) {
+            bestScore = score;
+            bestMatch = f.value;
+          }
+          const valueScore = stringSimilarity(normalized, f.value.replace(/_/g, ''));
+          if (valueScore > bestScore) {
+            bestScore = valueScore;
+            bestMatch = f.value;
+          }
+        });
+
+        if (bestMatch) {
+          importState.mappings[h] = bestMatch;
         }
       });
 
@@ -19133,19 +19555,87 @@ Zenyte Holdings
         return;
       }
 
+      // Show progress
       goToImportStep('progress');
+      updateImportProgress(0, importState.rawData.length);
+      document.getElementById('import-progress-text').textContent = 'Checking for duplicates...';
 
+      // Normalize and prepare practices
       const practices = importState.rawData.map(row => {
         const practice = {};
         Object.entries(importState.mappings).forEach(([fileCol, field]) => {
-          if (field && row[fileCol]) {
-            practice[field] = row[fileCol];
+          if (field && row[fileCol] !== undefined && row[fileCol] !== '') {
+            // Apply smart normalization based on field type
+            practice[field] = normalizeFieldValue(field, row[fileCol]);
           }
         });
         return practice;
-      });
+      }).filter(p => p.legal_name); // Filter out rows without a name
 
-      await importPracticesInChunks(practices, 50);
+      if (practices.length === 0) {
+        alert('No valid practices to import. Make sure all rows have a Legal Name.');
+        goToImportStep('map');
+        return;
+      }
+
+      // Check for duplicates against existing practices
+      await checkForDuplicates(practices);
+
+      // If duplicates found, ask user what to do
+      if (importState.duplicates.length > 0) {
+        const skipDups = confirm(
+          `Found ${importState.duplicates.length} potential duplicate(s) that already exist in the database.\n\n` +
+          `Click OK to skip duplicates and import only new practices.\n` +
+          `Click Cancel to import everything (may create duplicates).`
+        );
+
+        if (skipDups) {
+          const dupNames = new Set(importState.duplicates.map(d => d.toLowerCase()));
+          const filtered = practices.filter(p => !dupNames.has(p.legal_name?.toLowerCase()));
+          importState.skipped = practices.length - filtered.length;
+          await importPracticesInChunks(filtered, 50);
+        } else {
+          importState.skipped = 0;
+          await importPracticesInChunks(practices, 50);
+        }
+      } else {
+        importState.skipped = 0;
+        await importPracticesInChunks(practices, 50);
+      }
+    }
+
+    // Check for duplicates in the database
+    async function checkForDuplicates(practices) {
+      importState.duplicates = [];
+
+      try {
+        const names = practices.map(p => p.legal_name).filter(Boolean);
+        if (names.length === 0) return;
+
+        // Query existing practices
+        const { data, error } = await window.sb
+          .from('practices')
+          .select('legal_name, dba_name')
+          .eq('org_id', window.currentOrgId);
+
+        if (error || !data || data.length === 0) return;
+
+        // Build set of existing names (lowercase)
+        const existingNames = new Set();
+        data.forEach(p => {
+          if (p.legal_name) existingNames.add(p.legal_name.toLowerCase());
+          if (p.dba_name) existingNames.add(p.dba_name.toLowerCase());
+        });
+
+        // Find matches
+        names.forEach(name => {
+          if (existingNames.has(name.toLowerCase())) {
+            importState.duplicates.push(name);
+          }
+        });
+      } catch (err) {
+        console.error('[Import] Duplicate check error:', err);
+      }
     }
 
     // Chunked import with progress
@@ -19154,6 +19644,12 @@ Zenyte Holdings
       importState.imported = 0;
       importState.failed = 0;
       importState.errors = [];
+
+      if (total === 0) {
+        goToImportStep('complete');
+        renderImportSummary();
+        return;
+      }
 
       for (let i = 0; i < total; i += chunkSize) {
         const chunk = practices.slice(i, i + chunkSize);
@@ -19181,8 +19677,6 @@ Zenyte Holdings
         }
 
         updateImportProgress(importState.imported + importState.failed, total);
-
-        // Small delay to avoid rate limits
         await new Promise(r => setTimeout(r, 100));
       }
 
@@ -19192,7 +19686,7 @@ Zenyte Holdings
 
     // Update progress bar
     function updateImportProgress(current, total) {
-      const pct = Math.round((current / total) * 100);
+      const pct = total > 0 ? Math.round((current / total) * 100) : 0;
       document.getElementById('import-progress-fill').style.width = pct + '%';
       document.getElementById('import-progress-text').textContent =
         `${importState.imported} / ${total} practices imported`;
@@ -19203,6 +19697,7 @@ Zenyte Holdings
       const el = document.getElementById('import-summary');
       el.innerHTML = `
         <p>Successfully imported: <span class="success-count">${importState.imported}</span></p>
+        ${importState.skipped > 0 ? `<p>Skipped (duplicates): <strong>${importState.skipped}</strong></p>` : ''}
         ${importState.failed > 0 ? `
           <p>Failed: <span class="failed-count">${importState.failed}</span></p>
         ` : ''}
@@ -24639,6 +25134,313 @@ Thank you!`;
       }
     }
 
+    // =============================================
+    // PRACTICE ACCESS MANAGEMENT
+    // =============================================
+
+    // Populate practice dropdown in admin panel
+    function populatePracticeAccessDropdown() {
+      const select = document.getElementById('practice-access-select');
+      if (!select) return;
+
+      const practices = getPractices();
+      select.innerHTML = '<option value="">Select a practice...</option>' +
+        practices.map(p => `<option value="${p.id}">${escapeHtml(p.name || p.legal_name || p.dba_name)}</option>`).join('');
+    }
+
+    // Load assignments for selected practice
+    async function loadPracticeAssignments() {
+      const select = document.getElementById('practice-access-select');
+      const practiceId = select?.value;
+
+      const table = document.getElementById('practice-assignments-table');
+      const tbody = document.getElementById('practice-assignments-tbody');
+      const noSelected = document.getElementById('no-practice-selected');
+      const noAssignments = document.getElementById('no-practice-assignments');
+      const visibilityToggle = document.getElementById('practice-visibility-toggle');
+      const visibleAllCheckbox = document.getElementById('practice-visible-all');
+
+      if (!practiceId) {
+        if (table) table.style.display = 'none';
+        if (noSelected) noSelected.style.display = 'block';
+        if (noAssignments) noAssignments.style.display = 'none';
+        if (visibilityToggle) visibilityToggle.style.display = 'none';
+        return;
+      }
+
+      if (noSelected) noSelected.style.display = 'none';
+
+      try {
+        // Get practice visibility setting
+        const practice = db.practices.find(p => p.id === practiceId);
+        if (visibilityToggle) visibilityToggle.style.display = 'block';
+        if (visibleAllCheckbox) {
+          visibleAllCheckbox.checked = practice?.is_visible_to_all !== false;
+        }
+
+        // Load assignments
+        const { data: assignments, error } = await window.sb
+          .from('practice_assignments')
+          .select('*')
+          .eq('practice_id', practiceId)
+          .order('assigned_at', { ascending: false });
+
+        if (error) {
+          console.error('[PracticeAccess] Load error:', error);
+          return;
+        }
+
+        if (!assignments || assignments.length === 0) {
+          if (table) table.style.display = 'none';
+          if (noAssignments) noAssignments.style.display = 'block';
+          return;
+        }
+
+        if (noAssignments) noAssignments.style.display = 'none';
+        if (table) table.style.display = 'table';
+
+        // Get user emails for display
+        const userIds = assignments.map(a => a.user_id);
+        const emailMap = {};
+        for (const userId of userIds) {
+          const { data: email } = await window.sb.rpc('get_user_email_by_id', { uid: userId });
+          if (email) emailMap[userId] = email;
+        }
+
+        tbody.innerHTML = assignments.map(a => {
+          const email = emailMap[a.user_id] || 'Unknown user';
+          const assignedDate = new Date(a.assigned_at).toLocaleDateString();
+
+          return `
+            <tr>
+              <td>${escapeHtml(email)}</td>
+              <td>
+                <select onchange="updatePracticeAssignment('${a.id}', this.value)">
+                  <option value="view" ${a.access_level === 'view' ? 'selected' : ''}>View</option>
+                  <option value="edit" ${a.access_level === 'edit' ? 'selected' : ''}>Edit</option>
+                  <option value="admin" ${a.access_level === 'admin' ? 'selected' : ''}>Admin</option>
+                </select>
+              </td>
+              <td>${assignedDate}</td>
+              <td>
+                <button onclick="removePracticeAssignment('${a.id}')" style="color: #dc2626; background: none; border: none; cursor: pointer;">Remove</button>
+              </td>
+            </tr>
+          `;
+        }).join('');
+
+      } catch (err) {
+        console.error('[PracticeAccess] Error:', err);
+      }
+    }
+
+    // Toggle practice visibility
+    async function toggleSelectedPracticeVisibility() {
+      const select = document.getElementById('practice-access-select');
+      const practiceId = select?.value;
+      const checkbox = document.getElementById('practice-visible-all');
+
+      if (!practiceId) return;
+
+      const isVisible = checkbox?.checked;
+
+      try {
+        const { error } = await window.sb
+          .from('practices')
+          .update({ is_visible_to_all: isVisible })
+          .eq('id', practiceId);
+
+        if (error) {
+          alert('Failed to update visibility: ' + error.message);
+          checkbox.checked = !isVisible;
+          return;
+        }
+
+        // Update local state
+        const practice = db.practices.find(p => p.id === practiceId);
+        if (practice) practice.is_visible_to_all = isVisible;
+
+        console.log('[PracticeAccess] Updated visibility:', practiceId, isVisible);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Visibility error:', err);
+      }
+    }
+
+    // Show modal to assign user to practice
+    async function showAssignUserModal() {
+      const select = document.getElementById('practice-access-select');
+      const practiceId = select?.value;
+
+      if (!practiceId) {
+        alert('Please select a practice first.');
+        return;
+      }
+
+      const practice = db.practices.find(p => p.id === practiceId);
+      const practiceName = practice?.name || practice?.legal_name || 'Practice';
+
+      // Get existing assignments
+      const { data: existingAssignments } = await window.sb
+        .from('practice_assignments')
+        .select('user_id')
+        .eq('practice_id', practiceId);
+
+      const assignedUserIds = new Set((existingAssignments || []).map(a => a.user_id));
+
+      // Get org members
+      const { data: members } = await window.sb
+        .from('org_members')
+        .select('user_id, role')
+        .eq('org_id', window.currentOrgId);
+
+      // Get emails
+      const availableMembers = [];
+      for (const member of (members || [])) {
+        if (assignedUserIds.has(member.user_id)) continue;
+        const { data: email } = await window.sb.rpc('get_user_email_by_id', { uid: member.user_id });
+        if (email) {
+          availableMembers.push({ user_id: member.user_id, email, role: member.role });
+        }
+      }
+
+      if (availableMembers.length === 0) {
+        alert('All org members are already assigned to this practice.');
+        return;
+      }
+
+      // Build modal
+      const modal = document.createElement('div');
+      modal.id = 'assign-user-modal';
+      modal.className = 'modal-overlay visible';
+      modal.innerHTML = `
+        <div class="modal" style="max-width: 400px;">
+          <div class="modal-header">
+            <h3>Assign User to Practice</h3>
+            <button class="modal-close" onclick="closeAssignUserModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <p style="margin-bottom: 1rem; font-size: 0.85rem; color: #666;">
+              Assign a team member to <strong>${escapeHtml(practiceName)}</strong>
+            </p>
+            <div style="margin-bottom: 1rem;">
+              <label style="font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">User</label>
+              <select id="assign-user-select" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
+                ${availableMembers.map(m => `<option value="${m.user_id}">${escapeHtml(m.email)} (${m.role})</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.75rem; font-weight: 600; display: block; margin-bottom: 0.25rem;">Access Level</label>
+              <select id="assign-access-level" style="width: 100%; padding: 0.5rem; border: 1px solid #d1d5db; border-radius: 6px;">
+                <option value="view">View - Can view practice data</option>
+                <option value="edit" selected>Edit - Can view and edit</option>
+                <option value="admin">Admin - Full access including delete</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeAssignUserModal()">Cancel</button>
+            <button class="btn btn-primary" onclick="assignUserToPractice()">Assign</button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+    }
+
+    function closeAssignUserModal() {
+      const modal = document.getElementById('assign-user-modal');
+      if (modal) modal.remove();
+    }
+
+    // Assign user to practice
+    async function assignUserToPractice() {
+      const select = document.getElementById('practice-access-select');
+      const practiceId = select?.value;
+      const userSelect = document.getElementById('assign-user-select');
+      const levelSelect = document.getElementById('assign-access-level');
+
+      const userId = userSelect?.value;
+      const accessLevel = levelSelect?.value;
+
+      if (!practiceId || !userId || !accessLevel) {
+        alert('Please select a user and access level.');
+        return;
+      }
+
+      try {
+        const id = 'pa_' + crypto.randomUUID().replace(/-/g, '').substring(0, 12);
+
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .insert({
+            id,
+            org_id: window.currentOrgId,
+            practice_id: practiceId,
+            user_id: userId,
+            access_level: accessLevel,
+            assigned_by: window.currentUser.id
+          });
+
+        if (error) {
+          alert('Failed to assign user: ' + error.message);
+          return;
+        }
+
+        closeAssignUserModal();
+        await loadPracticeAssignments();
+
+        console.log('[PracticeAccess] Assigned user:', userId, 'to practice:', practiceId);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Assign error:', err);
+        alert('Failed to assign user.');
+      }
+    }
+
+    // Update assignment access level
+    async function updatePracticeAssignment(assignmentId, newLevel) {
+      try {
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .update({ access_level: newLevel, updated_at: new Date().toISOString() })
+          .eq('id', assignmentId);
+
+        if (error) {
+          alert('Failed to update access level: ' + error.message);
+          return;
+        }
+
+        console.log('[PracticeAccess] Updated assignment:', assignmentId, 'to', newLevel);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Update error:', err);
+      }
+    }
+
+    // Remove practice assignment
+    async function removePracticeAssignment(assignmentId) {
+      if (!confirm('Remove this user\'s access to the practice?')) return;
+
+      try {
+        const { error } = await window.sb
+          .from('practice_assignments')
+          .delete()
+          .eq('id', assignmentId);
+
+        if (error) {
+          alert('Failed to remove assignment: ' + error.message);
+          return;
+        }
+
+        await loadPracticeAssignments();
+        console.log('[PracticeAccess] Removed assignment:', assignmentId);
+
+      } catch (err) {
+        console.error('[PracticeAccess] Remove error:', err);
+      }
+    }
+
     function showAdminPanel() {
       if (window.currentUserRole === 'admin') {
         document.getElementById('admin-panel').style.display = 'block';
@@ -24658,6 +25460,7 @@ Thank you!`;
         loadPendingInvites();
         loadAllowlist();
         loadTeamMembers();
+        populatePracticeAccessDropdown();
       }
     }
 
